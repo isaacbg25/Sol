@@ -1,0 +1,3 @@
+0 0 "sol" "yellow"
+-1.47e11 0 "afeli" "blue"
+1.52e11 0 "periheli" "blue"

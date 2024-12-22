@@ -5,9 +5,10 @@ real, parameter :: r_t = 1,r_s_mod = 5, betha=(23.44*2*pi)/360, w=(2*pi)/24, alp
 integer,parameter :: hours=24, n=3, days= 365
 integer :: i,j
 real :: r_0(n), phi, r(n), rho(n), r_s(n), r_phi(n,n), r_pla(n), r_betha(n,n)
-
-r_0=r_t*(/ 0.0, cos(alpha), sin(alpha) /)
-phi = betha !acos(r_0(3)/r_t)
+!alpha=(41.468*2*pi)/360
+!betha=(23.44*2*pi)/360
+!r_0=r_t*(/ 0.0, cos(alpha), sin(alpha) /)
+!phi = betha !acos(r_0(3)/r_t)
 
 r_betha = reshape([1.0,0.0,0.0,0.0,cos(-1*betha),sin(-1*betha), 0.0, -sin(-1*betha), cos(-1*betha)], shape(r_betha))
 r=[0.0,0.0,-r_t]
@@ -24,8 +25,17 @@ do i= 1,365, 90! days
         open(unit=11, file = 'data.txt', status='old', position='append')
             write(11,*) rho
         close(11)
+        open(unit=12, file = 'a_xz.txt', status='old', position = 'append')
+            write(12,*) asin(rho(3)/sqrt(sum(rho**2))), acos(rho(2)/(sqrt(sum(rho**2))*cos(asin(rho(3)/sqrt(sum(rho**2))))))
+        close(12)
 
     end do
+    open(unit=11, file = 'data.txt', status='old', position='append')
+        write(11,*) ""
+    close(11)
+    open(unit=12, file = 'a_xz.txt', status='old', position='append')
+        write(12,*) ""
+    close(12)
 end do
 
 end program cel

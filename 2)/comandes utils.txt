@@ -1,0 +1,1 @@
+sort -k1,1nr angles3.txt -o angles3.txt (ordenar de forma decreixent per valor de primera columna)

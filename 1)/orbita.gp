@@ -1,11 +1,6 @@
 set terminal png
 set output 'orbita.png' 
-
-plot 'orbita.txt' using 1:2 with lines title 'orbita',\
-     '-' using 1:2 with points pointtype 7 pointsize 1.5 linecolor rgb "black", \
-     '' using 1:2:3:4 with labels textcolor variable font ",12" offset 0.5,0.5 notitle
-
-0 0 "sol" "yellow"
--1.47e11 0 "afeli" "blue"
-1.52e11 0 "periheli" "blue"
-
+set ylabel 'y(m)'
+set xlabel 'x(m)'
+set title 'Òrbita terrestre'
+plot 'orbita.txt' using 1:2 with lines title 'orbita','afeli.txt' using 1:2:3 with labels offset 1,1 notitle,'afeli.txt' using 1:2 with points lc rgb "blue" pt 7 ps 1.5 notitle,'periheli.txt' using 1:2:3 with labels offset 1,1 notitle ,'periheli.txt' using 1:2 with points lc rgb "blue" pt 7 ps 1.5 notitle,'sol.txt' using 1:2:3 with labels offset 1,1 notitle,'sol.txt' using 1:2 with points lc rgb "yellow" pt 7 ps 1.5 notitle

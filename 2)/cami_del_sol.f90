@@ -1,7 +1,7 @@
 program cami_del_sol
 implicit none
 real, parameter :: pi = 3.1416
-integer,parameter ::   quarts=96, n=3, dies= 365
+integer,parameter ::   quarts=96, n=3, dies= 364
 real, parameter :: r_t = 6.378e6, betha=(23.44*2*pi)/360, w_rot=(2*pi)/quarts
 real, parameter ::alpha=(41.468*2*pi)/360, w_trans=(2*pi)/35040
 integer :: i,j,k, valors(4)
@@ -48,15 +48,15 @@ end do
 
 do j = 0, dies
     do i = 0,quarts 
-        r_xy(i,j,1)=r(i,j)*COS(theta(i,j))
-        r_xy(i,j,2)=r(i,j)*SIN(theta(i,j))
+        r_xy(i,j,1)=r(i,j)*SIN(theta(i,j))
+        r_xy(i,j,2)=r(i,j)*COS(theta(i,j))
         r_xy(i,j,3)=0.0
     end do
 end do
 
 !calcular l'angle gamma entre el vector posició al solstici d'hivern i al periheli
-gamma = (r_xy(0,0,1)*r_xy(0,352,1)+r_xy(0,0,2)*r_xy(0,352,2)+r_xy(0,0,3)*r_xy(0,352,3))
-gamma = acos(gamma/(sqrt(sum(r_xy(0,0,:)**2))*sqrt(sum(r_xy(0,352,:)**2))))
+gamma = (r_xy(0,0,1)*r_xy(0,350,1)+r_xy(0,0,2)*r_xy(0,350,2)+r_xy(0,0,3)*r_xy(0,350,3))
+gamma = acos(gamma/(sqrt(sum(r_xy(0,0,:)**2))*sqrt(sum(r_xy(0,351,:)**2))))
 
 
 !----------------------Calcular els angles del sol amb la nostra casa--------------------------------------------------------
@@ -64,14 +64,14 @@ gamma = acos(gamma/(sqrt(sum(r_xy(0,0,:)**2))*sqrt(sum(r_xy(0,352,:)**2))))
 !matrius per fer tots els canvis de coordenades
 r_betha = reshape([1.0,0.0,0.0,0.0,cos(betha),sin(betha), 0.0, -sin(betha), cos(betha)], shape(r_betha))!sistema amb z orientat amb l'eix de la terra (sist ref 0) a sistema amb z perpendicular al pla d'orbita (sist ref terra)
 r_betha_inv = reshape([1.0,0.0,0.0,0.0,cos(-1*betha),sin(-1*betha), 0.0, -sin(-1*betha), cos(-1*betha)], shape(r_betha))
-valors = (/352,80,172,266/)
-r_gamma = reshape([cos(gamma),sin(gamma), 0.0_8, -sin(gamma), cos(gamma),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))!sistema terra amb l'angle de l'eix de la terra al pla yz(sist ref terra) a sistema amb eixos x i y orientats amb l'lel·lipse de l'orbita (sist ref pla)
-r_gamma_inv = reshape([cos(-1*gamma),sin(-1*gamma), 0.0_8, -sin(-1*gamma), cos(-1*gamma),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))
+valors = (/350,75,168,262/)
+r_gamma_inv= reshape([cos(gamma),sin(gamma), 0.0_8, -sin(gamma), cos(gamma),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))!sistema terra amb l'angle de l'eix de la terra al pla yz(sist ref terra) a sistema amb eixos x i y orientats amb l'lel·lipse de l'orbita (sist ref pla)
+r_gamma = reshape([cos(-1*gamma),sin(-1*gamma), 0.0_8, -sin(-1*gamma), cos(-1*gamma),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))
 
 do j=0,dies
     
     do i= 0,quarts
-        r_s_pla=(/r(i,j)*COS(theta(i,j)), r(i,j)*SIN(theta(i,j)),0.0_8/)!r_s_pla és el vector entre el centre de la terra i el del sol
+        r_s_pla=(/r(i,j)*SIN(theta(i,j)),r(i,j)*COS(theta(i,j)),0.0_8/)!r_s_pla és el vector entre el centre de la terra i el del sol
         r_0=r_t*(/ cos(alpha)*cos(w_rot*i), cos(alpha)*sin(w_rot*i), sin(alpha) /)! r_0 és el vector entre el centre de la terra i la casa
         r_terra = matmul(r_0, r_betha) !r_terra és el vector de r_0 al sistema ref terra
         r_pla = matmul(r_terra,r_gamma)
@@ -87,12 +87,12 @@ do j=0,dies
     open(unit=11, file = 'angles.txt', status='old', position='append')
         do k = 0,quarts
             if (a_v(k,j)>0) then
-            write(11,*) a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
+            write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
             end if
         end do
         do k = 0,quarts
             if (a_v(k,j)>0) then
-            write(11,*) -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
+            write(11,'(F10.4,1x,F10.4)') -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
             end if
         end do
         write(11,*)""

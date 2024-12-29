@@ -87,9 +87,9 @@ do j=0,167
             r_terra = matmul(r_betha,r_0) !r_terra és el vector de r_0 al sistema ref terra
             r_pla = matmul(r_gamma,r_terra)
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
-            rho_terra = matmul(r_gamma_inv,rho_pla)
-            rho_0= matmul( r_betha_inv,rho_terra)
-            a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            r_s_terra = matmul(r_gamma_inv,rho_pla)
+            r_s_0= matmul( r_betha_inv,r_s_terra)
+            a_h(i,j) =pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
             a_v(i,j)=acos(a_v(i,j)) - pi/2
         else 
@@ -98,12 +98,12 @@ do j=0,167
             r_terra = matmul(r_betha,r_0) !r_terra és el vector de r_0 al sistema ref terra
             r_pla = matmul(r_gamma,r_terra)
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
-            rho_terra = matmul(r_gamma_inv,rho_pla)
-            rho_0= matmul( r_betha_inv,rho_terra)
+            r_s_terra = matmul(r_gamma_inv,rho_pla)
+            r_s_0= matmul( r_betha_inv,r_s_terra)
             if (i<48) then
-                a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+                a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
-                a_h(i,j) =-(pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+                a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
             end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
             a_v(i,j)=acos(a_v(i,j)) - pi/2    
@@ -138,26 +138,30 @@ do j=168,349
             r_terra = matmul(r_betha,r_0) !r_terra és el vector de r_0 al sistema ref terra
             r_pla = matmul(r_gamma,r_terra)
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
-            rho_terra = matmul(r_gamma_inv,rho_pla)
-            rho_0= matmul( r_betha_inv,rho_terra)
-            a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            r_s_terra = matmul(r_gamma_inv,rho_pla)
+            r_s_0= matmul( r_betha_inv,r_s_terra)
+            if (i<48) then
+                a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            else
+                a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+            end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
-            a_v(i,j)=acos(a_v(i,j)) - pi/2
+            a_v(i,j)=acos(a_v(i,j)) - pi/2    
         else 
             r_s_pla=(/r(i,j)*alpha_norm*SIN(theta(i,j)),r(i,j)*alpha_norm*COS(theta(i,j)),0.0_8/)!r_s_pla és el vector entre el centre de la terra i el del sol
             r_0=r_t*(/ cos(alpha)*cos(w_rot*i+pi/2+phi), cos(alpha)*sin(w_rot*i+pi/2+phi), sin(alpha) /)
             r_terra = matmul(r_betha,r_0) !r_terra és el vector de r_0 al sistema ref terra
             r_pla = matmul(r_gamma,r_terra)
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
-            rho_terra = matmul(r_gamma_inv,rho_pla)
-            rho_0= matmul( r_betha_inv,rho_terra)
+            r_s_terra = matmul(r_gamma_inv,rho_pla)
+            r_s_0= matmul( r_betha_inv,r_s_terra)
             if (i<48) then
-                a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+                a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
-                a_h(i,j) =-(pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+                a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
             end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
-            a_v(i,j)=acos(a_v(i,j)) - pi/2      
+            a_v(i,j)=acos(a_v(i,j)) - pi/2       
         end if
     end do
 
@@ -189,26 +193,30 @@ do j=350,364
             r_terra = matmul(r_betha,r_0) !r_terra és el vector de r_0 al sistema ref terra
             r_pla = matmul(r_gamma,r_terra)
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
-            rho_terra = matmul(r_gamma_inv,rho_pla)
-            rho_0= matmul( r_betha_inv,rho_terra)
-            a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            r_s_terra = matmul(r_gamma_inv,rho_pla)
+            r_s_0= matmul( r_betha_inv,r_s_terra)
+            if (i<48) then
+                a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            else
+                a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+            end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
-            a_v(i,j)=acos(a_v(i,j)) - pi/2
+            a_v(i,j)=acos(a_v(i,j)) - pi/2    
         else 
             r_s_pla=(/r(i,j)*alpha_norm*SIN(theta(i,j)),r(i,j)*alpha_norm*COS(theta(i,j)),0.0_8/)!r_s_pla és el vector entre el centre de la terra i el del sol
             r_0=r_t*(/ cos(alpha)*cos(w_rot*i+pi/2+phi), cos(alpha)*sin(w_rot*i+pi/2+phi), sin(alpha) /)
             r_terra = matmul(r_betha,r_0) !r_terra és el vector de r_0 al sistema ref terra
             r_pla = matmul(r_gamma,r_terra)
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
-            rho_terra = matmul(r_gamma_inv,rho_pla)
-            rho_0= matmul( r_betha_inv,rho_terra)
+            r_s_terra = matmul(r_gamma_inv,rho_pla)
+            r_s_0= matmul( r_betha_inv,r_s_terra)
             if (i<48) then
-                a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+                a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
-                a_h(i,j) =-(pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+                a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
             end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
-            a_v(i,j)=acos(a_v(i,j)) - pi/2    
+            a_v(i,j)=acos(a_v(i,j)) - pi/2      
         end if
     end do
 

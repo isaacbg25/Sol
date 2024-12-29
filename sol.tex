@@ -51,7 +51,7 @@ En aquesta secció ens hem proposat simular el moviment de translació de la Ter
 
 $F(r)=-\frac{GMm}{r^2}$
 
-Per aquest tipus de sistemes tenim 2 equacions en el pla polar:
+Per aquest tipus de sistemes tenim 2 equacions en el pla polar
 \begin{equation}
     F(r)=m\ddot{r}-mr{\dot{\theta}}^2
     \label{equ_en_r}
@@ -60,18 +60,19 @@ Per aquest tipus de sistemes tenim 2 equacions en el pla polar:
     0=\ddot{\theta}m=mr\ddot{\theta}+2m\dot{r}\dot{\theta}
     \label{equ_en_theta}
 \end{equation}
-I la propietat que el moment angular es conserva: 
+I la propietat que el moment angular es conserva 
 \begin{equation}
     L=mr\dot{\theta}
     \label{moment_angular}
 \end{equation}
 Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una edo només en r
 \begin{equation}
-    \frac{\partial\dot{r}}{\partial t}=-GM\frac{1}{r²}+\frac{L²}{m²r³}
+    \frac{\partial\dot{r}}{\partial t}=-GM\frac{1}{r^2}+\frac{L^2}{m^2r^3}
 \end{equation}
 Normalitzem i fem un canvi de variables per obtenir dues equacions diferencials de primer ordre 
+
 \begin{equation}
-    \frac{\partial\tilde{v}}{\partial\tilde{t}}=\frac{1}{\tilde{r}²}+\frac{1}{\tilde{r}³}
+    \frac{\partial\tilde{v}}{\partial\tilde{t}}=-\frac{1}{\tilde{r}^2}+\frac{1}{\tilde{r}^3}
     \label{1_edo_r}
 \end{equation}
 
@@ -79,8 +80,9 @@ Normalitzem i fem un canvi de variables per obtenir dues equacions diferencials 
     \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}
     \label{2_edo_r}
 \end{equation}
+
 \begin{equation}
-    \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}²}
+    \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
     \label{edo_tetha}
 \end{equation}
 
@@ -91,7 +93,7 @@ NORMALITZACIÓ
     v=\tilde{v}\bar{v}
 \end{equation}
 
-on $\alpha = \frac{\beta}{\kappa}$ $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$ i $\beta=\frac{L²}{m²}, \kappa=GM$
+on $\alpha = \frac{\beta}{\kappa}$ $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$ i $\beta=\frac{L^2}{m^2}, \kappa=GM$
 
 
 \section{Posició del Sol al cel vist des de l'habitatge} 

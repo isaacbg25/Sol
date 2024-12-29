@@ -1,7 +1,7 @@
 program cami_del_sol
     implicit none
     real, parameter :: pi = 3.1416
-    integer,parameter ::   quarts=95, n=3, dies= 364
+    integer,parameter ::   quarts=1439, n=3, dies= 364
     real, parameter :: r_t = 6.378e6, betha=(23.44*2*pi)/360, w_rot=(2*pi)/quarts
     real, parameter ::alpha=(41.468*2*pi)/360, w_trans=(2*pi)/35040
     integer :: i,j,k, valors(4)
@@ -9,7 +9,7 @@ program cami_del_sol
     real :: phi
     real(8) :: r_0(n), rho_0(n), rho_pla(n), r_s_pla(n), r_pla(n), rho_terra(n), r_terra(n), r_phi(n,n)
     real(8) ::  a_v(0:quarts,0:dies), a_h(0:quarts,0:dies),r_betha(n,n), r_betha_inv(n,n), r_gamma(n,n), r_gamma_inv(n,n)
-    real(8) :: r_s_terra(n), r_s_0(n)
+    real(8) :: r_s_terra(n), r_s_0(n), mod_rho(0:quarts,0:dies)
     
     
     !---------------------trobar el radi  i l'angle de l'orbita per cada temps (apartat 1)---------------------------------------------------
@@ -70,6 +70,8 @@ valors = (/350,75,168,262/)
 r_gamma= reshape([cos(gamma),sin(gamma), 0.0_8, -sin(gamma), cos(gamma),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))!sistema terra amb l'angle de l'eix de la terra al pla yz(sist ref terra) a sistema amb eixos x i y orientats amb l'lel·lipse de l'orbita (sist ref pla)
 r_gamma_inv=reshape([cos(-1*gamma),sin(-1*gamma), 0.0_8, -sin(-1*gamma), cos(-1*gamma),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))
 
+!fem el calcul per tres epoques de l'any començant a j=0 que coincideix amb el 3 de gener (terra al periheli)
+!hem de separar el calcul per sumar els angles correctament (separem l'any entre solsticis(t=168 i t=250) però comencem al periheli, per tant 3 divisions)
 do j=0,167
 
     do i= 0,quarts
@@ -100,7 +102,7 @@ do j=0,167
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             r_s_terra = matmul(r_gamma_inv,rho_pla)
             r_s_0= matmul( r_betha_inv,r_s_terra)
-            if (i<48) then
+            if (i<720) then
                 a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
                 a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
@@ -108,17 +110,10 @@ do j=0,167
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
             a_v(i,j)=acos(a_v(i,j)) - pi/2    
         end if
+        mod_rho(i,j)=sqrt(sum(rho_pla**2))
+
     end do
 
-    !escrivim els angles trobats a un txt
-    open(unit=11, file = 'angles.txt', status='old', position='append')
-        do k = 0,quarts
-            
-            write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-            
-        end do
-        write(11,*)""
-    close(11)
 end do
 
 do j=168,349
@@ -140,7 +135,7 @@ do j=168,349
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             r_s_terra = matmul(r_gamma_inv,rho_pla)
             r_s_0= matmul( r_betha_inv,r_s_terra)
-            if (i<48) then
+            if (i<720) then
                 a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
                 a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
@@ -155,7 +150,7 @@ do j=168,349
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             r_s_terra = matmul(r_gamma_inv,rho_pla)
             r_s_0= matmul( r_betha_inv,r_s_terra)
-            if (i<48) then
+            if (i<720) then
                 a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
                 a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
@@ -163,17 +158,10 @@ do j=168,349
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
             a_v(i,j)=acos(a_v(i,j)) - pi/2       
         end if
+        mod_rho(i,j)=sqrt(sum(rho_pla**2))
+
     end do
 
-    !escrivim els angles trobats a un txt
-    open(unit=11, file = 'angles.txt', status='old', position='append')
-        do k = 0,quarts
-            
-            write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-            
-        end do
-        write(11,*)""
-    close(11)
 end do
 
 do j=350,364
@@ -195,7 +183,7 @@ do j=350,364
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             r_s_terra = matmul(r_gamma_inv,rho_pla)
             r_s_0= matmul( r_betha_inv,r_s_terra)
-            if (i<48) then
+            if (i<720) then
                 a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
                 a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
@@ -210,7 +198,7 @@ do j=350,364
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             r_s_terra = matmul(r_gamma_inv,rho_pla)
             r_s_0= matmul( r_betha_inv,r_s_terra)
-            if (i<48) then
+            if (i<720) then
                 a_h(i,j)=pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
             else
                 a_h(i,j)=-(pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
@@ -218,16 +206,25 @@ do j=350,364
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
             a_v(i,j)=acos(a_v(i,j)) - pi/2      
         end if
+        mod_rho(i,j)=sqrt(sum(rho_pla**2))
+
+        
+
     end do
 
+
+
+   
+end do
+    
     !escrivim els angles trobats a un txt
-    open(unit=11, file = 'angles.txt', status='old', position='append')
+open(unit=11, file = 'angles.txt', status='replace')
+    do j=0,dies
         do k = 0,quarts 
             write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi) 
         end do
-        write(11,*)""
-    close(11)
-end do
+    end do
+close(11)
     
     do i= 1, size(valors)
         write(nom_fitxer, '("equinoci",I0,".txt")') i
@@ -242,4 +239,11 @@ end do
         close(unit=i)
     end do
 
+open(unit=12, file = 'dist_sol.txt', status='replace')
+    do j=0,dies
+        do k = 0,quarts 
+            write(12,*) mod_rho(k,j)
+        end do
+    end do
+close(12)
 end program cami_del_sol

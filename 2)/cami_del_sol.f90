@@ -1,62 +1,63 @@
 program cami_del_sol
 implicit none
 real, parameter :: pi = 3.1416
-integer,parameter ::   quarts=96, n=3, dies= 364
+integer,parameter ::   quarts=95, n=3, dies= 364
 real, parameter :: r_t = 6.378e6, betha=(23.44*2*pi)/360, w_rot=(2*pi)/quarts
 real, parameter ::alpha=(41.468*2*pi)/360, w_trans=(2*pi)/35040
 integer :: i,j,k, valors(4)
 character(len=100):: nom_fitxer
-real(8) :: r_0(n), rho_0(n), rho_pla(n), r_s_pla(n), r_pla(n), rho_terra(n), r_terra(n)
+real(8) :: r_0(n), rho_0(n), rho_pla(n), r_s_pla(n), r_pla(n), rho_terra(n), r_terra(n), r_pla_24(n), rho_pla_24(n)
 real(8) ::  a_v(0:quarts,0:dies), a_h(0:quarts,0:dies),r_betha(n,n), r_betha_inv(n,n), r_gamma(n,n), r_gamma_inv(n,n)
+real(8) :: r_phi(n,n), phi, r_phi_inv(n,n), r_s_terra(n), r_s_0(n)
 
 
 !---------------------trobar el radi  i l'angle de l'orbita per cada temps (apartat 1)---------------------------------------------------
 
 INTEGER,PARAMETER :: DP = SELECTED_REAL_KIND(15,307)
-real(kind=DP), parameter :: m_t=5.972168e24, m_s=1.9885e30, g=6.674302e-11, r_0_t=147098290e3 , v_0=30.29e3, t_n = dies*3600*24 !v_0 velocitat al periheli
-integer, parameter :: n_temps=dies*quarts !calculem cada 15min durant tot l'any
-real(kind=DP), parameter :: L=r_0_t*v_0*m_t
-real(kind=DP) :: k_1,c_1
-real(kind=DP), parameter :: betha_par=(L/m_t)**2, k_norm=g*m_s, alpha_norm=betha_par/k_norm
-integer :: t 
-real(kind=DP), parameter :: v_=k_norm/(betha_par)**(1/2), dt = t_n/n_temps!(t_n*v_)/(n_temps*alpha_norm)
-real(kind=DP) :: gamma,v(0:quarts,0:dies),r(0:quarts,0:dies),theta(0:quarts,0:dies), r_xy(0:quarts,0:dies,3) !x=quarts d'hora y=dia z=coordenada
-v(0,0)=0!ci velocitat en r(periheli)
-r(0,0)=r_0_t!ci radi inicial (periheli)
-
-do j= 0,dies !dies
-    do i = 0,quarts-1 !quarts d'hora en cada dia
-        k_1 = -(g*m_s/r(i,j)**2) + ((l**2)/(m_t**(2)*r(i,j)**3))
-        v(i+1,j)=v(i,j)+K_1*dt
-        c_1 = v(i,j)
-        r(i+1,j)= r(i,j)+dt*c_1 
+    real(kind=DP), parameter :: m_t=5.972168e24, m_s=1.9885e30, g=6.674302e-11, r_0_t=147098290e3 , v_0=30.29e3, t_n = 365*3600*24 !v_0 velocitat al periheli
+    integer, parameter :: n_temps=dies*quarts !calculem cada 15min durant tot l'any
+    real(kind=DP), parameter :: L=r_0_t*v_0*m_t
+    real(kind=DP) :: k_1,c_1
+    real(kind=DP), parameter :: betha_par=(L/m_t)**2, k_norm=g*m_s, alpha_norm=betha_par/k_norm
+    real(kind=DP), parameter :: v_=k_norm/(betha_par)**(0.5), t_n_norm = t_n*v_/alpha_norm, dt=t_n_norm/n_temps
+    real(kind=DP) :: gamma,v(0:quarts,0:dies),r(0:quarts,0:dies),theta(0:quarts,0:dies), r_xy(0:quarts,0:dies,3) !x=quarts d'hora y=dia z=coordenada
+    v(0,0)=0!ci velocitat en r(periheli)
+    r(0,0)=r_0_t/alpha_norm!ci radi inicial (periheli)
+    
+    do j= 0,dies !dies
+        do i = 0,quarts-1 !quarts d'hora en cada dia
+            k_1 = -(1/r(i,j)**2) + (1/(r(i,j)**3))
+            v(i+1,j)=v(i,j)+k_1*dt
+            c_1 = v(i,j)
+            r(i+1,j)= r(i,j)+dt*c_1 
+        end do
+        
+        theta(0,0)=0 !ci per l'angle
+        do i = 0,quarts-1
+            theta(i+1,j)=theta(i,j)+dt/(r(i,j)**2)
+        end do
+        if (j==dies) then
+        exit
+        end if
+        theta(0,j+1)=theta(quarts,j)+dt/(r(quarts,j)**2)
+        k_1 = -(1/r(quarts,j)**2) + ((1)/(r(quarts,j)**3))
+        v(0,j+1)=v(quarts,j)+K_1*dt!(dt/6)*(k_1+2*K_2+2*k_3+k_4)
+        c_1 = v(quarts,j)
+        r(0,j+1)= r(quarts,j)+dt*c_1 !(dt/6)*(c_1+2*c_2+2*c_3+c_4)
+    end do
+    !vectors sol-centre terra al llarg de l'any
+    do j = 0, dies
+        do i = 0,quarts 
+            r_xy(i,j,1)=r(i,j)*alpha_norm*SIN(theta(i,j))
+            r_xy(i,j,2)=r(i,j)*alpha_norm*COS(theta(i,j))
+            r_xy(i,j,3)=0.0
+        end do
     end do
     
-    theta(0,0)=0 !ci per l'angle
-    do i = 0,quarts-1
-        theta(i+1,j)=theta(i,j)+dt*L/(m_t*r(i,j)**2)
-    end do
-    if (j==dies) then
-    exit
-    end if
-    theta(0,j+1)=theta(quarts,j)+dt*L/(m_t*r(quarts,j)**2)
-    k_1 = -(g*m_s/r(quarts,j)**2) + ((l**2)/(m_t**(2)*r(quarts,j)**3))
-    v(0,j+1)=v(quarts,j)+K_1*dt!(dt/6)*(k_1+2*K_2+2*k_3+k_4)
-    c_1 = v(quarts,j)
-    r(0,j+1)= r(quarts,j)+dt*c_1 !(dt/6)*(c_1+2*c_2+2*c_3+c_4)
-end do
-
-do j = 0, dies
-    do i = 0,quarts 
-        r_xy(i,j,1)=r(i,j)*SIN(theta(i,j))
-        r_xy(i,j,2)=r(i,j)*COS(theta(i,j))
-        r_xy(i,j,3)=0.0
-    end do
-end do
-
-!calcular l'angle gamma entre el vector posició al solstici d'hivern i al periheli
-gamma = (r_xy(0,0,1)*r_xy(0,350,1)+r_xy(0,0,2)*r_xy(0,350,2)+r_xy(0,0,3)*r_xy(0,350,3))
-gamma = acos(gamma/(sqrt(sum(r_xy(0,0,:)**2))*sqrt(sum(r_xy(0,351,:)**2))))
+    !calcular l'angle gamma entre el vector posició al solstici d'hivern i al periheli
+    gamma = (r_xy(0,0,1)*r_xy(0,350,1)+r_xy(0,0,2)*r_xy(0,350,2)+r_xy(0,0,3)*r_xy(0,350,3))
+    gamma = acos(gamma/(sqrt(sum(r_xy(0,0,:)**2))*sqrt(sum(r_xy(0,351,:)**2))))
+    
 
 
 !----------------------Calcular els angles del sol amb la nostra casa--------------------------------------------------------
@@ -71,28 +72,54 @@ r_gamma = reshape([cos(-1*gamma),sin(-1*gamma), 0.0_8, -sin(-1*gamma), cos(-1*ga
 do j=0,dies
     
     do i= 0,quarts
-        r_s_pla=(/r(i,j)*SIN(theta(i,j)),r(i,j)*COS(theta(i,j)),0.0_8/)!r_s_pla és el vector entre el centre de la terra i el del sol
-        r_0=r_t*(/ cos(alpha)*cos(w_rot*i), cos(alpha)*sin(w_rot*i), sin(alpha) /)! r_0 és el vector entre el centre de la terra i la casa
-        r_terra = matmul(r_0, r_betha) !r_terra és el vector de r_0 al sistema ref terra
-        r_pla = matmul(r_terra,r_gamma)
-        rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
-        rho_terra = matmul(rho_pla,r_gamma_inv)
-        rho_0= matmul(rho_terra, r_betha_inv)
-        a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
-        a_v(i,j) = acos((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
-        a_v(i,j)=a_v(i,j) - pi/2
+        if (i==0) then
+            r_s_pla=(/r(i,j)*alpha_norm*SIN(theta(i,j)),r(i,j)*alpha_norm*COS(theta(i,j)),0.0_8/)!r_s_pla és el vector entre el centre de la terra i el del sol
+            r_s_terra = matmul(r_s_pla,r_gamma_inv)
+            r_s_0= matmul(r_s_terra, r_betha_inv)
+            r_0=r_t*(/ cos(alpha)*cos(w_rot*i+pi/2), cos(alpha)*sin(w_rot*i+pi/2), sin(alpha) /)! r_0 és el vector entre el centre de la terra i la casa
+            r_terra = matmul(r_0, r_betha) !r_terra és el vector de r_0 al sistema ref terra
+            r_pla = matmul(r_terra,r_gamma)
+            phi =pi-acos((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            r_phi=reshape([cos(phi),-sin(phi), 0.0_8, sin(phi), cos(phi),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))
+            r_phi_inv = reshape([cos(-1*phi),-sin(-1*phi), 0.0_8, sin(-1*phi), cos(-1*phi),0.0_8,0.0_8,0.0_8,1.0_8], shape(r_gamma))
+            r_pla_24 = matmul(r_phi,r_pla)
+            r_0=matmul((matmul(r_pla_24,r_gamma_inv)),r_betha_inv)
+            r_terra = matmul(r_0, r_betha) !r_terra és el vector de r_0 al sistema ref terra
+            r_pla = matmul(r_terra,r_gamma)
+            rho_pla=r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
+            r_s_terra = matmul(r_s_pla,r_gamma_inv)
+            r_s_0= matmul(r_s_terra, r_betha_inv)
+            a_h(i,j)=((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            a_h(i,j)=pi-acos(a_h(i,j))
+            a_v(i,j)=(sum(r_pla*rho_pla))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2)))
+            a_v(i,j)=acos(a_v(i,j)) - pi/2
+        else 
+            r_s_pla=(/r(i,j)*alpha_norm*SIN(theta(i,j)),r(i,j)*alpha_norm*COS(theta(i,j)),0.0_8/)!r_s_pla és el vector entre el centre de la terra i el del sol
+            r_0=r_t*(/ cos(alpha)*cos(w_rot*i+pi/2), cos(alpha)*sin(w_rot*i+pi/2), sin(alpha) /)! r_0 és el vector entre el centre de la terra i la casa
+            r_terra = matmul(r_0, r_betha) !r_terra és el vector de r_0 al sistema ref terra
+            r_pla = matmul(r_terra,r_gamma)
+            r_pla_24 = matmul(r_phi,r_pla)
+            r_0=matmul((matmul(r_pla_24,r_gamma_inv)),r_betha_inv)
+            r_terra = matmul(r_0, r_betha) !r_terra és el vector de r_0 al sistema ref terra
+            r_pla = matmul(r_terra,r_gamma)
+            rho_pla=r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
+            r_s_terra = matmul(r_s_pla,r_gamma_inv)
+            r_s_0= matmul(r_s_terra, r_betha_inv)
+            a_h(i,j)=((r_s_0(1)*r_0(1)+r_s_0(2)*r_0(2))/(sqrt(r_s_0(1)**2+r_s_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            a_h(i,j)=pi-acos(a_h(i,j))
+            a_v(i,j)=(sum(r_pla*rho_pla))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2)))
+            a_v(i,j)=acos(a_v(i,j)) - pi/2
+        end if     
     end do
 
 !escrivim els angles trobats a un txt
     open(unit=11, file = 'angles.txt', status='old', position='append')
         do k = 0,quarts
-            if (a_v(k,j)>0) then
-            write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-            end if
+                write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
         end do
         do k = 0,quarts
             if (a_v(k,j)>0) then
-            write(11,'(F10.4,1x,F10.4)') -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
+                write(11,'(F10.4,1x,F10.4)') -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
             end if
         end do
         write(11,*)""
@@ -117,5 +144,5 @@ do i= 1, size(valors)
         write(i,*)""
     close(unit=i)
 end do
-
+print*, a_v(3,4), a_h(3,4)
 end program cami_del_sol

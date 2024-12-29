@@ -47,7 +47,52 @@ Núria Castillo Ariño (1669145)
 Abstract pràctica 
 
 \section{Moviment de la Terra al voltant del Sol} 
-En aquesta secció ens hem proposat simular el moviment de translació de la Terra al voltant del Sol. Per fer-ho hem partit de la Llei de la Gravitació Univeral simplificant el nostre problema de dos cossos a un d'un sol cos sota una força central. 
+En aquesta secció ens hem proposat simular el moviment de translació de la Terra al voltant del Sol. Per fer-ho hem partit de la Llei de la Gravitació Univeral i hem simplificant el nostre problema de dos cossos a un d'un sol cos sota una força central, $F(r)$.
+
+$F(r)=-\frac{GMm}{r^2}$
+
+Per aquest tipus de sistemes tenim 2 equacions en el pla polar:
+\begin{equation}
+    F(r)=m\ddot{r}-mr{\dot{\theta}}^2
+    \label{equ_en_r}
+\end{equation}
+\begin{equation}
+    0=\ddot{\theta}m=mr\ddot{\theta}+2m\dot{r}\dot{\theta}
+    \label{equ_en_theta}
+\end{equation}
+I la propietat que el moment angular es conserva: 
+\begin{equation}
+    L=mr\dot{\theta}
+    \label{moment_angular}
+\end{equation}
+Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una edo només en r
+\begin{equation}
+    \frac{\partial\dot{r}}{\partial t}=-GM\frac{1}{r²}+\frac{L²}{m²r³}
+\end{equation}
+Normalitzem i fem un canvi de variables per obtenir dues equacions diferencials de primer ordre 
+\begin{equation}
+    \frac{\partial\tilde{v}}{\partial\tilde{t}}=\frac{1}{\tilde{r}²}+\frac{1}{\tilde{r}³}
+    \label{1_edo_r}
+\end{equation}
+
+\begin{equation}
+    \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}
+    \label{2_edo_r}
+\end{equation}
+\begin{equation}
+    \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}²}
+    \label{edo_tetha}
+\end{equation}
+
+NORMALITZACIÓ
+\begin{equation}
+    r=\tilde{r}\alpha
+    t=\tilde{t}\frac{\alpha}{\bar{v}}
+    v=\tilde{v}\bar{v}
+\end{equation}
+
+on $\alpha = \frac{\beta}{\kappa}$ $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$ i $\beta=\frac{L²}{m²}, \kappa=GM$
+
 
 \section{Posició del Sol al cel vist des de l'habitatge} 
 

@@ -100,7 +100,11 @@ do j=0,167
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             rho_terra = matmul(r_gamma_inv,rho_pla)
             rho_0= matmul( r_betha_inv,rho_terra)
-            a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            if (i<48) then
+                a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            else
+                a_h(i,j) =-(pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+            end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
             a_v(i,j)=acos(a_v(i,j)) - pi/2    
         end if
@@ -112,11 +116,6 @@ do j=0,167
             
             write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
             
-        end do
-        do k = 0,quarts
-            if (a_v(k,j)>0) then
-            write(11,'(F10.4,1x,F10.4)') -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-            end if
         end do
         write(11,*)""
     close(11)
@@ -152,9 +151,13 @@ do j=168,349
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             rho_terra = matmul(r_gamma_inv,rho_pla)
             rho_0= matmul( r_betha_inv,rho_terra)
-            a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            if (i<48) then
+                a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            else
+                a_h(i,j) =-(pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+            end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
-            a_v(i,j)=acos(a_v(i,j)) - pi/2    
+            a_v(i,j)=acos(a_v(i,j)) - pi/2      
         end if
     end do
 
@@ -164,11 +167,6 @@ do j=168,349
             
             write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
             
-        end do
-        do k = 0,quarts
-            if (a_v(k,j)>0) then
-            write(11,'(F10.4,1x,F10.4)') -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-            end if
         end do
         write(11,*)""
     close(11)
@@ -204,7 +202,11 @@ do j=350,364
             rho_pla =r_s_pla + r_pla !rho_pla és el vector entre el sol i la casa al sistema de ref orbita
             rho_terra = matmul(r_gamma_inv,rho_pla)
             rho_0= matmul( r_betha_inv,rho_terra)
-            a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            if (i<48) then
+                a_h(i,j) =pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2)))
+            else
+                a_h(i,j) =-(pi-acos((rho_0(1)*r_0(1)+rho_0(2)*r_0(2))/(sqrt(rho_0(1)**2+rho_0(2)**2)*sqrt(r_0(1)**2+r_0(2)**2))))
+            end if
             a_v(i,j)=((r_pla(1)*rho_pla(1)+r_pla(2)*rho_pla(2)+r_pla(3)*rho_pla(3))/(sqrt(sum(r_pla**2))*sqrt(sum(rho_pla**2))))
             a_v(i,j)=acos(a_v(i,j)) - pi/2    
         end if
@@ -212,15 +214,8 @@ do j=350,364
 
     !escrivim els angles trobats a un txt
     open(unit=11, file = 'angles.txt', status='old', position='append')
-        do k = 0,quarts
-            
-            write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-            
-        end do
-        do k = 0,quarts
-            if (a_v(k,j)>0) then
-            write(11,'(F10.4,1x,F10.4)') -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-            end if
+        do k = 0,quarts 
+            write(11,'(F10.4,1x,F10.4)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi) 
         end do
         write(11,*)""
     close(11)
@@ -233,11 +228,6 @@ end do
             do k = 0,quarts
                 if (a_v(k,j)>0) then
                     write(i,'(F10.2,1x,F10.2)') a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
-                end if
-            end do
-            do k = 0,quarts
-                if (a_v(k,j)>0) then
-                    write(i,'(F10.2,1x,F10.2)') -1*a_h(k,j)*(180/pi), a_v(k,j)*(180/pi)
                 end if
             end do
             write(i,*)""

@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1735574239 "/home/isaac/Projectes/Sol/latex/sol.tex" "sol.pdf" "sol" 1735574241
+["pdflatex"] 1735575330 "/home/isaac/Projectes/Sol/latex/sol.tex" "sol.pdf" "sol" 1735575332
   "/etc/texmf/web2c/texmf.cnf" 1735152389 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/isaac/Projectes/Sol/latex/sol.tex" 1735574237 8163 7ba53ef9b7555d99a986ffaca22eb002 ""
+  "/home/isaac/Projectes/Sol/latex/sol.tex" 1735575329 8191 1240aad7b36e5e36382d63aabcf9f600 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm" 1136768653 3584 21b378cca2e40816b0e6d74a4dc98f04 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -17,6 +17,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2488.tfm" 1136768653 3584 406ad7b70d9a41f7833f92b6313150c8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt0900.tfm" 1136768653 1536 ae7aab2f8a4bc9edfce2899f53ba88c3 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcbx2488.tfm" 1136768653 1536 76202beaa15a67aeb72afecbb2f1f5bf ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0900.tfm" 1136768653 1536 c4f439db76ef96a9c53bc437f35ffe20 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -255,10 +256,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1735152405 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1735152536 2800972 92a11f7425d4c77c4fa139d2d4326f8f ""
-  "equinocis.png" 1735558546 7641 1240dcc7dbfe538ed240604889828c0d ""
+  "equinocis.png" 1735574850 8466 599dbeeeccff6d7da07588cccb24d666 ""
   "orbita.png" 1735558546 8245 6d4ab2749d9cb611a042e03fcc22a827 ""
-  "sol.aux" 1735574241 6617 1b352f6f050ad4510e85e4efa3ce9ce8 "pdflatex"
-  "sol.tex" 1735574237 8163 7ba53ef9b7555d99a986ffaca22eb002 ""
+  "sol.aux" 1735575332 6617 1b352f6f050ad4510e85e4efa3ce9ce8 "pdflatex"
+  "sol.tex" 1735575329 8191 1240aad7b36e5e36382d63aabcf9f600 ""
   (generated)
   "sol.aux"
   "sol.log"

@@ -1115,6 +1115,7 @@ INPUT ./orbita.png
 INPUT orbita.png
 INPUT ./orbita.png
 INPUT ./orbita.png
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0900.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm
 INPUT ./equinocis.png

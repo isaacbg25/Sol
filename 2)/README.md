@@ -1,0 +1,2 @@
+En aquesta carpeta es troben els arxius del segon apartat de la pràctica.
+El arxiu de programa 'cami_sol.f90' al ser compilat calcula els angles que descriu la posició del Sol respecte una posició concreta de la Terra durant un any. La posició a la Terra queda determinada per l'angle de latitud 'alpha' que es defineix a l'inici del programa. El temps està discretitzat en dies (j) i hores(i). j=0, i=0 es corres

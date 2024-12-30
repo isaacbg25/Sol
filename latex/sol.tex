@@ -159,5 +159,27 @@ Si calculem aquests angles per una posició concreta a la Terra\footref{nota: ha
 
 \subsection{Resolució de l'EDO: Runge-Kutta d'ordre 4}
 
+\section*{Annex}
+\appendix
+
+\section{Matrius de canvi de sistema de referència}\label{annex: matr_rot}
+\begin{equation}
+    \mathbf{R}_{\beta}=
+    \begin{pmatrix}
+      1 & 0 & 0   \\
+      0 & \cos\beta& -sin\beta \\
+      0 & sin\beta & cos\beta \\
+    \end{pmatrix}
+\end{equation}  
+
+\begin{equation}
+    \mathbf{R}_{\gamma}=
+    \begin{pmatrix}
+       \cos\beta& -sin\beta& 0 \\
+       \sin\beta & cos\beta &0\\
+      0 & 0 & 1  \\
+    \end{pmatrix}
+\end{equation}  
+
 
 \end{document}

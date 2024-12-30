@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=2]
+
+% Sistema de referència original (x, y, z)
+\draw[->] (0,0,0) -- (3,0,0) node[right] {$x$}; % Eix x
+\draw[->] (0,0,0) -- (0,3,0) node[below] {$z$}; % Eix z (vertical on era y)
+\draw[->] (0,0,0) -- (0.5,0,3) node[above] {$y$}; % Eix y desplaçat per evitar superposició
+
+% Sistema de referència rotat (x', y', z') amb angle \beta
+\def\beta{30} % Angle de rotació en graus
+
+% Coordenades per la rotació sobre l'eix z (en el pla xy)
+\coordinate (x') at ({cos(\beta)}, {sin(\beta)}, 0); % Eix x' rotat
+\coordinate (y') at ({-sin(\beta)}, {cos(\beta)}, 0); % Eix y' rotat
+
+% Eixos del sistema de referència rotat (x', y', z')
+\draw[->] (0,0,0) -- (x'.x, x'.y, 0) node[right] {$x'$}; % Eix x' rotat
+\draw[->] (0,0,0) -- (y'.x, y'.y, 0) node[above] {$y'$}; % Eix y' rotat
+\draw[->] (0,0,0) -- (0.5,0,3) node[above] {$z'$}; % Eix z' (igual que z)
+
+\end{tikzpicture}
+
+\end{document}

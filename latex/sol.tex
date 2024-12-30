@@ -47,7 +47,7 @@ Núria Castillo Ariño (1669145)
 
 Abstract pràctica 
 
-\section{Moviment de la Terra al voltant del Sol} 
+\section{Moviment de la Terra al voltant del Sol} \label{sec: seccio_1}
 En aquesta secció ens hem proposat simular el moviment de translació de la Terra al voltant del Sol. Per fer-ho hem partit de la Llei de la Gravitació Univeral i hem simplificant el nostre problema de dos cossos a un d'un sol cos sota una força central, $F(r)$.
 \begin{equation}
     F(r)=-\frac{GMm}{r^2}
@@ -111,21 +111,45 @@ Tot i així a la secció \ref{sec: edos} resoldrem aquest sistema d'EDOs amb alt
 
 
 \section{Posició del Sol al cel vist des de l'habitatge} 
-En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any.\footnote{Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès} Per fer-ho hem parametritzat la posició del sol amb dos angles, l'angle vertical $\nu$ i l'angle horitzontal $\eta$ (\ref{fig: sist_sol}), i hem definit els vectors $\vec{\rho}$, $\vec{r}$ i $\vec{R}$ (\ref{fig: sist_vectors}).
-També hem definit tres sistemes de referència per facilitar els càlculs i trobar els àngles esmentats:
+En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any.\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès} Per fer-ho hem parametritzat la posició del sol amb dos angles, l'angle vertical $\nu$ i l'angle horitzontal $\eta$ (\ref{fig: sist_sol}), i hem definit els vectors $\vec{\rho}$, $\vec{r}$ i $\vec{R}$ (\ref{fig: sist_vectors}).
+
+També hem definit tres sistemes de referència per facilitar els càlculs i trobar els àngles esmentats. Començant al sistema $\Omega$ podem obtenir un vector al sistema $\gamma$ a través de les matrius de rotació de l'annex \ref{annex: matr_rot}. Les relacions entre aquests sistemes són
 \begin{itemize}
-    \item sistema $\Omega$: 
-    \item sistema $\beta$: inclou la inclinacó de l'eix de rotació
-    \item sistema $\gamma$: inclou la rotació respecte el periheli i l solstici d'hivern
+    \item Sistema $\Omega$: l'eix $z$ està orientat amb l'eix de rotació de la Terra.
+    \item Sistema $\beta$: sistema rotat un angle $\beta$ en el pla $zy$ respecte el sistema $\Omega$. $\beta$ és l'angle entre l'eix de rotació de la terra i el vector perpendicular al pla de l'orbita, per tant, ara l'eix $z$ apunta en direcció pendicular al pla de l'òrbita.
+    \item Sistema $\gamma$: sistema rotat un angle $\gamma$ en el pla $xy$ respecte el sistema $\beta$. $\gamma$ és l'angle entre $\vec{R}_{periheli}$ i $\vec{R}_{solstici(hivern)}$, per tant, ara la direcció de l'eix $y$ coincideix amb la direcció del periheli.
 \end{itemize}
-Al sistema $\omega$ el vector r queda
-... 
+de tal manera que al sistema $\gamma$ tenim l'òrbita de la Terra amb el periheli i l'afeli sobre l'eix y i l'eix de rotació de la Terra orientat per tal que al solstici d'hivern (21 de Desembre) l'angle entre l'eix de rotació de la Terra i la direcció perpendicular al pla de l'òrbita sigui màxim.
 
-El vector R ja el tenim de la seccio ... 
+Al sistema $\Omega$ el vector $\vec{r}$ és molt fàcil de definir 
+\begin{equation}
+    \vec{r}_{(t)}=r_T[\cos(\alpha)\cos(wt+\varphi)\hat{e_x}+\cos(\alpha)\sin(wt)+\varphi\hat{e_y}+\sin(\alpha)\hat{e_z}]
+    \label{vector_r}
+\end{equation}
+si tenim la coordenada de latitud del punt de la Terra on volem fer els càlculs, $\alpha$, i el radi de la Terra, $r_T$, i on $w$ és la velocitat angular de rotació de la Terra i $t$ el temps transcorregut al llarg del dia.
+Per tal de que aquest vector a $t=0$ comenci a la posició més allunyada del Sol (és a dir que t=0 es correspongui amb la meitat de la nit) hem d'afegir l'angle $\varphi$ a l'angle de rotació. $\varphi$ anirà variant cada dia i és l'angle entre el vector definit a (\ref{vector_r}) i el vector $\vec{R}$ a $t=0$.
 
-el vector rho és simplement la suma 
+El vector $\vec{R}$ ja el tenim calculat de la secció \ref{sec: seccio_1} i el vector $\vec{\rho}$ és simplement
+\begin{equation}
+    \vec{\rho}= \vec{R}+\vec{r}
+\end{equation}
+Un cop tenim aquests tres vectors els angles queden definits
+\begin{equation}
+    \nu=\angle (\vec{r}_{\gamma}, \vec{\rho}_{\gamma}) -\frac{\pi}{2}  
+\end{equation}
+\begin{equation}
+    \eta=\pi - \angle (\vec{R}_{\Omega}, \vec{r}_{\Omega})
+\end{equation}
+on usem la funció arccosinus per trobar els angles.\footnote{$\angle (\vec{u}, \vec{v})= \arccos\left(\frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\right)$}
 
-Un cop tenim aquests tres vectors, per trobar els  angles només hem de calcular... 
+
+Si calculem aquests angles per una posició concreta a la Terra\footref{nota: habitatge}i pels dies que corresponen als equinocis i als solsticis obtenim el següent gràfic.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{equinocis.png}
+    \label{solsticis}
+    \caption{Angles del Sol al llarg d'un dia per diferents moments de l'any a un habitatge de Sant Cugat del Vallès}
+\end{figure}
 
 \section{Estudi de l'energia elèctrica}
 

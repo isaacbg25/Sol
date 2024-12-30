@@ -1,7 +1,7 @@
 PROGRAM solterra
     INTEGER,PARAMETER :: DP = SELECTED_REAL_KIND(15,307)
     real(kind=DP), parameter :: m_t=5.972168e24, m_s=1.9885e30, g=6.674302e-11, r_0=147098070e3, v_0=30.29e3, t_n = 365*3600*24
-    integer, parameter :: n=300, d=n/3
+    integer, parameter :: n=3000, d=n/3
     real(kind=DP), parameter :: L=r_0*v_0*m_t
     real(kind=DP) :: k_1, c_1
     real(kind=DP), parameter :: betha=(L/m_t)**2, k=g*m_s, alpha=betha/k, v_=k/(betha)**(0.5) 
@@ -36,6 +36,4 @@ PROGRAM solterra
         end do
     close(12)
     
-    
-    print*, alpha
     END PROGRAM solterra

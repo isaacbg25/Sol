@@ -15,7 +15,7 @@ program cami_del_sol
     !---------------------trobar el radi  i l'angle de l'orbita per cada temps (apartat 1)---------------------------------------------------
     
     INTEGER,PARAMETER :: DP = SELECTED_REAL_KIND(15,307)
-    real(kind=DP), parameter :: m_t=5.972168e24, m_s=1.9885e30, g=6.674302e-11, r_0_t=147098290e3 , v_0=30.29e3, t_n = 365*3600*24 !v_0 velocitat al periheli
+    real(kind=DP), parameter :: m_t=5.972168e24, m_s=1.9885e30, g=6.67430e-11, r_0_t=147095000e3 , v_0=30.29e3, t_n = 365*3600*24 !v_0 velocitat al periheli
     integer, parameter :: n_temps=dies*quarts !calculem cada 15min durant tot l'any
     real(kind=DP), parameter :: L=r_0_t*v_0*m_t
     real(kind=DP) :: k_1,c_1

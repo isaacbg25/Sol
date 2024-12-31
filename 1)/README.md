@@ -1,2 +1,2 @@
-En aquesta carpeta hi ha els arxius del primer apartat. Si compiles l'arxiu de programa 'orbita.f90' obtens el fitxer 'orbita.txt' amb les dades al pla cartesià de la posició de la Terra sent la posició del Sol l'origen de coordenades.
+En aquesta carpeta hi ha els arxius del primer apartat de la pràctica. Si compiles l'arxiu de programa 'orbita.f90' obtens el fitxer 'orbita.txt' amb les dades al pla cartesià de la posició de la Terra, sent la posició del Sol l'origen de coordenades. Aquestes dades es calculen solucionant les equacions de moviment de la Terra sota un camp de forces centrals generat pel Sol amb el mètode d'Euler.
 L'arxiu 'orbita.gp' és un script de gnuplot que genera una gràfica de l'òrbita anomenada 'orbita.png'.

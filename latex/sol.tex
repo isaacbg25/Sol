@@ -169,11 +169,34 @@ Si calculem aquests angles per una posició concreta a la Terra\footref{nota: ha
 
 \section{Estudi de l'energia elèctrica}
 
-\section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edos}
+\section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edosRK}
+Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per axò hem volgut comparar els resultats.
 
-\subsection{Resolució de l'EDO: Runge-Kutta d'ordre 2}
+Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Runge-Kutta d'ordre 2 i el Runge-Kutta d'ordre 4, amb la mateixa discretització temporal en els 3 mètodes numèrics.
 
-\subsection{Resolució de l'EDO: Runge-Kutta d'ordre 4}
+\begin{figure}[hbt!]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{orbitaRK2.PNG}
+        \caption{Òrbita terrestre per Runge-Kutta d'ordre 2}
+        \label{fig: orbitaRK2}
+    \end{subfigure}%
+    \hspace{0.01\textwidth}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{orbitaRK4.PNG}
+        \caption{Òrbita terrestre per Runge-Kutta d'ordre 4}
+        \label{fig: orbitaRK4}
+    \end{subfigure}
+        \hspace{0.01\textwidth}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{orbita3met.PNG}
+        \caption{Òrbites terrestres per 3 mètodes numèrics}
+        \label{fig: orbita3met}
+    \end{subfigure}
+\end{figure}
 
 \section*{Annex}
 \appendix

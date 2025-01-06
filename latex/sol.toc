@@ -1,0 +1,9 @@
+\babel@toc {catalan}{}\relax 
+\contentsline {section}{\numberline {1}Moviment de la Terra al voltant del Sol}{3}{section.1}%
+\contentsline {section}{\numberline {2}Posició del Sol al cel vist des de l'habitatge}{4}{section.2}%
+\contentsline {section}{\numberline {3}Estudi de l'energia elèctrica}{6}{section.3}%
+\contentsline {section}{\numberline {4}Energia elèctrica produïda per la placa}{7}{section.4}%
+\contentsline {section}{\numberline {5}Optimització dels angles de la placa}{8}{section.5}%
+\contentsline {section}{\numberline {6}Resolució de l'EDO per diversos mètodes numèrics}{9}{section.6}%
+\contentsline {section}{\numberline {A}Matrius de canvi de sistema de referència}{10}{appendix.A}%
+\contentsline {section}{\numberline {B}Angles i vectors apartat 2}{10}{appendix.B}%

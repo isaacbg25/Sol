@@ -1,5 +1,10 @@
 set terminal pngcairo size 1000,600 font "Helvetica, 18"
 
+set style line 1 lc rgb "red" #euler
+set style line 2 lc rgb "green" #RK2
+set style line 3 lc rgb "blue" #RK4
+set style line 4 lc rgb "yellow" #sol
+
 set output 'orbitaEul.png'
 set ylabel 'y(m)'
 set xlabel 'x(m)'
@@ -34,4 +39,7 @@ set xrange[-2e11:2e11]
 set yrange[-2e11:2e11]
 set grid
 set title 'Òrbita terrestre (comparació 3 mètodes numèrics)'
-plot 'orbita.txt' using 1:2 with lines lc 'red' lw 2 title 'Euler', 'orbitaRK2.txt' using 1:2 with lines lc 'green' lw 2 title 'RK-2', 'orbitaRK4.txt' using 1:2 with lines lc 'blue' lw 2 title 'RK-4','sol.txt' using 1:2:3 with labels offset 1,1 notitle,'sol.txt' using 1:2 with points lc rgb "yellow" pt 7 ps 1.5 notitle
+plot 'orbita.txt' using 1:2 with lines linestyle 1 lw 4 title 'Euler', \
+     'orbitaRK2.txt' using 1:2 with lines linestyle 1 lw 2 title 'RK-2', \
+     'orbitaRK4.txt' using 1:2 with lines linestyle 1 lw 0.5 title 'RK-4' , \
+     'sol.txt' using 1:2:3 with labels offset 1,1 notitle, 'sol.txt' using 1:2 with points linestyle 4 pt 7 ps 1.5 notitle

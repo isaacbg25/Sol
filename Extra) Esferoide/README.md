@@ -1,0 +1,7 @@
+En aquesta carpeta es troben els arxius del segon apartat extra de la pràctica, que tracta a repetir la simulació ja programada i realitzada ens els apartats d'elements bàsics però no considerant la Terra com a una esfera. Concretament, s'aproxima a un esferoide (un el·lipsoide de revolució). 
+
+L'arxiu de programa 'camisol_esferoide.f90' al ser compilat calcula els angles que descriu la posició del Sol respecte una posició concreta a la Terra durant un any. La posició a la Terra es determina a l'inici del programa amb l'angle de latitud 'alpha' i els radis (equatorial 'b' i polar 'a') de l'el·lipsoide utilitzant la fórmula explicada en l'informe de la pràctica.
+
+Compilant tots els resultats en l'arxiu 'orbita3met.gp', juntament amb els trobats a l'apartat 1, es generen diversos gràfics on es pot visualitzar cada òrbita (calculat amb un mètode numèric determinat) i un gràfic comparatiu on apareixen les 3 òrbites.
+
+Els resultats del càlcul queden escrits, igual que en la simulació de l'apartat 2) en els arxius 'angles_esferoide.txt', 'dis_sol_esferoide.txt', també es generen quatre arxius 'eqesferoide#.txt'. En el corresponen README de l'apartat d'aquesta simulació s'explica en detall que ens descriu cada arxiu de resultats. Finalment, amb el programa 'camisol_esferoide.gp' podem generar un gràfic de la posició del Sol al llarg dels diferents equinocis, havent considerat que la Terra és un esferoide.

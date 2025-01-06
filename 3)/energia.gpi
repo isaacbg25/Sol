@@ -1,0 +1,45 @@
+set terminal pngcairo size 1200, 600 font "Helvetica, 18"
+
+set style line 1 lc rgb "blue" lw 2 lt 1 pt 7 ps 1
+set style line 3 lc rgb "black" lw 2 lt 2  # Solstices and equinoxes line style
+
+set output 'energia.png'
+
+set key outside right top box
+
+set xlabel "Temps (dies)"
+set ylabel "Energia (J)"
+
+set xrange [1:365]
+set yrange [1400000:5500000]
+
+set xtics (1, 73, 146, 219, 292, 365)
+
+set arrow from 169, graph 0 to 169, graph 1 nohead ls 3  #Solstici d'estiu
+set arrow from 352, graph 0 to 352, graph 1 nohead ls 3  #Solsitici d'hivern
+
+set style l 4 lc rgb "blue" lw 3 lt 1 # β=0, γ=0
+set style l 5 lc rgb "purple" dashtype 2 lw 3 lt 2 # β=35, γ=-60
+set style l 6 lc rgb "yellow" dashtype 2 lw 3 lt 3 # β=35, γ=-15
+set style l 7 lc rgb "red"  dashtype 2lw 3 lt 4 # β=35, γ=0
+set style l 8 lc rgb "orange" dashtype 2 lw 3 lt 5 # β=35, γ=15
+set style l 9 lc rgb "green" dashtype 2 lw 3 lt 6 # β=35, γ=60
+
+set style l 10 lc rgb "purple" lw 3 lt 3 # β=44.5, γ=-60
+set style l 11 lc rgb "yellow" lw 3 lt 4 # β=44.5, γ=-15
+set style l 12 lc rgb "red" lw 3 lt 5 # β=44.5, γ=0
+set style l 13 lc rgb "orange" lw 3 lt 6 # β=44.5, γ=15
+set style l 14 lc rgb "green" lw 3 lt 7 # β=44.5, γ=60
+
+plot "energies.txt" u 1:2 w lines t "{/Symbol g}=0, {/Symbol b}=0.0" ls 4, \
+     "energies.txt" u 1:3 w lines t "{/Symbol g}=-60, {/Symbol b}=35.0" ls 5, \
+     "energies.txt" u 1:4 w lines t "{/Symbol g}=-15, {/Symbol b}=35.0" ls 6, \
+     "energies.txt" u 1:5 w lines t "{/Symbol g}=0, {/Symbol b}=35.0" ls 7, \
+     "energies.txt" u 1:6 w lines t "{/Symbol g}=15, {/Symbol b}=35.0" ls 8, \
+     "energies.txt" u 1:7 w lines t "{/Symbol g}=60, {/Symbol b}=35" ls 9, \
+     "energies.txt" u 1:8 w lines t "{/Symbol g}=-60, {/Symbol b}=44.5" ls 10, \
+     "energies.txt" u 1:9 w lines t "{/Symbol g}=-15, {/Symbol b}=44.5" ls 11, \
+     "energies.txt" u 1:10 w lines t "{/Symbol g}=0, {/Symbol b}=44.5" ls 12, \
+     "energies.txt" u 1:11 w lines t "{/Symbol g}=15, {/Symbol b}=44.5" ls 13, \
+     "energies.txt" u 1:12 w lines t "{/Symbol g}=60, {/Symbol b}=44.5" ls 14
+

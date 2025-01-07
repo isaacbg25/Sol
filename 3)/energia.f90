@@ -41,7 +41,7 @@ program energia
     !Guardem els resultats al fitxer "energies.txt"
     open(unit=20, file='energies.txt', status='replace', action='write')
     do dia = 1, 365
-      write(20, *) dia, (energies(dia, j), j = 1, num_cols)
+      write(20, *) dia, (energies(dia, j)/ (3.6*(10**6)), j = 1, num_cols)
     end do
     close(20)
   

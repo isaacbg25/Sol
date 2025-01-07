@@ -170,6 +170,7 @@ Si calculem aquests angles per una posició concreta a la Terra\footref{nota: ha
 \end{figure}
 
 \section{Estudi de l'energia elèctrica}
+\subsection{Potència elèctrica produïda per la placa}
 Suposant que el Sol és un cos negre, segons la llei de Stefan-Boltzmann l'intensitat de radiació emesa pel Sol és $I_S = \sigma_{SB}T_S^4$, on $T_S$ és la temperatura de la superfície del Sol. Així doncs, la potència total emesa ve donada per
 \begin{equation}
     P_S = I_SA_S=\sigma_{SB}T_S^4 4 \pi R_S^2
@@ -184,33 +185,32 @@ La intensitat de radiació solar que arriba a un punt a una distància $d$ del S
 \end{equation}
 on a l'última igualtat hem substituit $P_S$ per l'Eq. \eqref{potencia sol}.
 
-Substituint $d$ per la distància del Sol a un determinat punt sobre la superfície terrestre, $\rho$, a l'Eq. \eqref{I_d}, podem calcular la intensitat de radiació que hi incideix. Per considerar l’efecte de l’albedo terrestre, cal multiplicar aquesta intensitat per un factor $\alpha$, que representa la fracció de radiació absorbida per la Terra. Així doncs, la intensitat de l'ona incident és $I_0=\alpha I_{\rho}$.
+Substituint $d$ per la distància del Sol a un determinat punt sobre la superfície terrestre, $\rho$, a l'Eq. \eqref{I_d}, podem calcular la intensitat de radiació que hi incideix. Per considerar l’efecte de l’albedo terrestre $\alpha_A$, cal multiplicar aquesta intensitat per un factor $\alpha=1-\alpha_A$, que representa la fracció de radiació absorbida per la Terra. Així doncs, la intensitat de l'ona incident és $I_{abs}=\alpha I_{\rho}$.
 
-Degut a la inclinació de la placa, la intensitat efectiva que rebrà serà igual a $I_0 \cos{\theta}$, on $\theta$ és l'angle d'incidència de la radiació, és a dir, l'angle entre la direcció de la llum incident i la normal a la superfície. Per tant, la potència que arriba a la placa ve donada per
+Degut a la inclinació de la placa, la intensitat efectiva que rebrà serà igual a $I_{abs} \cos{\theta}$, on $\theta$ és l'angle d'incidència de la radiació, és a dir, l'angle entre la direcció de la llum incident i la normal a la superfície. Per tant, la potència que arriba a la placa ve donada per
 \begin{equation}
     P_{inc} = A \alpha I_{\rho} \cos{\theta}
     \label{P_inc placa}
 \end{equation}
-on $A$ és l'àrea de la placa i hem substituit $I_0$.
+on $A$ és l'àrea de la placa i hem substituit $I_{abs}$.
 
 Finalment, la potència elèctrica generada per la placa, $P$, és igual a $P_{inc}$ multiplicada per un factor $r$, el rendiment de la placa. Així doncs, substituint l'Eq. \eqref{I_d} en l'Eq. \eqref{P_inc placa}, obtenim
 \begin{equation}
-    P = r \alpha \frac{1}{\rho^2}R_S^2\sigma_{SB}T_S^4A_p \cos{\theta}
+    P = r \alpha \frac{1}{\rho^2}R_S^2\sigma_{SB}T_S^4A \cos{\theta}
     \label{potencia placa}
 \end{equation}
-Els valors numèrics dels paràmetres en aquesta equació es troben a la secció 
+Els valors numèrics de $\alpha$, $R_S$, $\sigma_{SB}$ i $T_S$ els hem obtingut de les fonts !!!! REFERENCIAR
 
-La normalització de les variables de l'equació anterior ve donada per
+A continuació donem la normalització de les variables de l'equació anterior. En quant a la variable $\theta$, al tractar-se d'un angle ja és adimensional, i per tant la donem per normalitzada. En quant a les altres dues variables,
+\begin{align}
+    \hat{P}=\frac{P}{400} \label{P normalizada} \\
+    \hat{\rho}= \rho \left( r \alpha R_S^2\sigma_{SB}T_S^4A/400 \right)^{-1/2} \label{rho normalizada}
+\end{align}
+on hem escollit el valor 400 W per a normalitzar la potència perquè, segons l'enunciat, és la màxima electricitat que pot generar la placa per $10^3$ W/$\text{m}^2$ de radiació incident. També utilitzem aquests valors per a trobar el valor del rendiment $r$ de la placa de la següent manera:
 \begin{equation}
-    \hat{\rho}=\frac{\rho}{\rho_0} \ , \quad
-    \hat{P}=\frac{P}{P_0}
+     r = \frac{P_{max}}{IA}
 \end{equation}
-on hem definit els paràmetres característics $\rho_0$ com la distància ???? i $P_0$ com
-\begin{equation}
-    P_0 = r \alpha \frac{1}{d_0^2}R_S^2\sigma_{SB}T_S^4A_p
-    \label{potencia}
-\end{equation}
-En quant a la variable $\theta$, al tractar-se d'un angle ja és adimensional, i per tant la donem per normalitzada.
+amb $P_{max}=400$ W i $I=10^3$ W/$\text{m}^2$.
 
 Així doncs, segons aquesta normalització l'Eq. \eqref{potencia placa} esdevé
 \begin{equation}
@@ -222,10 +222,40 @@ Per a determinar $\cos{\theta}$, utilitzem la següent expressió:
     \cos \theta = \cos \theta_z \cos \beta + \sin \theta_z \sin \beta \cos (\gamma_s - \gamma) \ .
     \label{cos theta}
 \end{equation}
-Les definicions dels angles i la demostració d'aquesta equació es dona a la secció \ref{sec: cos theta} de l'annex.
+Les definicions dels angles i la demostració d'aquesta equació es troben a la secció \ref{sec: cos theta} de l'Annex.
 
-És important destacar que si $\theta_z$ i/o $\theta$ no es troben dins del rang $[-\pi/2,\pi/2]$ imposem que la potència sigui nul·la. En el cas de $\theta_z$ ho imposem pel fet que per a angles fora d'aquest interval el Sol es troba per sota de l'horitzó, cosa que implica que la Terra bloqueja la radiació solar i, per tant, no arriba llum a la placa. De manera similar, el fet que $\theta$ prengui valors fora d'aquest interval significa que el Sol està situat darrere la placa, és a dir, que és la pròpia placa la que bloqueja la llum solar.
+A la Figura següent es representa la potència en funció del temps al llarg d'un dia, en dos dies diferents.
 
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../3\)/dia1_pot_plot.png}
+        \caption{Dia 1.}
+        \label{fig: potencia dia 1}
+    \end{subfigure}%
+    \hspace{0.000001\textwidth}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../3\)/dia170_pot_plot.png}
+        \caption{Dia 170.}
+        \label{fig: potencia dia 170}
+    \end{subfigure}
+    \caption{Potència elèctrica produïda per la placa durant un dia per diversos valors de $\beta$ i de $\gamma$.}
+    \label{potencia un dia}
+\end{figure}
+
+Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (en aquest cas, $\gamma=0^{\circ}$) perquè, segons l’Eq. \eqref{cos theta}, el terme $\sin\beta$ s’anul·la i, per tant, desapareix la dependència en $\gamma$.
+
+També és important destacar que si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ imposem que la potència sigui nul·la.
+
+En el cas de $\theta_z$ ho imposem pel fet que per a valors fora d'aquest interval el Sol es troba per sota de l'horitzó i la Terra bloqueja la radiació solar, impedint que arribi llum a la placa. És per aquest motiu que, mentre que per $\beta = 0$ la potència disminueix gradualment fins a anul·lar-se, amb una inclinació diferent de zero la potència s'anul·la bruscament, ja que el Sol encara incideix amb una certa intensitat quan està a l’horitzó.
+
+De manera similar, quan $\theta$ pren valors fora d'aquest interval significa que el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que en alguns casos, com per exemple per $\gamma=\pm60^{\circ}$ en la Fig. \ref{fig: potencia dia 1}, s'observa que la potència s'anul·la abans que el Sol creui l'horitzó.
+
+En la Fig. \ref{fig: potencia dia 1} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la potència màxima assolida quan $\beta=0^{\circ}$ és la més petita.
+
+En el cas del dia 170, representat a la Fig. \ref{fig: potencia dia 170}, la potència màxima assolida per $\beta=0^{\circ}$ és notablement superior a la del dia 1. A més, per tots els casos en què $\beta=35^{\circ}$ la potència disminueix lleugerament al migdia. Aquests fets es deuen a que en ser el dia 170 d'estiu la posició del Sol és més alta en el cel, fet que afavoreix que quan el Sol estigui al voltant de la seva alçada màxima l’angle $\theta$ respecte a la placa sigui més gran per $\beta=0^{\circ}$ i disminueixi amb la inclinació de la placa. Una altra observació respecte el fet que es tracti d'un dia d'estiu és l’augment en la durada de les hores de llum.
 
 \section{Energia elèctrica produïda per la placa}
 

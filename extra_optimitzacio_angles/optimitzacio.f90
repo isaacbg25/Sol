@@ -19,8 +19,7 @@ program opt
   integrand_b = integrand_b * lambda
   integrand_c = integrand_c * lambda
 
-  ! Definim l'interval temporal de les dades dividint els segons que hi ha
-  ! en un dia entre el nombre d'intervals que hi ha en un dia
+  ! Definim l'interval temporal normalitzat
   h = 1.0_dp / real(punts_per_dia-1, kind=dp)
 
   ! Claculem numèricament les integrals a, b i c utilitzant Simpson 1/3 
@@ -39,7 +38,7 @@ program opt
     b = b + 2.0_dp * integrand_b(i)
     c = c + 2.0_dp * integrand_c(i)
   end do
-
+  !Aprofitem per desnormalitzar el valor de les integrals a,b i c
   a = (a * h / 3.0_dp*lambda)
   b = (b * h / 3.0_dp*lambda)
   c = (c * h / 3.0_dp*lambda)

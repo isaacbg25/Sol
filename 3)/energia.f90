@@ -17,7 +17,7 @@ program energia
   !Normalitzem la potència
   potencies = potencies / P_0
 
-  !Definim l'interval temporal normalitzat de les dades
+  !Definim l'interval temporal normalitzat
   h = 1.0_dp / real(punts_per_dia - 1, kind=dp)
 
   !Claculem numèricament l'energia utilitzant Simpson 1/3 per diferents combinacions d'angles beta i gamma

@@ -78,7 +78,7 @@ Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una ED
     \label{edor}
 \end{equation}
 \begin{equation}
-    \frac{\partial}{}
+    \frac{\partial\theta}{\partial t}=\frac{L}{mr^2}
     \label{edot}
 \end{equation}
 Normalitzant aquestes dues equacions i reduint l'ordre de l'equació \eqref{edor} obtenim
@@ -273,10 +273,7 @@ Calculant numèricament les integrals $a$, $b$ i $c$ per Simpson 1/3 sota la con
 
 Pel que fa al valor de gamma obtingut, era d'esperar que aquest fos de $0^\circ$, ja que a l'hemisferi nord el Sol arriba al seu punt més alt al cel (i, per tant, al punt on els raigs incideixen més perpendicularment a una superfície donada) en direcció sud durant el dia, per tant, aquesta orientació maximitza les hores d'exposició directa al Sol. Per altra banda, l'angle $\beta$ obtingut entra dins l'esperat si tenim en compte que s'assembla a la latitud considerada en el nostre cas (uns $41,5^\circ$) que teòricament serà l'inclinació òptima, ja que ens permetrà captar de manera més perpendicular els raigs de sol (una manera de pensar-ho és que a l'equador aquesta inclinació seria 0 perquè el sol ens passaria per sobre del cap, a mesura que ens allunyèssim de l'ecuador, o incrementèssim la nostra latitud, més hauriem d'inclinar la placa). Per altra banda, a la Fig. \ref{fig: energies} podem observar que a l'estiu un angle d'inclinació de $35^\circ$, per exemple, produeix més energia que un de $44,5^\circ$, ara bé, com hem dit, nosaltres hem maximitzat la producció total durant l'any. Això, però, suggereix que durant diferents èpoques de l'any podriem modificar l'inclinació de la placa per així maximitzar la seva producció.
 
-
-
-
-\section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edosRK}
+\section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edos}
 Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per axò hem volgut comparar els resultats.
 
 Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Runge-Kutta d'ordre 2 i el Runge-Kutta d'ordre 4, amb la mateixa discretització temporal en els 3 mètodes numèrics.
@@ -303,7 +300,35 @@ Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Run
         \caption{Òrbites terrestres per 3 mètodes numèrics}
         \label{fig: orbita3met}
     \end{subfigure}
+    \caption{Càlcul òrbita terrestre per diferents mètodes numèrics}
+    \label{fig: grafics3met}
 \end{figure}
+
+Observant els gràfics \ref{fig: grafics3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
+
+\section{Consideració de la Terra com no esfèrica}\label{sec: terranoesfera}
+Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. Però sabem que realment, la força centrífuga generada per la seva pròpia rotació provoca una deformació en els pols, "aixafant-la" i fent que la Terra no sigui una esfera.
+
+Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només considera la distància del sol al centre de la Terra però sí afecta en la resta de càlculs ja que el Radi de la Terra deixa de ser constant. En aquest apartat, aproximarem la Terra a un esferoide, com a un el·lipsoide de revolució\footnote{\label{nota: elipsoide}Els semieixos que hem agafat per a calcular el radi de la terra com a una esferoide són a = 6378136.6 i b = 6356751.9, extrets de l'article de Viquikipèdia: El·lipsoide de referència}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Terraelipsoide.jpg}
+    \caption{Aproximació de la Terra a un el·lipsoide de revolució, amb els angles i semieixos que hem d'utilitzat per recalcular el Radi Terrestre i l'angle de Latitud}
+    \label{fig:terraelipsoide}
+\end{figure}
+
+Observant la figura \ref{fig:terraelipsoide}, podem acabar arribant a les següents expressions:
+
+\begin{equation}
+    tan(\alpha_{T_{el}}) = \frac{b}{a}tan(\alpha) 
+\end{equation}
+
+\begin{equation}
+    r_{T_{el}} = \sqrt{\frac{(a^2cos(\alpha))^2+(b^2sin(\alpha))^2}{(acos(\alpha))^2+(bsom(\alpha))^2}}
+\end{equation}
+
+Aquesta ens permet calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{dist_centresup}. Els passos per a la simulació són exactament els mateixos que els ja definits a les corresponents seccions \ref{sec: seccio_2} i \ref{sec: seccio_3}.
 
 \section*{Annex}
 \appendix

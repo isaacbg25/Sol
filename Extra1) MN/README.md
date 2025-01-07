@@ -1,5 +1,0 @@
-En aquesta carpeta es troben els arxius del primer apartat extra de la pràctica. L'arxiu de programa 'orbitaRK.f90' al ser compilat calcula els angles que descriu la posició del Sol respecte una posició concreta a la Terra durant un any. S'utilitza la mateixa normalització i condicions inicials que s'han emprat en l'apartat 1 de la pràctica, ja explicat en el corresponen arxiu 'README.md'.
-
-Els resultats del càlcul queden escrits a l'arxiu 'orbitaRK2.txt' i a l'arxiu 'orbitaRK4.txt', cada arxiu recull els resultats del corresponen mètode numèric (Runge-Kutta d'ordre 2 i Runge-Kutta d'ordre 4, respectivament). El primer arxiu té una primera columna per l'angle horitzontal i una segona columna per l'angle vertical, el segon arxiu conté la distància entre el Sol i la posició a la Terra per cada dia. 
-
-Compilant tots els resultats en l'arxiu 'orbita3met.gp', juntament amb els trobats a l'apartat 1, es generen diversos gràfics on es pot visualitzar cada òrbita (calculat amb un mètode numèric determinat) i un gràfic comparatiu on apareixen les 3 òrbites.

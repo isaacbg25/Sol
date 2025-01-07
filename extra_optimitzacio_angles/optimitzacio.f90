@@ -7,7 +7,7 @@ program opt
     integer :: i
   
     !Obrim l'arxiu que conté els 3 integrands a cada minut de l'any
-    open(unit=10, file='integrands.txt', status='old', action='read')
+    open(unit=10, file='../3)/integrands.txt', status='old', action='read')
     do i = 1, n
       read(10, *) integrand_a(i), integrand_b(i), integrand_c(i)
     end do

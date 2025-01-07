@@ -1,5 +1,5 @@
 program potenc
-    implicit none
+    implicit none(type,external)
  
     INTEGER,PARAMETER :: DP = SELECTED_REAL_KIND(15,300)
  

@@ -14,7 +14,7 @@ program energia
   
     !Definim l'interval temporal de les dades dividint els segons que hi ha
     !en un dia entre el nombre d'intervals que hi ha en un dia
-    h = 86400_dp / real(punts_per_dia - 1)
+    h = 86400_dp / real(punts_per_dia-1, kind=dp)
   
     !Claculem numèricament l'energia utilitzant Simpson 1/3 per diferents combinacions d'angles beta i gamma
     !i guardem els resultats a la matriu energies(,)

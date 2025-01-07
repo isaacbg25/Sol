@@ -1,0 +1,41 @@
+set terminal pngcairo size 1280,720 enhanced
+
+set grid
+set key inside top right
+
+gammas = "-60 -15 0 15 60"  # Valors de gamma
+betas = "0 35"              # Valors de beta
+
+num_gammas = words(gammas)
+num_betas = words(betas)
+
+colors = "red cyan magenta yellow orange"
+
+
+set output 'dia170_pot_plot.png'
+
+set xlabel "Temps (h)"
+set ylabel "Potència (W)"
+
+set yrange [0:*]
+set xrange [0.0:24.0]
+set xtics 0,6,24  # Comença a 0, incrementa 6, s'atura a 24
+
+plot 'dia170_pot_dades.txt' using 1:2 with lines lw 2 lc rgb 'purple' title "{/Symbol b}=0, {/Symbol g}=0", \
+    for [g=1:num_gammas] \
+    'dia170_pot_dades.txt' using 1:(column(2 + g)) with lines lw 2 lc rgb word(colors, g) \
+    title sprintf("{/Symbol b}=35, {/Symbol g}=%s", word(gammas, g))
+
+set output 'dia1_pot_plot.png'
+
+set xlabel "Temps (h)"
+set ylabel "Potència (W)"
+
+set yrange [0:*]
+set xrange [0.0:24.0]
+set xtics 0,6,24  # Comença a 0, incrementa 6, s'atura a 24
+
+plot 'dia1_pot_dades.txt' using 1:2 with lines lw 2 lc rgb 'purple' title "{/Symbol b}=0, {/Symbol g}=0", \
+    for [g=1:num_gammas] \
+    'dia1_pot_dades.txt' using 1:(column(2 + g)) with lines lw 2 lc rgb word(colors, g) \
+    title sprintf("{/Symbol b}=35, {/Symbol g}=%s", word(gammas, g))

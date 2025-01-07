@@ -1,5 +1,5 @@
 program potenc
-    implicit none
+    implicit none(type,external)
  
     INTEGER,PARAMETER :: DP = SELECTED_REAL_KIND(15,300)
  
@@ -16,10 +16,11 @@ program potenc
     ! Declaració de paràmetres
     ! Constants numèriques genèriques
     real(KIND=DP), parameter :: pi = 2.0 * ACOS(0.0)
-    real(KIND=DP), parameter :: sigmaSB = 5.67e-8   ! Constant de Stefan-Boltzmann (W/m^2 K^4)
-    real(KIND=DP), parameter :: alpha = 0.3         ! Efecte Albedo de la Terra (%)
-    real(KIND=DP), parameter :: RS = 6.96e8         ! Radi del Sol (m)
-    real(KIND=DP), parameter :: TS = 5778.0         ! Temperatura superfície del Sol (K)
+    real(KIND=DP), parameter :: sigmaSB = 5.6704e-8 ! Constant de Stefan-Boltzmann (W/m^2 K^4)
+    real(KIND=DP), parameter :: alpha = 1.0 - 0.294 ! Percentatge de llum solar (%) aborbida per la Terra
+    ! 0.294 és el "Bond albedo" de "Earth Fact Sheet"
+    real(KIND=DP), parameter :: RS = 695700.0e3     ! Radi del Sol (m) ("Volumetric mean radius" de "Sun Fact Sheet")
+    real(KIND=DP), parameter :: TS = 5772.0         ! Temperatura superfície del Sol (K) ("Effective temperature" de "Sun Fact Sheet")
  
     ! Discretització temporal
     real(KIND=DP), parameter :: num_intervals_per_hora = 60    ! Predeterminat segons el nombre d'angles per dia

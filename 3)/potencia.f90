@@ -4,7 +4,7 @@ program potenc
     INTEGER,PARAMETER :: DP = SELECTED_REAL_KIND(15,300)
  
     ! Declaració de variables
-    real(KIND=DP) :: thetaz, gamma_s, costheta, d, potencia, diacoma, hora, pot_caracteristica, r, gamma, beta
+    real(KIND=DP) :: thetaz, gamma_s, costheta, d, potencia, diacoma, hora, pot_caracteristica, r, gamma, beta, d_caracteristica
     real(KIND=DP) :: intensitat, inta, intb, intc
     integer :: i, j, dia, total_intervals, g, b
     real(KIND=DP), dimension(:,:), allocatable :: angles_horitz
@@ -25,10 +25,6 @@ program potenc
     real(KIND=DP), parameter :: num_intervals_per_hora = 60    ! Predeterminat segons el nombre d'angles per dia
     integer, parameter :: total_dies = 365                     ! Nombre de dies en un any
  
-    ! Constants caracterítiques del sistema que utilitzarem per a normalitzar les variables
-    real(KIND=DP), parameter :: d_caracteristica = 1.521e11  ! Distància màxima del Sol a la Terra (m)
-    ! Després definim també la potència característica
- 
     ! Constants numèriques associades a la placa fotovoltàica
     real(KIND=DP), parameter :: A_placa = 2.0          ! Àrea de la placa (m^2)
     real(KIND=DP), parameter :: pot_el_max = 400.0  ! Màxim d'electricitat que genera (W) quan
@@ -38,7 +34,9 @@ program potenc
     betas = [0.0, 35.0, 44.5]                            ! Inclinacions (°)
     gammas = [-60.0, -15.0, 0.0, 15.0, 60.0]          ! Angles azimutals (°) 
  
-    pot_caracteristica = (r * alpha * (RS**2) * sigmaSB * (TS**4) * A_placa) / (d_caracteristica**2)
+    ! Constants caracterítiques del sistema que utilitzarem per a normalitzar les variables
+    pot_caracteristica = pot_el_max
+    d_caracteristica = sqrt((r * alpha * (RS**2) * sigmaSB * (TS**4) * A_placa) / (pot_caracteristica))
  
     total_intervals = num_intervals_per_hora * 24   ! Nombre d'intervals per dia
  
@@ -78,22 +76,27 @@ program potenc
     end do
     close(10)
  
-    ! Obrim fitxers .txt de sortida on escriurem els resultats
+    ! Obrim fitxers .txt de sortida on escriurem els resultats de la potència
     open(unit=12, file='any_pot_dades.txt', status='unknown')
-    open(unit=13, file='dia_pot_dades.txt', status='unknown')
-    ! Calculem els integrands de l'integral de l'energia, que seran necessaris en el programa per a l'optimització dels angles
-    open(unit=14, file='integrands.txt', status='unknown')
+    open(unit=13, file='dia1_pot_dades.txt', status='unknown')
+    open(unit=14, file='dia170_pot_dades.txt', status='unknown')
+    ! Calcularem també els integrands de l'integral de l'energia, que seran necessaris en el programa per a l'optimització dels angles
+    open(unit=15, file='integrands.txt', status='unknown')
  
-    ! Calcularem la potència total_intervals vegades cada dia
+    ! Calcularem la potència total_intervals vegades cada dia, durant 365 dies
     do dia = 1, total_dies
        do j = 1, total_intervals
           ! En primer lloc, en la primera columna de cada fitxer escrivim els temps corresponents a cada potència que calcularem
           diacoma = REAL(dia) - 1.0 + REAL(j) / (num_intervals_per_hora * 24.0)  ! Temps en dies
           write(12, '(ES12.5,1X)', advance='no') diacoma
-          if (dia == 1) then ! En aquest fitxer guardarem les dades d'un sol dia
+          if (dia == 1) then ! En aquest fitxer guardarem les dades d'un únic dia (el 1r)
              hora = REAL(j) / num_intervals_per_hora  ! Temps en hores
              write(13, '(ES12.5,1X)', advance='no') hora
+          else if (dia == 170) then ! En aquest fitxer guardarem les dades d'un únic dia (el 170è)
+            hora = REAL(j) / num_intervals_per_hora  ! Temps en hores
+            write(14, '(ES12.5,1X)', advance='no') hora
           end if
+          
           
          ! Calculem els integrands
          ! Com la potència és nul·la si no es compleix que thetaz >= -pi/2 .and. thetaz <= pi/2,
@@ -109,7 +112,7 @@ program potenc
             intb = 0.0
             intc = 0.0
          end if
-         write(14, '(ES12.5, 1X, ES12.5, 1X, ES12.5)') inta, intb, intc
+         write(15, '(ES12.5, 1X, ES12.5, 1X, ES12.5)') inta, intb, intc
 
 
          ! Calcularem la potència per cada beta i gamma
@@ -145,8 +148,13 @@ program potenc
  
                 ! Guardem el resultat de la potència
                 write(12, '(1X, ES12.5)', advance='no') potencia
-                if (dia == 1) then
-                   write(13, '(1X, ES12.5)', advance='no') potencia
+                
+                if (b==1 .or. b==2) then
+                    if (dia == 1) then
+                    write(13, '(1X, ES12.5)', advance='no') potencia
+                    else if (dia == 170) then
+                        write(14, '(1X, ES12.5)', advance='no') potencia
+                    end if
                 end if
                 
                 ! Si beta és zero, aturem la iteració (només ho fem una vegada)
@@ -157,12 +165,18 @@ program potenc
              END DO
           END DO
           write(12, *)
-          if (dia == 1) write(13, *)
+          if (dia == 1) then
+            write(13, *)
+          else if (dia==170) then
+            write(14, *)
+          end if
        end do
     end do
  
     close(12)
     close(13)
+    close(14)
+    close(15)
  
  end program potenc
  

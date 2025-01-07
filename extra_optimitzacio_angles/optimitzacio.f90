@@ -4,7 +4,7 @@ program opt
   integer, parameter :: dp = selected_real_kind(15, 300), punts_per_dia = 1440, n = 365 * punts_per_dia
   real(kind=dp), dimension(n) :: integrand_a, integrand_b, integrand_c
   real(kind=dp) :: a, b, c, h, gamma, beta, pi = 2.0*acos(0.0)
-  real(kind=dp), parameter :: t_0 = 86400.0_dp, P_0 = 400.0_dp, rendiment = 0.14_dp, lambda = rendiment / (P_0 * t_0)
+  real(kind=dp), parameter :: t_0 = 86400.0_dp, P_0 = 400.0_dp
   integer :: i
 
   ! Obrim l'arxiu que conté els 3 integrands a cada minut de l'any
@@ -15,9 +15,9 @@ program opt
   close(10)
 
   ! Normalitzem els integrands
-  integrand_a = integrand_a * lambda
-  integrand_b = integrand_b * lambda
-  integrand_c = integrand_c * lambda
+  integrand_a = integrand_a / (P_0*t_0)
+  integrand_b = integrand_b / (P_0*t_0)
+  integrand_c = integrand_c / (P_0*t_0)
 
   ! Definim l'interval temporal normalitzat
   h = 1.0_dp / real(punts_per_dia-1, kind=dp)
@@ -38,10 +38,10 @@ program opt
     b = b + 2.0_dp * integrand_b(i)
     c = c + 2.0_dp * integrand_c(i)
   end do
-  !Aprofitem per desnormalitzar el valor de les integrals a,b i c
-  a = (a * h / 3.0_dp*lambda)
-  b = (b * h / 3.0_dp*lambda)
-  c = (c * h / 3.0_dp*lambda)
+
+  a = (a * h / 3.0_dp)
+  b = (b * h / 3.0_dp)
+  c = (c * h / 3.0_dp)
 
   ! Calculem l'angle gamma
   gamma = atan(c/b)

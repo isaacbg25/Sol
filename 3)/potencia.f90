@@ -50,7 +50,7 @@ program potenc
     ! A continuació hi afegim les dades corresponents dels fitxers .txt obtinguts prèviament
  
     ! Obrim el fitxer de distàncies i guardem en "distancies" les dades llegides
-    open(unit=11, file='distancia1min.txt', status='unknown')
+    open(unit=11, file='../2)/dist_sol.txt', status='unknown')
     i = 1
     do while (.true.)
         read(11, *, iostat=j) distancies(i)
@@ -64,7 +64,7 @@ program potenc
     close(11)
  
     ! Obrim el fitxer dels angles i assignem els valors a les matrius
-    open(unit=10, file='angles1min.txt', status='unknown')
+    open(unit=10, file='../2)/angles.txt', status='unknown')
     dia = 1
     j = 1
     do while (.true.)

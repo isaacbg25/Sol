@@ -54,7 +54,6 @@ En aquesta secció ens hem proposat simular el moviment de translació de la Ter
 \begin{equation}
     F(r)=-\frac{GMm}{r^2}
 \end{equation}
-
 On G és la constant de grabitació universal, M la massa del Sol i m la massa de la Terra.\footnote{Totes les dades orbitalàries agafades del Jet Propulsion Laboratory de la NASA: \url{https://ssd.jpl.nasa.gov/}}
 
 Per aquest tipus de sistemes i considerant únicament aquesta força central, tenim dues equacions de moviment en el pla polar 
@@ -71,7 +70,6 @@ i la propietat que el moment angular es conserva
     L=mr\dot{\theta}=ctt
     \label{moment_angular}
 \end{equation}
-
 Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una EDO que només depen de r i una EDO que només depen de $\theta$
 \begin{equation}
     \frac{\partial\dot{r}}{\partial t}=-GM\frac{1}{r^2}+\frac{L^2}{m^2r^3}
@@ -83,16 +81,10 @@ Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una ED
 \end{equation}
 Normalitzant aquestes dues equacions i reduint l'ordre de l'equació \eqref{edor} obtenim
 \begin{equation}
-    \frac{\partial\tilde{v}}{\partial\tilde{t}}=-\frac{1}{\tilde{r}^2}+\frac{1}{\tilde{r}^3}
-    \label{1_edo_r}
-\end{equation}
-\begin{equation}
-    \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}
-    \label{2_edo_r}
-\end{equation}
-\begin{equation}
+    \frac{\partial\tilde{v}}{\partial\tilde{t}}=-\frac{1}{\tilde{r}^2}+\frac{1}{\tilde{r}^3}, \quad
+    \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}, \quad
     \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
-    \label{edo_tetha}
+    \label{eq:all}
 \end{equation}
 on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$.
 
@@ -241,7 +233,7 @@ En la Fig. \ref{fig: potencia dia 1} com més proper és el valor de $\gamma$ a 
 En el cas del dia 170, representat a la Fig. \ref{fig: potencia dia 170}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del dia 1. Una altra diferència és que al migdia per $\beta=35^{\circ}$ s'observa una disminució en la potència. Aquests fets es deuen a que en ser el dia 170 d'estiu la posició del Sol és més alta en el cel, fet que afavoreix que quan estigui al voltant de la seva alçada màxima l’angle $\theta$ sigui major per $\beta=0^{\circ}$, i que disminueixi amb la inclinació de la placa. Una observació addicional és l’augment en la duració de les hores de llum, que és coherent amb el fet que es tracta d'un dia d'estiu.
 
 \section{Energia elèctrica produïda per la placa}
-Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energies}.
+Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energies}.
 
 
 \begin{figure}[H]
@@ -270,7 +262,7 @@ Hem plantejat el problema des del punt de vista de maximitzar la producció d'en
 + \hat{b}\sin \beta \cos \gamma
 + \hat{c}\sin \beta \sin \gamma
 \]
-on $\hat{P}_{opt}=\frac{r I_{abs} A_T}{P_0}$, $\hat{t}=\frac{t}{t_0}$ i $\hat{E}=E P_0 t_0$
+on $\hat{P}_{opt}=\frac{r I_{abs} A}{P_0}$, $\hat{t}=\frac{t}{t_0}$ i $\hat{E}=E P_0 t_0$
 
 Igualant el gradent a 0, trobem que
 \[

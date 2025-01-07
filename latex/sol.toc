@@ -3,8 +3,8 @@
 \contentsline {section}{\numberline {2}Posició del Sol al cel vist des de l'habitatge}{4}{section.2}%
 \contentsline {section}{\numberline {3}Estudi de l'energia elèctrica}{6}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Potència elèctrica produïda per la placa}{6}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Energia elèctrica produïda per la placa}{7}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Extra: Optimització dels angles de la placa}{8}{subsection.4.1}%
+\contentsline {section}{\numberline {4}Energia elèctrica produïda per la placa}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Extra: Optimització dels angles de la placa}{9}{subsection.4.1}%
 \contentsline {section}{\numberline {5}Resolució de l'EDO per diversos mètodes numèrics}{9}{section.5}%
 \contentsline {section}{\numberline {6}Consideració de la Terra com no esfèrica}{10}{section.6}%
 \contentsline {section}{\numberline {A}Link al repositori}{11}{appendix.A}%

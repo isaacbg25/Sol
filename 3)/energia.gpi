@@ -8,10 +8,10 @@ set output 'energia.png'
 set key outside right top box
 
 set xlabel "Temps (dies)"
-set ylabel "Energia (J)"
+set ylabel "Energia (kWh)"
 
 set xrange [1:365]
-set yrange [1400000:5500000]
+set yrange [0:1.7]
 
 set xtics (1, 73, 146, 219, 292, 365)
 

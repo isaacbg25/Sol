@@ -239,59 +239,33 @@ A la Fig. \ref{fig: energies} podem observar que a l'estiu un angle d'inclinaci�
 \section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edos}
 Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per axò hem volgut comparar els resultats.
 
-Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Runge-Kutta d'ordre 2 i el Runge-Kutta d'ordre 4, amb la mateixa discretització temporal en els 3 mètodes numèrics.
+Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Runge-Kutta d'ordre 2 i el Runge-Kutta d'ordre 4\footnote{els seus corresponents gràfics es troben a l'annex \ref{sec: orbitesRK}}, amb la mateixa discretització temporal en els 3 mètodes numèrics.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{orbitaRK2.PNG}
-        \caption{Òrbita terrestre per Runge-Kutta d'ordre 2}
-        \label{fig: orbitaRK2}
-    \end{subfigure}%
-    \vspace{0.01\textwidth}%
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{orbitaRK4.PNG}
-        \caption{Òrbita terrestre per Runge-Kutta d'ordre 4}
-        \label{fig: orbitaRK4}
-    \end{subfigure}
-    \vspace{0.01\textwidth}%
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{orbita3met.PNG}
-        \caption{Òrbites terrestres per 3 mètodes numèrics}
-        \label{fig: orbita3met}
-    \end{subfigure}
-    \caption{Càlcul òrbita terrestre per diferents mètodes numèrics}
-    \label{fig: grafics3met}
+    \includegraphics[width=0.4\textwidth]{orbita3met.PNG}
+    \caption{Comparació òrbita terrestra per 3 mètodes numèrics}
+    \label{fig: orbita3met}
 \end{figure}
 
-Observant els gràfics \ref{fig: grafics3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
+Observant els gràfics \ref{fig: orbita3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
 
 \section{Consideració de la Terra com no esfèrica}\label{sec: terranoesfera}
-Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. Però sabem que realment, la força centrífuga generada per la seva pròpia rotació provoca una deformació en els pols, "aixafant-la" i fent que la Terra no sigui una esfera.
+Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. Però sabem que realment, la força centrífuga generada per la seva pròpia rotació provoca una deformació en els pols, 'aixafant-la' i fent que la Terra no sigui una esfera.
 
-Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només considera la distància del sol al centre de la Terra però sí afecta en la resta de càlculs ja que el Radi de la Terra deixa de ser constant. En aquest apartat, aproximarem la Terra a un esferoide, com a un el·lipsoide de revolució\footnote{\label{nota: elipsoide}Els semieixos que hem agafat per a calcular el radi de la terra com a una esferoide són a = 6378136.6 i b = 6356751.9, extrets de l'article de Viquikipèdia: El·lipsoide de referència}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Terraelipsoide.jpg}
-    \caption{Aproximació de la Terra a un el·lipsoide de revolució, amb els angles i semieixos que hem d'utilitzat per recalcular el Radi Terrestre i l'angle de Latitud}
-    \label{fig:terraelipsoide}
-\end{figure}
-
-Observant la figura \ref{fig:terraelipsoide}, podem acabar arribant a les següents expressions:
+Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només considera la distància del sol al centre de la Terra però sí afecta en la resta de càlculs ja que el Radi de la Terra deixa de ser constant. En aquest apartat, aproximarem la Terra a un esferoide, com a un el·lipsoide de revolució. Podem arribar a les següents expressions\footnote{El procés per arribar a aquestes equacions està descrit en l'annex \ref{sec: terraesferoidedibuix}}:
 
 \begin{equation}
     tan(\alpha_{T_{el}}) = \frac{b}{a}tan(\alpha) 
+    \label{eq: alphatel}
 \end{equation}
 
 \begin{equation}
-    r_{T_{el}} = \sqrt{\frac{(a^2cos(\alpha))^2+(b^2sin(\alpha))^2}{(acos(\alpha))^2+(bsom(\alpha))^2}}
+    r_{T_{el}} = \sqrt{\frac{(a^2cos(\alpha_{T_{el}})^2+(b^2sin(\alpha_{T_{el}}))^2}{(acos(\alpha_{T_{el}}))^2+(bsin(\alpha_{T_{el}}))^2}}
+    \label{eq: rtel}
 \end{equation}
 
-Aquesta ens permet calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{dist_centresup}. Els passos per a la simulació són exactament els mateixos que els ja definits a les corresponents seccions \ref{sec: seccio_2} i \ref{sec: seccio_3}.
+Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a les corresponents seccions \ref{sec: seccio_2}.
 
 \section*{Annex}
 \appendix
@@ -446,5 +420,63 @@ En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\c
     \label{potencia dia estiu}
 \end{figure}
 
+\section{Representació gràfica de les òrbites terrestres resultants}
+\label{sec: orbitesRK}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{orbitaRK2.PNG}
+        \caption{Òrbita terrestre per Runge-Kutta d'ordre 2}
+        \label{fig: orbitaRK2}
+    \end{subfigure}%
+    \vspace{0.01\textwidth}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{orbitaRK4.PNG}
+        \caption{Òrbita terrestre per Runge-Kutta d'ordre 4}
+        \label{fig: orbitaRK4}
+    \end{subfigure}
+    \caption{Càlcul òrbita terrestre per diferents mètodes numèrics}
+    \label{fig: graficsRK}
+\end{figure}
+
+\section{Aproximació de la Terra a un esferoide}
+\label{sec: terraesferoidedibuix}
+En aquesta secció es mostren els passos per arribar a l'equació \eqref{rtel}.
+
+Per una banda, el punt de la superfície de l'el·lipsoide es pot definir com:
+
+\begin{equation}
+    (x,y) = (acos(\xi),bsin(\xi))
+\end{equation}
+
+Partim de calcular el Radi de l'el·lipsoide amb el teorema de Pitàgores:
+
+\begin{equation}
+    R(t)^2 = a^2cos^2(\xi) + b^2sin^2(\xi)
+    \label{eq: Pitagoreselipsoide}
+\end{equation}
+
+On $\xi$ és l'angle geocèntric. Però com les dades de posició de l'habitatge ens donen l'angle geodèsic $\epsilon$, ens interessarà relacionar-los per poder trobar la distància centre-superfície de la Terra per tenir en compte la nostra aproximació.
+
+Obtenim l'equació que ens permet passar d'un angle a l'altre, \eqref{eq: alphatel}, a partir de trobar el pendent del vector normal $(x,y) = (bcos(t), asin(t))$ que a la vegada és la tangent de $\xi$.
+
+\begin{equation}
+    tan(\epsilon) = \frac{asin(\xi)}{bcos(\xi)} = \frac{a}{b}tan(\xi)
+\end{equation}
+
+El vector normal el podem obtenir girant 90º el vector tangent $(x,y) = (-asin(t),bcos(t))$ a la corba. Aquest últim l'hem calculat difernciant l'equació de la corba de l'el·lipsoide.
+
+Això ho introduim a l'equació \eqref{eq: Pitagoreselipsoide} per obtenir l'expressió que utilitzarem per a recalcular el nostre radi, presentada en la secció \ref{sec: terranoesfera}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Terraelipsoide.jpg}
+    \caption{Aproximació de la Terra a un el·lipsoide de revolució, amb els angles i semieixos que hem d'utilitzat per recalcular el Radi Terrestre i l'angle de Latitud}
+    \label{fig:terraelipsoide}
+\end{figure}
+
+En la figura \ref{fig:terraelipsoide}, l'angle $\xi$ correspon a $\alpha_{T_{el}}$ (l'angle geocèntric) i l'angle $\epsilon$ a $\alpha$ (l'angle geodèsic). Els semieixos que hem agafat per a calcular el radi de la terra com a una esferoide són a = 6378136.6 i b = 6356751.9, extrets de l'article de Viquikipèdia: El·lipsoide de referència.
 
 \end{document}

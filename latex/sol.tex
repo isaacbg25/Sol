@@ -196,6 +196,8 @@ Per a determinar $\cos{\theta}$, utilitzem la següent expressió:
 \end{equation}
 amb $\theta_z = 90^{\circ}-\nu$, on els angles $\eta$ i $\nu$ ja han estat definits i calculats a la secció anterior, i són les variables que determinen $\theta$. Els angles $\beta$ i $\gamma$ són paràmetres que fan referència a la inclinació i orientació de la placa; es defineixen formalment a la secció \ref{sec: demo cos theta} de l'Annex, on es demostra l'equació.
 
+En la Fig. \ref{fig: potencia}, es representa la potència produïda pel panell al llarg d'un cert dia.
+
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.5\textwidth}
@@ -217,7 +219,7 @@ amb $\theta_z = 90^{\circ}-\nu$, on els angles $\eta$ i $\nu$ ja han estat defin
 
 Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (escollim arbitràriament $\gamma=0^{\circ}$) perquè el terme $\sin\beta$ en l’Eq. \eqref{cos theta} s’anul·la i, per tant, desapareix la dependència en $\gamma$.
 
-Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia dia 1} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó.
+Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó. A la secció \ref{sec: dia estiu potencia} de l'Annex, es comparen aquests resultats amb els obtinguts en un dia d'estiu.
 
 \subsection{Energia elèctrica produïda per un panell solar}
 Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energia}.
@@ -422,8 +424,9 @@ Això completa la demostració.
 
 
 \section{Estudi de la potència en un dia d'estiu}
+\label{sec: dia estiu potencia}
 
-En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas de la potència en un dia d'estiu, representat a la Fig. \ref{fig: potencia dia estiu}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del 3 de gener. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració de la generació de potència és superior a la del 3 de gener. Tot això es deu a que el dia és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
+En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas de la potència en un dia d'estiu, representat a la Fig. \ref{potencia dia estiu}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del 3 de gener. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració del període de generació de potència és superior a la del 3 de gener. Tot això es deu a que el dia és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
 
 
 \begin{figure}[H]

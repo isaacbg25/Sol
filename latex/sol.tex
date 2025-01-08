@@ -161,7 +161,8 @@ Si calculem aquests angles per una posició concreta a la Terra\footref{nota: ha
     \caption{Angles del Sol al llarg d'un dia per diferents moments de l'any a un habitatge de Sant Cugat del Vallès}
 \end{figure}
 
-\section{Potència elèctrica produïda per un panell solar}
+\section{Estudi energètic de la placa}
+\subsection{Potència elèctrica produïda per un panell solar}
 Suposant que el Sol és un cos negre esfèric a temperatura $T_S$ i de radi $R_S$, utilitzant la llei de Stefan-Boltzmann la potència que emet és $P_S=\sigma_{SB}T_S^44\pi R_S^2$. La intensitat de la radiació en un punt a una distància ${\rho}$ del Sol $I_{\rho}$ és igual la potència $P_S$ dividida entre l'àrea del front d'ona de la radiació, que és una closca esfèrica de radi ${\rho}$. Si el punt es troba a la superfície terrestre,  per l’efecte de l’albedo $\alpha_A$ cal multiplicar $I_{\rho}$ per $\alpha=1-\alpha_A$, la fracció de radiació absorbida per la Terra. Així doncs, la intensitat de la radiació incident és:
 \begin{equation}
     I_{abs} = \frac{P_S}{4\pi d^2}=\frac{1}{d^2}R_S^2\sigma_SB T_S^4 \ .
@@ -202,17 +203,17 @@ A la Figura següent es representa la potència en funció del temps en dos dies
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{dia1_pot_plot.png}
-        \caption{Dia 1.}
+        \caption{Potència elèctrica produïda per la placa durant un dia.}
         \label{fig: potencia dia 1}
     \end{subfigure}%
     \hspace{0.000001\textwidth}%
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{dia170_pot_plot.png}
-        \caption{Dia 170.}
+        \includegraphics[width=\textwidth]{energia.png}
+        \caption{Energia elèctrica produïda per la placa cada dia de l'any.}
         \label{fig: potencia dia 170}
     \end{subfigure}
-    \caption{Potència elèctrica produïda per la placa durant un dia per diversos valors de $\beta$ i de $\gamma$.}
+    \caption{Gràfics referents a l'estudi energètic de la placa.}
     \label{potencia un dia}
 \end{figure}
 
@@ -220,18 +221,16 @@ Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (
 
 Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia dia 1} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó.
 
-En la Fig. \ref{fig: potencia dia 1} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas del dia 170, representat a la Fig. \ref{fig: potencia dia 170}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del dia 1. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració de la generació de potència és superior a la del dia 1. Tot això es deu a que el dia 170 és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
-
-\section{Energia elèctrica produïda per un panell solar}
+\subsection{Energia elèctrica produïda per un panell solar}
 Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energies}.
 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\linewidth]{energia.png}
-    \caption{Energia elèctrica produïda per la placa cada dia de l'any.}
-    \label{fig: energies}
-\end{figure}
+%\begin{figure}[H]
+    %\centering
+    %\includegraphics[width=0.75\linewidth]{energia.png}
+    %\caption{Energia elèctrica produïda per la placa cada dia de l'any.}
+    %\label{fig: energies}
+%\end{figure}
 
 Les linies negres verticals indiquen els solsticis d'estiu i d'hivern per a una millor interpretació dels resultats.
 
@@ -278,7 +277,7 @@ Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, pe
 
 Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Runge-Kutta d'ordre 2 i el Runge-Kutta d'ordre 4, amb la mateixa discretització temporal en els 3 mètodes numèrics.
 
-\begin{figure}[hbt!]
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
@@ -311,7 +310,7 @@ Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. P
 
 Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només considera la distància del sol al centre de la Terra però sí afecta en la resta de càlculs ja que el Radi de la Terra deixa de ser constant. En aquest apartat, aproximarem la Terra a un esferoide, com a un el·lipsoide de revolució\footnote{\label{nota: elipsoide}Els semieixos que hem agafat per a calcular el radi de la terra com a una esferoide són a = 6378136.6 i b = 6356751.9, extrets de l'article de Viquikipèdia: El·lipsoide de referència}
 
-\begin{figure}[hbt]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{Terraelipsoide.jpg}
     \caption{Aproximació de la Terra a un el·lipsoide de revolució, amb els angles i semieixos que hem d'utilitzat per recalcular el Radi Terrestre i l'angle de Latitud}
@@ -395,4 +394,32 @@ A continuació definim els angles que apareixen en l'equació.
     \item $\theta_z$, \textbf{Angle zenital solar}: l'angle entre la vertical i la radiació solar incident; $-180^\circ \leq \beta \leq 180^\circ$.
     \item $\gamma_s$, \textbf{Angle azimutal solar}: l'angle entre la projecció sobre un pla horitzontal de la direcció de la llum incident respecte el meridià local, seguint el mateix conveni de signes que per $\gamma$; $-180^\circ \leq \gamma \leq 180^\circ$.
 \end{itemize}
+
+
+\section{Discussió Núria potència}
+
+En la Fig. \ref{fig: potencia dia 1} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas del dia 170, representat a la Fig. \ref{fig: potencia dia 170}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del dia 1. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració de la generació de potència és superior a la del dia 1. Tot això es deu a que el dia 170 és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{dia1_pot_plot.png}
+        \caption{Dia 1.}
+        \label{fig: potencia dia 1}
+    \end{subfigure}%
+    \hspace{0.000001\textwidth}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{dia170_pot_plot.png}
+        \caption{Dia 170.}
+        \label{fig: potencia dia 170}
+    \end{subfigure}
+    \caption{Potència elèctrica produïda per la placa durant un dia per diversos valors de $\beta$ i de $\gamma$.}
+    \label{potencia un dia}
+\end{figure}
+
+
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  7 JAN 2025 23:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.12)  8 JAN 2025 09:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -649,6 +649,21 @@ LaTeX Warning: Label `fig: sist_sol' multiply defined.
 
 LaTeX Warning: Label `sub@fig: sist_sol' multiply defined.
 
+
+LaTeX Warning: Label `fig: potencia dia 1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig: potencia dia 1' multiply defined.
+
+
+LaTeX Warning: Label `fig: potencia dia 170' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig: potencia dia 170' multiply defined.
+
+
+LaTeX Warning: Label `potencia un dia' multiply defined.
+
 )
 \openout1 = `sol.aux'.
 
@@ -740,92 +755,147 @@ LaTeX Info: Redefining \L on input line 44.
 \openout4 = `sol.toc'.
 
  [2]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 58.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 57.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-<orbita.png, id=51, 481.8pt x 361.35pt>
+<orbita.png, id=59, 481.8pt x 361.35pt>
 File: orbita.png Graphic file (type png)
 <use orbita.png>
-Package pdftex.def Info: orbita.png  used on input line 103.
+Package pdftex.def Info: orbita.png  used on input line 95.
 (pdftex.def)             Requested size: 236.01561pt x 177.0079pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<vectors.PNG, id=56, 845.0772pt x 597.432pt>
+<vectors.PNG, id=64, 845.0772pt x 597.432pt>
 File: vectors.PNG Graphic file (type png)
 <use vectors.PNG>
-Package pdftex.def Info: vectors.PNG  used on input line 121.
+Package pdftex.def Info: vectors.PNG  used on input line 113.
 (pdftex.def)             Requested size: 236.01561pt x 166.85136pt.
-<ang_sol.PNG, id=60, 845.0772pt x 597.432pt>
+<ang_sol.PNG, id=68, 845.0772pt x 597.432pt>
 File: ang_sol.PNG Graphic file (type png)
 <use ang_sol.PNG>
-Package pdftex.def Info: ang_sol.PNG  used on input line 128.
+Package pdftex.def Info: ang_sol.PNG  used on input line 120.
 (pdftex.def)             Requested size: 236.01561pt x 166.85136pt.
 [3] [4 <./orbita.png> <./vectors.PNG> <./ang_sol.PNG>]
-<equinocis.png, id=108, 481.8pt x 361.35pt>
+<equinocis.png, id=114, 481.8pt x 361.35pt>
 File: equinocis.png Graphic file (type png)
 <use equinocis.png>
-Package pdftex.def Info: equinocis.png  used on input line 167.
+Package pdftex.def Info: equinocis.png  used on input line 159.
 (pdftex.def)             Requested size: 236.01561pt x 177.0079pt.
- [5] [6 <./equinocis.png>]
+ [5]
 
-LaTeX Warning: Reference `sec: cos theta' on page 7 undefined on input line 225.
+LaTeX Warning: Citation `Earth Fact Sheet' on page 6 undefined on input line 176.
 
-<energia.png, id=138, 1204.5pt x 602.25pt>
+
+LaTeX Warning: Citation `Sun Fact Sheet' on page 6 undefined on input line 176.
+
+
+LaTeX Warning: Citation `Universe Glossary' on page 6 undefined on input line 176.
+
+[6 <./equinocis.png>]
+
+LaTeX Warning: Reference `sec: demo cos theta' on page 7 undefined on input line 197.
+
+<dia1_pot_plot.png, id=141, 1284.8pt x 722.7pt>
+File: dia1_pot_plot.png Graphic file (type png)
+<use dia1_pot_plot.png>
+Package pdftex.def Info: dia1_pot_plot.png  used on input line 205.
+(pdftex.def)             Requested size: 236.01561pt x 132.74904pt.
+<energia.png, id=142, 1003.75pt x 602.25pt>
 File: energia.png Graphic file (type png)
 <use energia.png>
-Package pdftex.def Info: energia.png  used on input line 237.
-(pdftex.def)             Requested size: 354.02342pt x 177.00974pt.
-[7]
+Package pdftex.def Info: energia.png  used on input line 212.
+(pdftex.def)             Requested size: 236.01561pt x 141.60228pt.
 
-LaTeX Warning: Reference `P normalitzada' on page 8 undefined on input line 252.
+LaTeX Warning: Reference `fig: energies' on page 7 undefined on input line 225.
 
-[8 <./energia.png>]
+[7 <./dia1_pot_plot.png> <./energia.png>]
+
+LaTeX Warning: Reference `P normalitzada' on page 8 undefined on input line 245.
+
+
+LaTeX Warning: Reference `fig: energies' on page 8 undefined on input line 271.
+
+
+LaTeX Warning: Reference `fig: energies' on page 8 undefined on input line 273.
+
+[8]
 <orbitaRK2.PNG, id=161, 1003.75pt x 602.25pt>
 File: orbitaRK2.PNG Graphic file (type png)
 <use orbitaRK2.PNG>
-Package pdftex.def Info: orbitaRK2.PNG  used on input line 291.
+Package pdftex.def Info: orbitaRK2.PNG  used on input line 284.
 (pdftex.def)             Requested size: 236.01561pt x 141.60228pt.
 <orbitaRK4.PNG, id=162, 1003.75pt x 602.25pt>
 File: orbitaRK4.PNG Graphic file (type png)
 <use orbitaRK4.PNG>
-Package pdftex.def Info: orbitaRK4.PNG  used on input line 298.
+Package pdftex.def Info: orbitaRK4.PNG  used on input line 291.
 (pdftex.def)             Requested size: 236.01561pt x 141.60228pt.
 <orbita3met.PNG, id=163, 1003.75pt x 602.25pt>
 File: orbita3met.PNG Graphic file (type png)
 <use orbita3met.PNG>
-Package pdftex.def Info: orbita3met.PNG  used on input line 305.
+Package pdftex.def Info: orbita3met.PNG  used on input line 298.
 (pdftex.def)             Requested size: 236.01561pt x 141.60228pt.
  [9 <./orbitaRK2.PNG> <./orbitaRK4.PNG> <./orbita3met.PNG>]
 <Terraelipsoide.jpg, id=172, 1718.42pt x 1375.1375pt>
 File: Terraelipsoide.jpg Graphic file (type jpg)
 <use Terraelipsoide.jpg>
-Package pdftex.def Info: Terraelipsoide.jpg  used on input line 322.
+Package pdftex.def Info: Terraelipsoide.jpg  used on input line 315.
 (pdftex.def)             Requested size: 236.01561pt x 188.86691pt.
 
 
-LaTeX Warning: Reference `dist_centresup' on page 10 undefined on input line 337.
+LaTeX Warning: Reference `dist_centresup' on page 10 undefined on input line 330.
 
 
-LaTeX Warning: Reference `sec: seccio_3' on page 10 undefined on input line 337.
+LaTeX Warning: Reference `sec: seccio_3' on page 10 undefined on input line 330.
 
 [10 <./Terraelipsoide.jpg>]
 File: vectors.PNG Graphic file (type png)
 <use vectors.PNG>
-Package pdftex.def Info: vectors.PNG  used on input line 371.
+Package pdftex.def Info: vectors.PNG  used on input line 364.
 (pdftex.def)             Requested size: 236.01561pt x 166.85136pt.
 File: ang_sol.PNG Graphic file (type png)
 <use ang_sol.PNG>
-Package pdftex.def Info: ang_sol.PNG  used on input line 378.
+Package pdftex.def Info: ang_sol.PNG  used on input line 371.
 (pdftex.def)             Requested size: 236.01561pt x 166.85136pt.
-<sist_ref.PNG, id=187, 845.0772pt x 597.432pt>
+<sist_ref.PNG, id=188, 845.0772pt x 597.432pt>
 File: sist_ref.PNG Graphic file (type png)
 <use sist_ref.PNG>
-Package pdftex.def Info: sist_ref.PNG  used on input line 386.
+Package pdftex.def Info: sist_ref.PNG  used on input line 379.
 (pdftex.def)             Requested size: 236.01561pt x 166.85136pt.
- [11] [12 <./sist_ref.PNG>] (./sol.aux)
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hbox' on input line 386.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mathsurround' on input line 386.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\z@' on input line 386.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unskip' on input line 386.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@@italiccorr' on input line 386.
+
+[11 <./sist_ref.PNG>]
+File: dia1_pot_plot.png Graphic file (type png)
+<use dia1_pot_plot.png>
+Package pdftex.def Info: dia1_pot_plot.png  used on input line 409.
+(pdftex.def)             Requested size: 236.01561pt x 132.74904pt.
+<dia170_pot_plot.png, id=203, 1284.8pt x 722.7pt>
+File: dia170_pot_plot.png Graphic file (type png)
+<use dia170_pot_plot.png>
+Package pdftex.def Info: dia170_pot_plot.png  used on input line 416.
+(pdftex.def)             Requested size: 236.01561pt x 132.74904pt.
+ [12 <./dia170_pot_plot.png>] (./sol.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -839,13 +909,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36638 strings out of 474116
- 827599 string characters out of 5743681
- 1942187 words of memory out of 5000000
- 58344 multiletter control sequences out of 15000+600000
+ 36658 strings out of 474116
+ 828075 string characters out of 5743681
+ 1941187 words of memory out of 5000000
+ 58364 multiletter control sequences out of 15000+600000
  576250 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,93p,771b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,93p,937b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist, replaced by a fixed one
 
@@ -858,11 +928,11 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on sol.pdf (12 pages, 3293986 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on sol.pdf (12 pages, 3467638 bytes).
 PDF statistics:
- 364 PDF objects out of 1000 (max. 8388607)
- 276 compressed objects within 3 object streams
+ 383 PDF objects out of 1000 (max. 8388607)
+ 291 compressed objects within 3 object streams
  66 named destinations out of 1000 (max. 500000)
- 151 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 185 words of extra memory for PDF output out of 10000 (max. 10000000)
 

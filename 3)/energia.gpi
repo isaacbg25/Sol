@@ -1,17 +1,17 @@
-set terminal pngcairo size 1200, 600 font "Helvetica, 18"
+set terminal pngcairo size 1000, 600 font "Helvetica, 18"
 
 set style line 1 lc rgb "blue" lw 2 lt 1 pt 7 ps 1
 set style line 3 lc rgb "black" lw 2 lt 2  # Solstices and equinoxes line style
 
 set output 'energia.png'
 
-set key outside right top box
+set key inside center bottom box opaque
 
 set xlabel "Temps (dies)"
 set ylabel "Energia (kWh)"
 
 set xrange [1:365]
-set yrange [0.35:1.6]
+set yrange [0.9:3.6]
 
 set xtics (1, 73, 146, 219, 292, 365)
 

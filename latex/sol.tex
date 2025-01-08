@@ -141,12 +141,12 @@ Els valors numèrics de $\alpha$, $R_S$, $\sigma_{SB}$ i $T_S$ els hem obtingut 
 
 A continuació normalitzem aquesta expressió. En quant a la variable $\theta$, al tractar-se d'un angle ja és adimensional, i per tant la donem per normalitzada. En quant a les altres dues variables,
 \begin{align}
-    \hat{P}=\frac{P}{400} \label{P normalizada} \\
-    \hat{\rho}= \rho \left( r \alpha R_S^2\sigma_{SB}T_S^4A/400 \right)^{-1/2} \label{rho normalizada}
+    \hat{P}=\frac{P}{P_0} \label{P normalizada} \\
+    \hat{\rho}= \rho \left( r \alpha R_S^2\sigma_{SB}T_S^4A/P_0 \right)^{-1/2} \label{rho normalizada}
 \end{align}
-on hem escollit el valor 400 W per a normalitzar la potència. Segons l'enunciat, és la màxima electricitat $P_{max}$ que pot generar la placa per $I=10^3$ W/$\text{m}^2$ de radiació incident. També utilitzem aquests valors per trobar el valor del rendiment $r$ de la placa de la següent manera:
+on hem escollit $P_0=400$ W per a normalitzar la potència. Segons l'enunciat, és la màxima electricitat que pot generar la placa per $I_0=10^3$ W/$\text{m}^2$ de radiació incident. També utilitzem aquests valors per trobar el valor del rendiment $r$ de la placa de la següent manera:
 \begin{equation}
-     r = \frac{P_{max}}{IA} \ .
+     r = \frac{P_0}{I_0A} \ .
 \end{equation}
 Així doncs, segons aquesta normalització l'Eq. \eqref{potencia placa} esdevé:
 \begin{equation}
@@ -160,14 +160,14 @@ Per a determinar $\cos{\theta}$, utilitzem la següent expressió:
 \end{equation}
 amb $\theta_z = 90^{\circ}-\nu$, on els angles $\eta$ i $\nu$ ja han estat definits i calculats a la secció anterior, i són les variables que determinen $\theta$. Els angles $\beta$ i $\gamma$ són paràmetres que fan referència a la inclinació i orientació de la placa; es defineixen formalment a la secció \ref{sec: demo cos theta} de l'Annex, on es demostra l'equació.
 
-A la Figura següent es representa la potència en funció del temps en dos dies diferents.
+En la Fig. \ref{fig: potencia}, es representa la potència produïda pel panell al llarg d'un cert dia.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{dia1_pot_plot.png}
-        \caption{Potència elèctrica produïda per la placa durant un dia.}
+        \includegraphics[width=\textwidth]{dia_3gener_pot_plot.png}
+        \caption{Potència elèctrica produïda per la placa durant el dia 3 de gener.}
         \label{fig: potencia}
     \end{subfigure}%
     \hspace{0.000001\textwidth}%
@@ -183,7 +183,7 @@ A la Figura següent es representa la potència en funció del temps en dos dies
 
 Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (escollim arbitràriament $\gamma=0^{\circ}$) perquè el terme $\sin\beta$ en l’Eq. \eqref{cos theta} s’anul·la i, per tant, desapareix la dependència en $\gamma$.
 
-Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia dia 1} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó.
+Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó. A la secció \ref{sec: dia estiu potencia} de l'Annex, es comparen aquests resultats amb els obtinguts en un dia d'estiu.
 
 \subsection{Energia elèctrica produïda per un panell solar}
 Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energia}.
@@ -392,41 +392,58 @@ on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{
 \section{Valors numèrics}
 \label{sec: valors numerics}
 \section{Demostració de l'Eq. \eqref{cos theta}}
-\label{sec: cos theta}
-En aquest apartat demostrarem l'Eq. \eqref{cos theta}.
+\label{sec: demo cos theta}
+En aquesta secció demostrarem l'Eq. \eqref{cos theta}
 
-A continuació definim els angles que apareixen en l'equació.
+Els angles $\theta$, $\theta_z$, $\nu$ i $\eta$ ja han estat definits en anteriors apartats. En quant els angles $\beta$ i $\gamma$, donem les seves definicions formalment a continuació.
 \begin{itemize}
-    \item $\beta$, \textbf{Angle zenital de la placa (inclinació)}: l'angle que formen el pla de la placa i l'horitzontal; $0^\circ \leq \beta \leq 180^\circ$.
-    \item $\gamma$, \textbf{Angle azimutal de la placa}: la desviació de la projecció sobre un pla horitzontal de la normal a la superfície respecte el meridià local. Prenem com a $\gamma=0$ la direcció sud, i els valors negatius indiquen desviació cap a l'est i els positius cap a l'oest; $-180^\circ \leq \gamma \leq 180^\circ$.
-    \item $\theta_z$, \textbf{Angle zenital solar}: l'angle entre la vertical i la radiació solar incident; $-180^\circ \leq \beta \leq 180^\circ$.
-    \item $\gamma_s$, \textbf{Angle azimutal solar}: l'angle entre la projecció sobre un pla horitzontal de la direcció de la llum incident respecte el meridià local, seguint el mateix conveni de signes que per $\gamma$; $-180^\circ \leq \gamma \leq 180^\circ$.
+    \item $\beta$, Angle zenital de la placa (inclinació o pendent): l'angle que formen el pla del panell i l'horitzontal; $0^\circ \leq \beta \leq 180^\circ$.
+    \item $\gamma$, Angle azimutal de la placa (orientació): la desviació de la projecció sobre un pla horitzontal de la normal a la superfície respecte el meridià local; $-180^\circ \leq \gamma \leq 180^\circ$, i prenem el mateix conveni de signes que per $\eta$.
 \end{itemize}
 
+El vector unitari que apunta en la direcció del Sol amb origen al panell ve definit per:
+\begin{equation}
+    \mathbf{S} = (\sin \theta_z \cos \eta, \sin \theta_z \sin \eta, \cos \theta_z)
+    \label{vector unitari sol}
+\end{equation}
+D'altra banda, el vector unitari que defineix la direcció normal a la superfície de la placa és:
+\begin{equation}
+       \mathbf{N} = (\sin \beta \cos \gamma, \sin \beta \sin \gamma, \cos \beta)
+       \label{vector unitari placa}
+\end{equation}
+L'angle d'incidència de la radiació (\(\theta\)) és l'angle que formen el vectors \(\mathbf{S}\) i \(\mathbf{N}\), per definició. Per tant, tenint en compte que aquests vectors són unitaris:
+\begin{equation}
+    \cos \theta = \mathbf{S} \cdot \mathbf{N}
+\end{equation}
+Substituint els vectors per l'Eq. \eqref{vector unitari placa} i l'Eq. \eqref{vector unitari sol}, i operant:
+\begin{align*}
+    \cos \theta &= (\sin \theta_z \cos \eta, \sin \theta_z \sin \eta, \cos \theta_z) \cdot (\sin \beta \cos \gamma, \sin \beta \sin \gamma, \cos \beta) \\
+    &= (\sin \theta_z \cos \eta)(\sin \beta \cos \gamma) + (\sin \theta_z \sin \eta)(\sin \beta \sin \gamma) + (\cos \theta_z)(\cos \beta) \\
+    &= \sin \theta_z \sin \beta (\cos \eta \cos \gamma + \sin \eta \sin \gamma) + \cos \theta_z \cos \beta \\
+    &= \cos \theta_z \cos \beta + \sin \theta_z \sin \beta \cos (\eta - \gamma)
+\end{align*}
 
-\section{Discussió Núria potència}
+on a l'última igualtat hem aplicat la fórmula del cosinus de la diferència:
+\[
+\cos (\eta - \gamma) = \cos \eta \cos \gamma + \sin \eta \sin \gamma
+\]
 
-En la Fig. \ref{fig: potencia dia 1} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas del dia 170, representat a la Fig. \ref{fig: potencia dia 170}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del dia 1. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració de la generació de potència és superior a la del dia 1. Tot això es deu a que el dia 170 és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
+Això completa la demostració.
 
+
+\section{Estudi de la potència en un dia d'estiu}
+\label{sec: dia estiu potencia}
+
+En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas de la potència en un dia d'estiu, representat a la Fig. \ref{potencia dia estiu}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del 3 de gener. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració del període de generació de potència és superior a la del 3 de gener. Tot això es deu a que el dia és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
 
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{dia1_pot_plot.png}
-        \caption{Dia 1.}
-        \label{fig: potencia dia 1}
-    \end{subfigure}%
-    \hspace{0.000001\textwidth}%
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{dia170_pot_plot.png}
+        \includegraphics[width=\textwidth]{dia_estiu_pot_plot.png}
         \caption{Dia 170.}
         \label{fig: potencia dia 170}
-    \end{subfigure}
-    \caption{Potència elèctrica produïda per la placa durant un dia per diversos valors de $\beta$ i de $\gamma$.}
-    \label{potencia un dia}
+    \caption{Potència elèctrica produïda per la placa durant un dia d'estiu per diversos valors de $\beta$ i de $\gamma$.}
+    \label{potencia dia estiu}
 \end{figure}
 
 

@@ -385,15 +385,42 @@ A continuació donem el link per a accedir al repositori de github on es troba e
 \label{sec: valors numerics}
 \section{Demostració de l'Eq. \eqref{cos theta}}
 \label{sec: cos theta}
-En aquest apartat demostrarem l'Eq. \eqref{cos theta}.
+En aquesta secció demostrarem l'Eq. \eqref{cos theta}
 
-A continuació definim els angles que apareixen en l'equació.
+Els angles $\theta$, $\theta_z$, $\nu$ i $\eta$ ja han estat definits en anteriors apartats. En quant els angles $\beta$ i $\gamma$, donem les seves definicions formalment a continuació.
 \begin{itemize}
-    \item $\beta$, \textbf{Angle zenital de la placa (inclinació)}: l'angle que formen el pla de la placa i l'horitzontal; $0^\circ \leq \beta \leq 180^\circ$.
-    \item $\gamma$, \textbf{Angle azimutal de la placa}: la desviació de la projecció sobre un pla horitzontal de la normal a la superfície respecte el meridià local. Prenem com a $\gamma=0$ la direcció sud, i els valors negatius indiquen desviació cap a l'est i els positius cap a l'oest; $-180^\circ \leq \gamma \leq 180^\circ$.
-    \item $\theta_z$, \textbf{Angle zenital solar}: l'angle entre la vertical i la radiació solar incident; $-180^\circ \leq \beta \leq 180^\circ$.
-    \item $\gamma_s$, \textbf{Angle azimutal solar}: l'angle entre la projecció sobre un pla horitzontal de la direcció de la llum incident respecte el meridià local, seguint el mateix conveni de signes que per $\gamma$; $-180^\circ \leq \gamma \leq 180^\circ$.
+    \item $\beta$, Angle zenital de la placa (inclinació o pendent): l'angle que formen el pla del panell i l'horitzontal; $0^\circ \leq \beta \leq 180^\circ$.
+    \item $\gamma$, Angle azimutal de la placa (orientació): la desviació de la projecció sobre un pla horitzontal de la normal a la superfície respecte el meridià local; $-180^\circ \leq \gamma \leq 180^\circ$, i prenem el mateix conveni de signes que per $\eta$.
 \end{itemize}
+
+El vector unitari que apunta en la direcció del Sol amb origen al panell ve definit per:
+\begin{equation}
+    \mathbf{S} = (\sin \theta_z \cos \eta, \sin \theta_z \sin \eta, \cos \theta_z)
+    \label{vector unitari sol}
+\end{equation}
+D'altra banda, el vector unitari que defineix la direcció normal a la superfície de la placa és:
+\begin{equation}
+       \mathbf{N} = (\sin \beta \cos \gamma, \sin \beta \sin \gamma, \cos \beta)
+       \label{vector unitari placa}
+\end{equation}
+L'angle d'incidència de la radiació (\(\theta\)) és l'angle que formen el vectors \(\mathbf{S}\) i \(\mathbf{N}\), per definició. Per tant, tenint en compte que aquests vectors són unitaris:
+\begin{equation}
+    \cos \theta = \mathbf{S} \cdot \mathbf{N}
+\end{equation}
+Substituint els vectors per l'Eq. \eqref{vector unitari placa} i l'Eq. \eqref{vector unitari sol}, i operant:
+\begin{align*}
+    \cos \theta &= (\sin \theta_z \cos \eta, \sin \theta_z \sin \eta, \cos \theta_z) \cdot (\sin \beta \cos \gamma, \sin \beta \sin \gamma, \cos \beta) \\
+    &= (\sin \theta_z \cos \eta)(\sin \beta \cos \gamma) + (\sin \theta_z \sin \eta)(\sin \beta \sin \gamma) + (\cos \theta_z)(\cos \beta) \\
+    &= \sin \theta_z \sin \beta (\cos \eta \cos \gamma + \sin \eta \sin \gamma) + \cos \theta_z \cos \beta \\
+    &= \cos \theta_z \cos \beta + \sin \theta_z \sin \beta \cos (\eta - \gamma)
+\end{align*}
+
+on a l'última igualtat hem aplicat la fórmula del cosinus de la diferència:
+\[
+\cos (\eta - \gamma) = \cos \eta \cos \gamma + \sin \eta \sin \gamma
+\]
+
+Això completa la demostració.
 
 
 \section{Discussió Núria potència}

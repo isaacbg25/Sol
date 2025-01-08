@@ -177,12 +177,12 @@ Els valors numèrics de $\alpha$, $R_S$, $\sigma_{SB}$ i $T_S$ els hem obtingut 
 
 A continuació normalitzem aquesta expressió. En quant a la variable $\theta$, al tractar-se d'un angle ja és adimensional, i per tant la donem per normalitzada. En quant a les altres dues variables,
 \begin{align}
-    \hat{P}=\frac{P}{400} \label{P normalizada} \\
-    \hat{\rho}= \rho \left( r \alpha R_S^2\sigma_{SB}T_S^4A/400 \right)^{-1/2} \label{rho normalizada}
+    \hat{P}=\frac{P}{P_0} \label{P normalizada} \\
+    \hat{\rho}= \rho \left( r \alpha R_S^2\sigma_{SB}T_S^4A/P_0 \right)^{-1/2} \label{rho normalizada}
 \end{align}
-on hem escollit el valor 400 W per a normalitzar la potència. Segons l'enunciat, és la màxima electricitat $P_{max}$ que pot generar la placa per $I=10^3$ W/$\text{m}^2$ de radiació incident. També utilitzem aquests valors per trobar el valor del rendiment $r$ de la placa de la següent manera:
+on hem escollit $P_0=400$ W per a normalitzar la potència. Segons l'enunciat, és la màxima electricitat que pot generar la placa per $I_0=10^3$ W/$\text{m}^2$ de radiació incident. També utilitzem aquests valors per trobar el valor del rendiment $r$ de la placa de la següent manera:
 \begin{equation}
-     r = \frac{P_{max}}{IA} \ .
+     r = \frac{P_0}{I_0A} \ .
 \end{equation}
 Així doncs, segons aquesta normalització l'Eq. \eqref{potencia placa} esdevé:
 \begin{equation}
@@ -196,14 +196,12 @@ Per a determinar $\cos{\theta}$, utilitzem la següent expressió:
 \end{equation}
 amb $\theta_z = 90^{\circ}-\nu$, on els angles $\eta$ i $\nu$ ja han estat definits i calculats a la secció anterior, i són les variables que determinen $\theta$. Els angles $\beta$ i $\gamma$ són paràmetres que fan referència a la inclinació i orientació de la placa; es defineixen formalment a la secció \ref{sec: demo cos theta} de l'Annex, on es demostra l'equació.
 
-A la Figura següent es representa la potència en funció del temps en dos dies diferents.
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}{0.5\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{dia1_pot_plot.png}
-        \caption{Potència elèctrica produïda per la placa durant un dia.}
+        \includegraphics[width=\textwidth]{dia_3gener_pot_plot.png}
+        \caption{Potència elèctrica produïda per la placa durant el dia 3 de gener.}
         \label{fig: potencia}
     \end{subfigure}%
     \hspace{0.000001\textwidth}%
@@ -384,7 +382,7 @@ A continuació donem el link per a accedir al repositori de github on es troba e
 \section{Valors numèrics}
 \label{sec: valors numerics}
 \section{Demostració de l'Eq. \eqref{cos theta}}
-\label{sec: cos theta}
+\label{sec: demo cos theta}
 En aquesta secció demostrarem l'Eq. \eqref{cos theta}
 
 Els angles $\theta$, $\theta_z$, $\nu$ i $\eta$ ja han estat definits en anteriors apartats. En quant els angles $\beta$ i $\gamma$, donem les seves definicions formalment a continuació.
@@ -423,29 +421,18 @@ on a l'última igualtat hem aplicat la fórmula del cosinus de la diferència:
 Això completa la demostració.
 
 
-\section{Discussió Núria potència}
+\section{Estudi de la potència en un dia d'estiu}
 
-En la Fig. \ref{fig: potencia dia 1} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas del dia 170, representat a la Fig. \ref{fig: potencia dia 170}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del dia 1. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració de la generació de potència és superior a la del dia 1. Tot això es deu a que el dia 170 és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
-
+En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas de la potència en un dia d'estiu, representat a la Fig. \ref{fig: potencia dia estiu}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del 3 de gener. D'altra banda, la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració de la generació de potència és superior a la del 3 de gener. Tot això es deu a que el dia és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
 
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{dia1_pot_plot.png}
-        \caption{Dia 1.}
-        \label{fig: potencia dia 1}
-    \end{subfigure}%
-    \hspace{0.000001\textwidth}%
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{dia170_pot_plot.png}
+        \includegraphics[width=\textwidth]{dia_estiu_pot_plot.png}
         \caption{Dia 170.}
         \label{fig: potencia dia 170}
-    \end{subfigure}
-    \caption{Potència elèctrica produïda per la placa durant un dia per diversos valors de $\beta$ i de $\gamma$.}
-    \label{potencia un dia}
+    \caption{Potència elèctrica produïda per la placa durant un dia d'estiu per diversos valors de $\beta$ i de $\gamma$.}
+    \label{potencia dia estiu}
 \end{figure}
 
 

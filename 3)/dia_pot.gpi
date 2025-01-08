@@ -1,6 +1,6 @@
-set terminal pngcairo size 1280,720 enhanced
+set terminal pngcairo size 1200,600 font "Helvetica,18"
 
-set grid
+unset grid
 set key inside top right
 
 gammas = "-60 -15 0 15 60"  # Valors de gamma
@@ -12,7 +12,7 @@ num_betas = words(betas)
 colors = "red cyan magenta yellow orange"
 
 
-set output 'dia170_pot_plot.png'
+set output 'dia_estiu_pot_plot.png'
 
 set xlabel "Temps (h)"
 set ylabel "Potència (W)"
@@ -26,7 +26,7 @@ plot 'dia170_pot_dades.txt' using 1:2 with lines lw 2 lc rgb 'purple' title "{/S
     'dia170_pot_dades.txt' using 1:(column(2 + g)) with lines lw 2 lc rgb word(colors, g) \
     title sprintf("{/Symbol b}=35, {/Symbol g}=%s", word(gammas, g))
 
-set output 'dia1_pot_plot.png'
+set output 'dia_3gener_pot_plot.png'
 
 set xlabel "Temps (h)"
 set ylabel "Potència (W)"

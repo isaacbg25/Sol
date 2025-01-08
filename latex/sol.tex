@@ -56,46 +56,17 @@ En aquesta secció ens hem proposat simular el moviment de translació de la Ter
 \end{equation}
 On G és la constant de grabitació universal, M la massa del Sol i m la massa de la Terra.\footnote{Totes les dades orbitalàries agafades del Jet Propulsion Laboratory de la NASA: \url{https://ssd.jpl.nasa.gov/}}
 
-Per aquest tipus de sistemes i considerant únicament aquesta força central, tenim dues equacions de moviment en el pla polar 
-\begin{equation}
-    F(r)=m\ddot{r}-mr{\dot{\theta}}^2
-    \label{equ_en_r}
-\end{equation}
-\begin{equation}
-    0=\ddot{\theta}m=mr\ddot{\theta}+2m\dot{r}\dot{\theta}
-    \label{equ_en_theta}
-\end{equation}
-i la propietat que el moment angular es conserva
-\begin{equation}
-    L=mr\dot{\theta}=ctt
-    \label{moment_angular}
-\end{equation}
-Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una EDO que només depen de r i una EDO que només depen de $\theta$
-\begin{equation}
-    \frac{\partial\dot{r}}{\partial t}=-GM\frac{1}{r^2}+\frac{L^2}{m^2r^3}
-    \label{edor}
-\end{equation}
-\begin{equation}
-    \frac{\partial\theta}{\partial t}=\frac{L}{mr^2}
-    \label{edot}
-\end{equation}
-Normalitzant aquestes dues equacions i reduint l'ordre de l'equació \eqref{edor} obtenim
+Per aquest tipus de sistemes i considerant únicament aquesta força central, obtenim tres EDOs de primer ordre normalitzades que descriuen el moviment de la Terra (veure deducció matemàtica a l'annex \ref{annex: equ_mov}).
 \begin{equation}
     \frac{\partial\tilde{v}}{\partial\tilde{t}}=-\frac{1}{\tilde{r}^2}+\frac{1}{\tilde{r}^3}, \quad
     \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}, \quad
     \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
     \label{eq:all}
 \end{equation}
-on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$.
+On r i $\theta$ són les variables polars i $v$ la velocitat radial. Les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$. 
 
 Aquest sistema d'equacions diferencials de primer ordre l'hem resolt numèricament amb el mètode d'Euler i agafant com a condicions de contorn el radi de l'òrbita, la velocitat radial i l'angle al periheli.\footnotemark[\value{footnote}]
-Si grafiquem els resultats obtenim
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{orbita.png}
-    \label{orb_terra}
-    \caption{Òrbita Terrestre calculada numèricament}
-\end{figure}
+Si grafiquem els resultats obtenim el gràfic \ref{fig: orb_terra}.
 
 El mètode d'Euler és poc exacte però amb una discretització prou fina dona bons resultats. Si calculem l'error acomulat en el radi al completar una Òrbita sencera amb una discretització temporal de $3000$ punts obtenim
 \begin{equation}
@@ -105,25 +76,9 @@ Tot i així a la secció \ref{sec: edos} resoldrem aquest sistema d'EDOs amb alt
 
 
 \section{Posició del Sol al cel vist des de l'habitatge} \label{sec: seccio_2}
-En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any.\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès: 41°28'03.4"N 2°04'28.4"E} Per fer-ho hem parametritzat la posició del sol amb dos angles, l'angle vertical $\nu$ i l'angle horitzontal $\eta$ (\ref{fig: sist_sol}), i hem definit els vectors $\vec{\rho}$, del centre del Sol al punt de la superfície de la Terra, $\vec{r}$, del centre del Sol al punt de la superfície de la Terra, i $\vec{R}$, del centre del Sol al centre de la Terra (\ref{fig: sist_vectors}).
-\begin{figure}[hbt]
-    \centering
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{vectors.PNG}
-        \caption{Els vectors que hem definit a la secció \ref{sec: seccio_2}.}
-        \label{fig: sist_vectors}
-    \end{subfigure}%
-    \hspace{0.000001\textwidth}%
-    \begin{subfigure}{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{ang_sol.PNG}
-        \caption{Els dos angles que hem usat per a determinar la posició del Sol.}
-        \label{fig: sist_sol}
-    \end{subfigure}
-\end{figure}
+En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès: 41°28'03.4"N 2°04'28.4"E}. Per fer-ho hem parametritzat la posició del Sol amb dos angles, l'angle vertical $\nu$ i l'angle horitzontal $\eta$ (Figura \ref{fig: sist_sol}), i hem definit els vectors $\vec{\rho}$, del centre del Sol al punt de la superfície de la Terra, $\vec{r}$, del centre de la Terra al punt de la superfície de la Terra, i $\vec{R}$, del centre del Sol al centre de la Terra (Figura \ref{fig: sist_vectors}).
 
-També hem definit tres sistemes de referència (figura \ref{fig: sist_ref}) per facilitar els càlculs i trobar els àngles esmentats. Començant al sistema $\Omega$ podem obtenir un vector al sistema $\gamma$ a través de les matrius de rotació de l'annex \ref{annex: matr_rot}. Les relacions entre aquests sistemes són
+També hem definit tres sistemes de referència (Figura \ref{fig: sist_ref}) per facilitar els càlculs i trobar els àngles esmentats. Començant al sistema $\Omega$ podem obtenir un vector al sistema $\gamma$ a través de les matrius de rotació de l'annex \ref{annex: matr_rot}. Les relacions entre aquests sistemes són
 \begin{itemize}
     \item Sistema $\Omega$: l'eix $z$ està orientat amb l'eix de rotació de la Terra.
     \item Sistema $\beta$: sistema rotat un angle $\beta$ en el pla $zy$ respecte el sistema $\Omega$. $\beta$ és l'angle entre l'eix de rotació de la terra i el vector perpendicular al pla de l'orbita, per tant, ara l'eix $z$ apunta en direcció pendicular al pla de l'òrbita.
@@ -145,20 +100,29 @@ El vector $\vec{R}$ ja el tenim calculat de la secció \ref{sec: seccio_1} i el 
 \end{equation}
 Un cop tenim aquests tres vectors els angles queden definits
 \begin{equation}
-    \nu=\angle (\vec{r}_{\gamma}, \vec{\rho}_{\gamma}) -\frac{\pi}{2}  
-\end{equation}
-\begin{equation}
-    \eta=\pi - \angle (\vec{R}_{\Omega}, \vec{r}_{\Omega})
+    \nu=\angle (\vec{r}_{\gamma}, \vec{\rho}_{\gamma}) -\frac{\pi}{2},  \quad
+\eta=\pi - \angle (\vec{R}_{\Omega}, \vec{r}_{\Omega})
 \end{equation}
 on usem la funció arccosinus per trobar els angles.\footnote{$\angle (\vec{u}, \vec{v})= \arccos\left(\frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\right)$}
 
 
-Si calculem aquests angles per una posició concreta a la Terra\footref{nota: habitatge}i pels dies que corresponen als equinocis i als solsticis obtenim el següent gràfic.
+Si calculem aquests angles per una posició concreta a la Terra\footref{nota: habitatge}i pels dies que corresponen als equinocis i als solsticis obtenim el gràfic \ref{fig: solsticis}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{equinocis.png}
-    \label{solsticis}
-    \caption{Angles del Sol al llarg d'un dia per diferents moments de l'any a un habitatge de Sant Cugat del Vallès}
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{orbita.png}
+        \caption{Òrbita Terrestre calculada numèricament amb el mètode d'Euler.}
+        \label{fig: orb_terra}
+    \end{subfigure}
+    \hspace{0.1\textwidth}
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{equinocis.png}
+        \caption{Angles del Sol al llarg d'un dia per diferents moments de l'any a un habitatge de Sant Cugat del Vallès.}
+        \label{fig: solsticis}
+    \end{subfigure}
+\caption{Resultats gràfics de les seccións \ref{sec: seccio_1} i \ref{sec: seccio_2}.}
 \end{figure}
 
 \section{Estudi energètic de la placa}
@@ -336,6 +300,48 @@ Aquesta ens permet calcular el Radi de la nostra esferoide (distància superfíc
 \vspace{-1em}
 A continuació donem el link per a accedir al repositori de github on es troba el codi: \href{https://github.com/isaacbg25/Sol/tree/main}{link}
 
+
+\section{Deducció de les equacions de moviment de l'òrbita terrestre}
+\label{annex: equ_mov}
+A partir de la Llei de la Gravitació Univeral podem simplificar el nostre problema de dos cossos a un d'un sol cos sota una força central, $F(r)$.
+\begin{equation}
+    F(r)=-\frac{GMm}{r^2}
+\end{equation}
+On G és la constant de grabitació universal, M la massa del Sol i m la massa de la Terra.\footnote{Totes les dades orbitalàries agafades del Jet Propulsion Laboratory de la NASA: \url{https://ssd.jpl.nasa.gov/}}
+
+Per aquest tipus de sistemes i considerant únicament aquesta força central, tenim dues equacions de moviment en el pla polar 
+\begin{equation}
+    F(r)=m\ddot{r}-mr{\dot{\theta}}^2
+    \label{equ_en_r}
+\end{equation}
+\begin{equation}
+    0=\ddot{\theta}m=mr\ddot{\theta}+2m\dot{r}\dot{\theta}
+    \label{equ_en_theta}
+\end{equation}
+i la propietat que el moment angular es conserva
+\begin{equation}
+    L=mr\dot{\theta}=ctt
+    \label{moment_angular}
+\end{equation}
+Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una EDO que només depen de r i una EDO que només depen de $\theta$
+\begin{equation}
+    \frac{\partial\dot{r}}{\partial t}=-GM\frac{1}{r^2}+\frac{L^2}{m^2r^3}
+    \label{edor}
+\end{equation}
+\begin{equation}
+    \frac{\partial\theta}{\partial t}=\frac{L}{mr^2}
+    \label{edot}
+\end{equation}
+Normalitzant aquestes dues equacions i reduint l'ordre de l'equació \eqref{edor} obtenim
+\begin{equation}
+    \frac{\partial\tilde{v}}{\partial\tilde{t}}=-\frac{1}{\tilde{r}^2}+\frac{1}{\tilde{r}^3}, \quad
+    \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}, \quad
+    \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
+    \label{eq:all}
+\end{equation}
+on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$.
+
+
 \section{Matrius de canvi de sistema de referència}\label{annex: matr_rot}
 \begin{equation}
     \mathbf{R}_{\beta}=
@@ -362,7 +368,7 @@ A continuació donem el link per a accedir al repositori de github on es troba e
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{vectors.PNG}
-        \caption{Els vectors que hem definit a la secció \ref{sec: seccio_2}.}
+        \caption{Els vectors que hem definit per determinar els angles de la posició del Sol.}
         \label{fig: sist_vectors}
     \end{subfigure}%
     \hspace{0.000001\textwidth}%
@@ -372,6 +378,8 @@ A continuació donem el link per a accedir al repositori de github on es troba e
         \caption{Els dos angles que hem usat per a determinar la posició del Sol.}
         \label{fig: sist_sol}
     \end{subfigure}
+\label{fig: sistemes1}
+\caption{Vectors i angles definits a la seccio \ref{sec: seccio_2}.}
 \end{figure}
 
 \begin{figure}[hbt]

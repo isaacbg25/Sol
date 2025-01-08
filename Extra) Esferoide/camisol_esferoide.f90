@@ -7,8 +7,8 @@ program cami_sol_esferoide
     !introduim parametres esferoide
     real, parameter :: a = 6378136.6, b = 6356751.9 !semieix major (radi equatorial), semieix menor (radi polar)
     real, parameter :: alpha_Tel = atan((b/a)*tan(alpha_es))
-    real, parameter :: num_frac = ((((a**2)*cos(alpha_es))**2)+(((b**2)*sin(alpha_es))**2))
-    real, parameter :: denom_frac = (((a*cos(alpha_es))**2)+((b*sin(alpha_es))**2))
+    real, parameter :: num_frac = ((((a**2)*cos(alpha_Tel))**2)+(((b**2)*sin(alpha_Tel))**2))
+    real, parameter :: denom_frac = (((a*cos(alpha_Tel))**2)+((b*sin(alpha_Tel))**2))
     real, parameter :: r_Tel = sqrt(num_frac/denom_frac)
     integer :: i,j,k, valors(4)
     character(len=100):: nom_fitxer

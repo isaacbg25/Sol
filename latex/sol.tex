@@ -204,17 +204,17 @@ A la Figura següent es representa la potència en funció del temps en dos dies
         \centering
         \includegraphics[width=\textwidth]{dia1_pot_plot.png}
         \caption{Potència elèctrica produïda per la placa durant un dia.}
-        \label{fig: potencia dia 1}
+        \label{fig: potencia}
     \end{subfigure}%
     \hspace{0.000001\textwidth}%
     \begin{subfigure}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{energia.png}
         \caption{Energia elèctrica produïda per la placa cada dia de l'any.}
-        \label{fig: potencia dia 170}
+        \label{fig: energia}
     \end{subfigure}
     \caption{Gràfics referents a l'estudi energètic de la placa.}
-    \label{potencia un dia}
+    \label{estudi energia}
 \end{figure}
 
 Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (escollim arbitràriament $\gamma=0^{\circ}$) perquè el terme $\sin\beta$ en l’Eq. \eqref{cos theta} s’anul·la i, per tant, desapareix la dependència en $\gamma$.
@@ -222,7 +222,7 @@ Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (
 Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia dia 1} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó.
 
 \subsection{Energia elèctrica produïda per un panell solar}
-Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energies}.
+Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energia}.
 
 
 %\begin{figure}[H]
@@ -242,7 +242,7 @@ Pel que fa a la normalització del problema numèric, ens ha quedat la següent 
 on $\hat{t}=\frac{t}{t_0}$, $\hat{P}=\frac{P}{P_0}$ i $\hat{E}=\frac{E}{P_0 t_0}$, amb $t_0=86400$ s (els segons que hi ha en un dia) i $P_0=400$ W (la potència màxima de la placa en les condicions donades a l'enunciat de la pràctica). 
 \subsection{Extra: Optimització dels angles de la placa}
 
-Hem plantejat el problema des del punt de vista de maximitzar la producció d'energia total al llarg d'un any mantenint els angles $\beta$ i $\gamma$ de la placa constants durant tot l'any. Per fer-ho, hem utilitzat que si tenim en compte l'Eq. \eqref{P normalitzada} i \eqref{cos theta}, l'energia total normalitzada produïda en un any la podem escriure com
+Hem plantejat el problema des del punt de vista de maximitzar la producció d'energia total al llarg d'un any mantenint els angles $\beta$ i $\gamma$ de la placa constants durant tot l'any. Per fer-ho, hem utilitzat que si tenim en compte l'Eq. \ref{potencia placa} i \ref{cos theta}, l'energia total normalitzada produïda en un any la podem escriure com
 \[
 \hat{E}_T(\beta, \gamma) = \cos \beta \int \hat{P}_{opt} \cos \theta_{z} \, d\hat{t} + \sin \beta \cos \gamma \int \hat{P}_{opt} \sin \theta_{z} \cos \eta \, d\hat{t} + \sin \beta \sin \gamma \int \hat{P}_{opt} \sin \theta_{z} \sin \eta \, d\hat{t} \equiv
 \]
@@ -268,7 +268,7 @@ La solució corresponent per $\beta$ i $\gamma$ és
 \]
 on hem descartat la solució corresponent a $\beta=n\pi$ per no ser un màxim.
 
-Calculant numèricament les integrals $\hat{a}$, $\hat{b}$ i $\hat{c}$ per Simpson 1/3 sota la condició de que $-\frac{\pi}{2} \leq \theta_z \leq \frac{\pi}{2}$ (en cas contrari l'integrand l'hem anul·lat), hem obtingut uns angles òptims arrodonint a la primera xifra decimal de $\gamma=0^\circ$ i $\beta=44,5^\circ$. L'energia produïda dia a dia durant tot l'any corresponent a aquests angles pot trobar-se a la Fig. \ref{fig: energies}. 
+Calculant numèricament les integrals $\hat{a}$, $\hat{b}$ i $\hat{c}$ per Simpson 1/3 sota la condició de que $-\frac{\pi}{2} \leq \theta_z \leq \frac{\pi}{2}$ (en cas contrari l'integrand l'hem anul·lat), hem obtingut uns angles òptims arrodonint a la primera xifra decimal de $\gamma=0^\circ$ i $\beta=44,5^\circ$. L'energia produïda dia a dia durant tot l'any corresponent a aquests angles pot trobar-se a la Fig. \ref{fig: energia}. 
 
 A la Fig. \ref{fig: energies} podem observar que a l'estiu un angle d'inclinació de $35^\circ$, per exemple, produeix més energia que un de $44,5^\circ$, ara bé, com hem dit, nosaltres hem maximitzat la producció total durant l'any. Això, però, suggereix que durant diferents èpoques de l'any podriem modificar la inclinació de la placa per així maximitzar la seva producció en cada període i conseqüentment durant tot l'any.
 

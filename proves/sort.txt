@@ -1,3 +1,0 @@
-sort -k1,1nr angles1.txt -o angles1.txt
-sort -k1,1nr angles2.txt -o angles2.txt
-sort -k1,1nr angles3.txt -o angles3.txt

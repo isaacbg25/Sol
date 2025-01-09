@@ -132,10 +132,10 @@ Si calculem aquests angles per una posició concreta a la Terra\footref{nota: ha
 \subsection{Potència elèctrica produïda per un panell solar}
 Suposant que el Sol és un cos negre esfèric a temperatura $T_S$ i de radi $R_S$, utilitzant la llei de Stefan-Boltzmann la potència que emet és $P_S=\sigma_{SB}T_S^44\pi R_S^2$. La intensitat de la radiació en un punt a una distància ${\rho}$ del Sol $I_{\rho}$ és igual la potència $P_S$ dividida entre l'àrea del front d'ona de la radiació, que és una closca esfèrica de radi ${\rho}$. Si el punt es troba a la superfície terrestre,  per l’efecte de l’albedo $\alpha_A$ cal multiplicar $I_{\rho}$ per $\alpha=1-\alpha_A$, la fracció de radiació absorbida per la Terra. Així doncs, la intensitat de la radiació incident és:
 \begin{equation}
-    I_{abs} = \frac{P_S}{4\pi d^2}=\frac{1}{d^2}R_S^2\sigma_SB T_S^4 \ .
+    I_{abs} = \alpha \frac{P_S}{4\pi \rho^2}=\alpha \frac{1}{\rho^2} R_S^2\sigma_{SB} T_S^4 \ .
     \label{I_abs}
 \end{equation}
-La intensitat efectiva que rebrà un panell solar és $I_{abs} \cos{\theta}$, on $\theta$ és l'angle entre la direcció de la llum incident i la normal al panell. Finalment, la potència elèctrica generada és igual al producte d'aquesta intensitat multiplicada per l'àrea del panell, $A$, i per un factor $r$, el seu rendiment. Aleshores,
+La intensitat efectiva que rebrà un panell solar és $I_{abs} \cos{\theta}$, on $\theta$ és l'angle entre la direcció de la llum incident i la normal al panell. Finalment, la potència elèctrica generada és igual al producte d'aquesta intensitat i l'àrea del panell, $A$, i un factor $r$, el seu rendiment. Així,
 \begin{equation}
     P = r I_{abs} A \cos{\theta} = r \alpha \frac{1}{\rho^2}R_S^2\sigma_{SB}T_S^4A \cos{\theta} \ .
     \label{potencia placa}
@@ -147,7 +147,7 @@ A continuació normalitzem aquesta expressió. En quant a la variable $\theta$, 
     \hat{P}=\frac{P}{P_0} \label{P normalizada} \\
     \hat{\rho}= \rho \left( r \alpha R_S^2\sigma_{SB}T_S^4A/P_0 \right)^{-1/2} \label{rho normalizada}
 \end{align}
-on hem escollit $P_0=400$ W per a normalitzar la potència. Segons l'enunciat, és la màxima electricitat que pot generar la placa per $I_0=10^3$ W/$\text{m}^2$ de radiació incident. També utilitzem aquests valors per trobar el valor del rendiment $r$ de la placa de la següent manera:
+on hem escollit $P_0=400$ W per a normalitzar la potència. Segons l'enunciat, és la màxima electricitat que pot generar la placa per $I_0=10^3$ W/$\text{m}^2$ de radiació incident. També utilitzem aquests valors per calcular el valor del rendiment $r$ de la placa de la següent manera:
 \begin{equation}
      r = \frac{P_0}{I_0A} \ .
 \end{equation}
@@ -184,9 +184,9 @@ En la Fig. \ref{fig: potencia}, es representa la potència produïda pel panell 
     \label{estudi energia}
 \end{figure}
 
-Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (escollim arbitràriament $\gamma=0^{\circ}$) perquè el terme $\sin\beta$ en l’Eq. \eqref{cos theta} s’anul·la i, per tant, desapareix la dependència en $\gamma$.
+Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (escollim arbitràriament $\gamma=0^{\circ}$) perquè el terme $\sin\beta$ en l’Eq. \eqref{cos theta} s’anul·la, i per tant desapareix la dependència en $\gamma$.
 
-Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó. A la secció \ref{sec: dia estiu potencia} de l'Annex, es comparen aquests resultats amb els obtinguts en un dia d'estiu.
+Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta_z \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó. A la secció \ref{sec: dia estiu potencia} de l'Annex, es comparen aquests resultats amb els obtinguts en un dia d'estiu.
 
 \subsection{Energia elèctrica produïda per un panell solar}
 Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energia}.
@@ -366,8 +366,6 @@ on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{
     \label{fig: sist_ref}
 \end{figure}
 
-\section{Valors numèrics}
-\label{sec: valors numerics}
 \section{Demostració de l'Eq. \eqref{cos theta}}
 \label{sec: demo cos theta}
 En aquesta secció demostrarem l'Eq. \eqref{cos theta}
@@ -392,7 +390,7 @@ L'angle d'incidència de la radiació (\(\theta\)) és l'angle que formen el vec
 \begin{equation}
     \cos \theta = \mathbf{S} \cdot \mathbf{N}
 \end{equation}
-Substituint els vectors per l'Eq. \eqref{vector unitari placa} i l'Eq. \eqref{vector unitari sol}, i operant:
+Substituint els vectors per l'Eq. \eqref{vector unitari sol} i l'Eq. \eqref{vector unitari placa}, i operant:
 \begin{align*}
     \cos \theta &= (\sin \theta_z \cos \eta, \sin \theta_z \sin \eta, \cos \theta_z) \cdot (\sin \beta \cos \gamma, \sin \beta \sin \gamma, \cos \beta) \\
     &= (\sin \theta_z \cos \eta)(\sin \beta \cos \gamma) + (\sin \theta_z \sin \eta)(\sin \beta \sin \gamma) + (\cos \theta_z)(\cos \beta) \\

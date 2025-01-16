@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex sol"] 1737047783 "sol.aux" "sol.bbl" "sol" 1737047801
+["bibtex sol"] 1737048599 "sol.aux" "sol.bbl" "sol" 1737048613
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "bibliografia.bib" 1737041596 613 ed637797c294059c16666e3a76c71d24 ""
-  "sol.aux" 1737047800 20446 bdb8d0dddb664b731d8db8ae6eb1832e "pdflatex"
+  "sol.aux" 1737048612 20446 ab9ec397ba59a60ec48aefa9c9dc5559 "pdflatex"
   (generated)
   "sol.bbl"
   "sol.blg"
-["pdflatex"] 1737047784 "/home/isaac/Projectes/MN2/Sol/latex/sol.tex" "sol.pdf" "sol" 1737047801
+["pdflatex"] 1737048600 "/home/isaac/Projectes/MN2/Sol/latex/sol.tex" "sol.pdf" "sol" 1737048613
   "/etc/texmf/web2c/texmf.cnf" 1735152389 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/isaac/Projectes/MN2/Sol/latex/sol.tex" 1737047764 30833 08be4dd4aa1f12f63b97a02440731dba ""
+  "/home/isaac/Projectes/MN2/Sol/latex/sol.tex" 1737048578 30920 5976c28fcfff543ae1f62b72ad2947de ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm" 1136768653 3584 21b378cca2e40816b0e6d74a4dc98f04 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -282,10 +282,10 @@
   "orbitaRK2.png" 1736196001 47925 5ea3c11721570450391097e1f8269353 ""
   "orbitaRK4.png" 1736196001 47429 4995c3d8f486419b18cde9dce31e58c9 ""
   "sist_ref.PNG" 1735678014 1427292 f18522b8da2f60b97961b5acad73c8bb ""
-  "sol.aux" 1737047800 20446 bdb8d0dddb664b731d8db8ae6eb1832e "pdflatex"
-  "sol.bbl" 1737047784 225 cf5e7b8d9b06a342446e0447b07cc2f1 "bibtex sol"
-  "sol.tex" 1737047764 30833 08be4dd4aa1f12f63b97a02440731dba ""
-  "sol.toc" 1737047800 1866 7a27f77903dd4e0f5912ac0c2e2fe0dc "pdflatex"
+  "sol.aux" 1737048612 20446 ab9ec397ba59a60ec48aefa9c9dc5559 "pdflatex"
+  "sol.bbl" 1737048600 225 cf5e7b8d9b06a342446e0447b07cc2f1 "bibtex sol"
+  "sol.tex" 1737048578 30920 5976c28fcfff543ae1f62b72ad2947de ""
+  "sol.toc" 1737048612 1866 7a27f77903dd4e0f5912ac0c2e2fe0dc "pdflatex"
   "vectors.PNG" 1735677929 868066 4eaa38a9a8e8860070abc75940ea37e5 ""
   (generated)
   "sol.aux"

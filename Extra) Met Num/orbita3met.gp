@@ -39,7 +39,7 @@ set xrange[-2e11:2e11]
 set yrange[-2e11:2e11]
 set grid
 set title 'Òrbita terrestre (comparació 3 mètodes numèrics)'
-plot 'orbita.txt' using 1:2 with lines linestyle 1 lw 4 title 'Euler', \
-     'orbitaRK2.txt' using 1:2 with lines linestyle 1 lw 2 title 'RK-2', \
-     'orbitaRK4.txt' using 1:2 with lines linestyle 1 lw 0.5 title 'RK-4' , \
+plot 'orbita.txt' using 1:2 with lines linestyle 1 lw 8 title 'Euler', \
+     'orbitaRK2.txt' using 1:2 with lines linestyle 2 lw 5 title 'RK-2', \
+     'orbitaRK4.txt' using 1:2 with lines linestyle 3 lw 2 title 'RK-4' , \
      'sol.txt' using 1:2:3 with labels offset 1,1 notitle, 'sol.txt' using 1:2 with points linestyle 4 pt 7 ps 1.5 notitle

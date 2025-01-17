@@ -247,7 +247,7 @@ Calculant numèricament les integrals $\hat{a}$, $\hat{b}$ i $\hat{c}$ per Simps
 A la Fig. \ref{fig: energies} podem observar que a l'estiu un angle d'inclinació de $35^\circ$, per exemple, produeix més energia que un de $44,5^\circ$, ara bé, com hem dit, nosaltres hem maximitzat la producció total durant l'any. Això, però, suggereix que durant diferents èpoques de l'any podriem modificar la inclinació de la placa per així maximitzar la seva producció en cada període i conseqüentment durant tot l'any.
 
 \section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edos}
-Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per axò hem volgut comparar els resultats.
+Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per això hem volgut comparar els resultats.
 
 Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Runge-Kutta d'ordre 2 i el Runge-Kutta d'ordre 4\footnote{els seus corresponents gràfics i errors relatius pel que fa al radi orbital es troben a l'annex \ref{sec: orbitesRK}}, amb la mateixa discretització temporal en els 3 mètodes numèrics.
 
@@ -258,7 +258,7 @@ Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Run
     \label{fig: orbita3met}
 \end{figure}
 
-Observant els gràfics \ref{fig: orbita3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
+Amb els gràfics \ref{fig: orbita3met} ja podem notar que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes, numèricament també s'observa el mateix.
 
 \section{Consideració de la Terra com no esfèrica}\label{sec: terranoesfera}
 Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. Però sabem que realment, la força centrífuga generada per la seva pròpia rotació provoca una deformació en els pols, 'aixafant-la' i fent que la Terra no sigui una esfera.
@@ -275,7 +275,7 @@ Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només cons
     \label{eq: rtel}
 \end{equation}
 
-Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a la corresponent secció \ref{sec: seccio_2}.
+Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_{el}}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a la corresponent secció \ref{sec: seccio_2}.
 
 \section{Conclusions}
 En aquesta pràctica hem estudiat l'energia elèctrica produïda per una instal·lació de panells solars fotovoltaics a Catalunya. Amb les dues primeres seccions hem simulat la posició del Sol respecte la posició de la placa. Considerant el Sol com un cos fix generador de camp gravitatori i la Terra com l'únic objecte astronòmic existent hem obtingut un error acumulat en el radi de l'òrbita al cap d'un any de menys del $0,00001\%$. Concretament, al primer apartat hem resolt numèricament l'equació del moviment de la Terra amb el mètode d'Euler i al segon apartat hem calculat geomètricament la posició del Sol al cel des d'un habitatge de Catalunya. Amb les dades aconseguides a aquests apartats, a la tercera secció ens hem volcat a l'estudi de l'energia produïda pels panells solars tot aproximant el Sol com un cos negra esfèric. En aquest apartat hem obingut una energia mitjana produïda al dia de [???], dada molt semblant a la proporcionada per la [xxxxxx] i que valida el nostre model.
@@ -466,7 +466,7 @@ Calculem l'error acumulat en el radi orbital per poder veure millor les diferèn
 
 \section{Aproximació de la Terra a un esferoide}
 \label{sec: terraesferoidedibuix}
-En aquesta secció es mostren els passos per arribar a l'equació \eqref{rtel}.
+En aquesta secció es mostren els passos per arribar a l'equació \eqref{eq: rtel}.
 
 Per una banda, el punt de la superfície de l'el·lipsoide es pot definir com:
 

@@ -1,4 +1,4 @@
-set terminal pngcairo size 1200,600 font "Helvetica,18"
+set terminal pngcairo size 1250,600 font "Helvetica,18"
 
 unset grid
 set key inside top right

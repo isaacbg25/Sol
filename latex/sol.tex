@@ -246,7 +246,7 @@ Calculant numèricament les integrals $\hat{a}$, $\hat{b}$ i $\hat{c}$ per Simps
 A la Fig. \ref{fig: energia} podem observar que a l'estiu un angle d'inclinació de $35^\circ$, per exemple, produeix més energia que l'angle òptim, ara bé, com hem dit, nosaltres hem maximitzat la producció total durant l'any. Això, però, suggereix que durant diferents èpoques de l'any podriem modificar la inclinació de la placa per així maximitzar la seva producció en cada període i conseqüentment durant tot l'any.
 
 \section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edos}
-Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per axò hem volgut comparar els resultats.
+Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per això hem volgut comparar els resultats.
 
 Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Runge-Kutta d'ordre 2 i el Runge-Kutta d'ordre 4\footnote{els seus corresponents gràfics i errors relatius pel que fa al radi orbital es troben a l'annex \ref{sec: orbitesRK}}, amb la mateixa discretització temporal en els 3 mètodes numèrics.
 
@@ -257,7 +257,7 @@ Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Run
     \label{fig: orbita3met}
 \end{figure}
 
-Observant la Fig. \ref{fig: orbita3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
+Observant els gràfics \ref{fig: orbita3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
 
 \section{Consideració de la Terra com no esfèrica}\label{sec: terranoesfera}
 Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. Però sabem que realment, la força centrífuga generada per la seva pròpia rotació provoca una deformació en els pols, 'aixafant-la' i fent que la Terra no sigui una esfera.
@@ -270,16 +270,16 @@ Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només cons
 \end{equation}
 
 \begin{equation}
-    r_{T_{el}} = \sqrt{\frac{(a^2cos(\alpha_{T_{el}})^2+(b^2sin(\alpha_{T_{el}}))^2}{(acos(\alpha_{T_{el}}))^2+(bsin(\alpha_{T_{el}}))^2}}
+    r_{T_{el}} = \sqrt{\frac{(a^2cos(\alpha_{T_{el}}))^2+(b^2sin(\alpha_{T_{el}}))^2}{(acos(\alpha_{T_{el}}))^2+(bsin(\alpha_{T_{el}}))^2}}
     \label{eq: rtel}
 \end{equation}
 
-Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a les corresponents seccions \ref{sec: seccio_2}.
+Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_{el}}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a la corresponent secció \ref{sec: seccio_2}.
 
 \section{Conclusions}
 En aquesta pràctica hem estudiat l'energia elèctrica produïda per un panell fotovoltaic a Catalunya. A les dues primeres seccions hem simulat la posició del Sol respecte la posició de la placa. Considerant el Sol com un cos fix generador de camp gravitatori i la Terra com l'únic objecte astronòmic existent hem obtingut un error acumulat en el radi de l'òrbita al cap d'un any de menys del $0,00001\%$. Concretament, al primer apartat hem resolt numèricament l'equació del moviment de la Terra amb el mètode d'Euler i al segon apartat hem calculat geomètricament la posició del Sol al cel des d'un habitatge de Catalunya. Amb les dades aconseguides a aquests apartats, a la tercera secció ens hem volcat a l'estudi de l'energia produïda pels panells solars tot aproximant el Sol com un cos negre esfèric.
 
-A més, s'ha trobat en quina posició (descrita pels angles òptims) ha d'estar la placa per a produir el màxim d'energia elèctrica, la qual s'ha considerat pel període de temps d'un any. Per últim, al repetir les simulacions amb altres models que consideressin aproximacions que ens apropéssin cada cop més a la realitat per posteriorment comparar els resultats. Concretament hem escollit calcular l'òrbita Terrestre al voltant del sol amb altres mètodes numèrics: Runge-Kutta d'ordre 2 i Runge-Kutta d'ordre 4, emprant la mateixa discretització del temps que per Euler. Per altra banda també hem canviat el model aproximat al considerar la Terra (fins ara pensada com una esfera) com a un esferoide. Cap d'aquests canvis ha sigut molt significatiu en els resultats obtinguts d'aquestes noves simulacions. 
+A més, s'ha trobat en quina posició (descrita pels angles òptims) ha d'estar la placa per a produir el màxim d'energia elèctrica, la qual s'ha considerat pel període de temps d'un any. Per últim, s'han repetit les simulacions amb altres models que consideressin aproximacions que ens apropéssin cada cop més a la realitat per posteriorment comparar els resultats. Concretament hem escollit calcular l'òrbita Terrestre al voltant del sol amb 2 mètodes numèrics més: Runge-Kutta d'ordre 2 i Runge-Kutta d'ordre 4, emprant la mateixa discretització del temps que per Euler. Per altra banda també hem canviat el model aproximat al considerar la Terra (fins ara pensada com una esfera) com a un esferoide. Cap d'aquests canvis ha sigut molt significatiu en els resultats obtinguts d'aquestes noves simulacions. 
 
 \section*{Annex}
 \appendix

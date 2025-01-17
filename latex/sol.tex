@@ -59,13 +59,14 @@ Núria Castillo Ariño (1669145)
 
 
 \section{Moviment de la Terra al voltant del Sol} \label{sec: seccio_1}
-En aquesta secció ens hem proposat simular el moviment de translació de la Terra al voltant del Sol. Per fer-ho hem partit de la Llei de la Gravitació Univeral i hem simplificant el nostre problema de dos cossos a un d'un sol cos sota una força central, $F(r)$.
+En aquesta secció ens hem proposat simular el moviment de translació de la Terra al voltant del Sol. Per fer-ho hem partit de la Llei de la Gravitació Univeral i hem simplificat el nostre problema de dos cossos a un d'un sol cos sota una força central
 \begin{equation}
     F(r)=-\frac{GMm}{r^2}
+    \label{si}
 \end{equation}
-On G és la constant de grabitació universal, M la massa del Sol i m la massa de la Terra.\footnote{Totes les dades orbitalàries agafades del Jet Propulsion Laboratory de la NASA: \url{https://ssd.jpl.nasa.gov/}}
+on G és la constant de gravitació universal, M la massa del Sol i m la massa de la Terra.\footnote{Totes les dades orbitalàries agafades del Jet Propulsion Laboratory de la NASA: \url{https://ssd.jpl.nasa.gov/}}
 
-Per aquest tipus de sistemes i considerant únicament aquesta força central, obtenim tres EDOs de primer ordre normalitzades que descriuen el moviment de la Terra (veure deducció matemàtica a l'annex \ref{annex: equ_mov}).
+Per aquest tipus de sistemes i considerant únicament aquesta força central, obtenim les següents tres EDOs de primer ordre normalitzades que descriuen el moviment de la Terra (veure deducció matemàtica a l'annex \ref{annex: equ_mov}).
 \begin{equation}
     \frac{\partial\tilde{v}}{\partial\tilde{t}}=-\frac{1}{\tilde{r}^2}+\frac{1}{\tilde{r}^3}, \quad
     \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}, \quad
@@ -291,13 +292,9 @@ A continuació donem el link per a accedir al repositori de github on es troba e
 
 \section{Deducció de les equacions de moviment de l'òrbita terrestre}
 \label{annex: equ_mov}
-A partir de la Llei de la Gravitació Univeral podem simplificar el nostre problema de dos cossos a un d'un sol cos sota una força central, $F(r)$.
-\begin{equation}
-    F(r)=-\frac{GMm}{r^2}
-\end{equation}
-On G és la constant de grabitació universal, M la massa del Sol i m la massa de la Terra.\footnote{Totes les dades orbitalàries agafades del Jet Propulsion Laboratory de la NASA: \url{https://ssd.jpl.nasa.gov/}}
 
-Per aquest tipus de sistemes i considerant únicament aquesta força central, tenim dues equacions de moviment en el pla polar 
+
+Per aquest tipus de sistemes i considerant únicament la força central definida a l'Eq. \eqref{si}, podem definir dues equacions de moviment en el pla polar 
 \begin{equation}
     F(r)=m\ddot{r}-mr{\dot{\theta}}^2
     \label{equ_en_r}
@@ -306,12 +303,12 @@ Per aquest tipus de sistemes i considerant únicament aquesta força central, te
     0=\ddot{\theta}m=mr\ddot{\theta}+2m\dot{r}\dot{\theta}
     \label{equ_en_theta}
 \end{equation}
-i la propietat que el moment angular es conserva
+Si, a més, tenim en compte la conservació del moment angular, podem escriure
 \begin{equation}
     L=mr\dot{\theta}=ctt
     \label{moment_angular}
 \end{equation}
-Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una EDO que només depen de r i una EDO que només depen de $\theta$
+Combinant les Eq. \eqref{equ_en_r} i \eqref{moment_angular} obtenim una EDO que només depen de r i una altra que només depen de $\theta$
 \begin{equation}
     \frac{\partial\dot{r}}{\partial t}=-GM\frac{1}{r^2}+\frac{L^2}{m^2r^3}
     \label{edor}
@@ -320,14 +317,14 @@ Combinant les equacions \eqref{equ_en_r} i \eqref{moment_angular} obtenim una ED
     \frac{\partial\theta}{\partial t}=\frac{L}{mr^2}
     \label{edot}
 \end{equation}
-Normalitzant aquestes dues equacions i reduint l'ordre de l'equació \eqref{edor} obtenim
+Normalitzant aquestes dues equacions i reduint l'ordre de l'Eq. \eqref{edor}, obtenim
 \begin{equation}
     \frac{\partial\tilde{v}}{\partial\tilde{t}}=-\frac{1}{\tilde{r}^2}+\frac{1}{\tilde{r}^3}, \quad
     \frac{\partial\tilde{r}}{\partial\tilde{t}}=\tilde{v}, \quad
     \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
     \label{eq:all}
 \end{equation}
-on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$.
+on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$ i $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}$ i $\kappa=GM$.
 
 
 \section{Matrius de canvi de sistema de referència}\label{annex: matr_rot}

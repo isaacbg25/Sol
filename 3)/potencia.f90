@@ -146,6 +146,9 @@ program potenc
  
                 ! Calculem la potència
                 potencia = (costheta / (d**2)) * pot_caracteristica
+                if (potencia>pot_el_max) then
+                  potencia=pot_el_max
+                end if
  
                 ! Guardem el resultat de la potència
                 write(12, '(1X, ES12.5)', advance='no') potencia

@@ -31,7 +31,7 @@
 \usepackage{siunitx}
 
 
-\title{\Huge\bfseries Pràctica de simulació: \\ Instal·lació de panells solars fotovoltaics en un habitatge unifamiliar a Catalunya \\ [2ex] \Large}
+\title{\Huge\bfseries Pràctica lliure: \\ Instal·lació de panells solars fotovoltaics en un habitatge unifamiliar a Catalunya \\ [2ex] \Large}
 
 \author{\begin{tabular}{c}
 \textbf{GRUP C3} \\
@@ -46,9 +46,9 @@ Núria Castillo Ariño (1669145)
 \begin{document}
 
 \maketitle
-\begin{center}
-    \textbf{Resum:} Aquest informe és un anàlisi sobre la instal·lació de panells solars fotovoltaics en un habitatge a Catalunya. Es modelitza el moviment orbital de la Terra per determinar la trajectòria solar respecte a l’habitatge, resolent l’equació del moviment amb diferents mètodes numèrics per comparar-ne l’eficiència. Amb aquestes dades, es calcula la potència i l’energia generades pel panell solar i es determina la configuració òptima per maximitzar la producció energètica. Finalment, al model s'hi incorpora la forma no esfèrica de la Terra, per tal d'ajustar-lo més a la realitat.
-\end{center}
+%\begin{center}
+    %\textbf{Resum:} Aquest informe és un anàlisi sobre la instal·lació de panells solars fotovoltaics en un habitatge a Catalunya. Es modelitza el moviment orbital de la Terra per determinar la trajectòria solar respecte a l’habitatge, resolent l’equació del moviment amb diferents mètodes numèrics per comparar-ne l’eficiència. Amb aquestes dades, es calcula la potència i l’energia generades pel panell solar i es determina la configuració òptima per maximitzar la producció energètica. Finalment, al model s'hi incorpora la forma no esfèrica de la Terra, per tal d'ajustar-lo més a la realitat.
+%\end{center}
 
 
 \newpage
@@ -56,8 +56,8 @@ Núria Castillo Ariño (1669145)
 \tableofcontents
 \newpage
 
-
-
+\section{Introducció}
+Aquest informe és un anàlisi sobre la instal·lació de panells solars fotovoltaics en un habitatge a Catalunya. Es modelitza el moviment orbital de la Terra per determinar la trajectòria solar respecte a l’habitatge, resolent l’equació del moviment amb diferents mètodes numèrics per comparar-ne l’eficiència. Amb aquestes dades, es calcula la potència i l’energia generades pel panell solar i es determina la configuració òptima per maximitzar la producció energètica. Finalment, al model s'hi incorpora la forma no esfèrica de la Terra, per tal d'ajustar-lo més a la realitat.
 \section{Moviment de la Terra al voltant del Sol} \label{sec: seccio_1}
 En aquesta secció ens hem proposat simular el moviment de translació de la Terra al voltant del Sol. Per fer-ho hem partit de la Llei de la Gravitació Univeral i hem simplificat el nostre problema de dos cossos a un d'un sol cos sota una força central
 \begin{equation}
@@ -85,33 +85,32 @@ Aquesta és la discretització que usem per fer els càlculs dels següents apar
 Tot i així a la secció \ref{sec: edos} resoldrem aquest sistema d'EDOs amb altres mètodes per comparar-ne els resultats.
 
 \section{Posició del Sol al cel vist des de l'habitatge} \label{sec: seccio_2}
-En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès: 41°28'03.4"N 2°04'28.4"E}. Per fer-ho hem parametritzat la posició del Sol amb dos angles, l'angle vertical, $\nu$, i l'angle horitzontal, $\eta$ (Figura \ref{fig: sist_sol}), i hem definit els vectors $\vec{\rho}$, del centre del Sol al punt de la superfície de la Terra; $\vec{r}$, del centre de la Terra al punt de la superfície de la Terra; i $\vec{R}$, del centre del Sol al centre de la Terra (Figura \ref{fig: sist_vectors}).\\
-També hem definit tres sistemes de referència (Figura \ref{fig: sist_ref}) per facilitar els càlculs i trobar els àngles esmentats. Començant al sistema $\Omega$ podem obtenir un vector al sistema $\gamma$ a través de les matrius de rotació de l'annex \ref{annex: matr_rot}. Les relacions entre aquests sistemes són
+En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès: 41°28'03.4"N 2°04'28.4"E}. Per fer-ho, hem parametritzat la posició del Sol amb dos angles, l'angle vertical, $\nu$, i l'angle horitzontal, $\eta$ (Fig. \ref{fig: sist_sol} de l'annex) i hem definit els vectors $\vec{\rho}$, del centre del Sol al punt de la superfície de la Terra; $\vec{r}$, del centre de la Terra al punt de la superfície de la Terra; i $\vec{R}$, del centre del Sol al centre de la Terra (Fig. \ref{fig: sist_vectors} de l'annex).\\
+També hem definit tres sistemes de referència (Fig. \ref{fig: sist_ref} de l'annex) per facilitar els càlculs i trobar els àngles esmentats. Començant al sistema $\Omega$ podem obtenir un vector al sistema $\gamma$ a través de les matrius de rotació de l'annex \ref{annex: matr_rot}. Les relacions entre aquests sistemes són les següents:
 \begin{itemize}
     \item Sistema $\Omega$: l'eix $z$ està orientat amb l'eix de rotació de la Terra.
-    \item Sistema $\beta$: sistema rotat un angle $\beta$ en el pla $zy$ respecte el sistema $\Omega$. $\beta$ és l'angle entre l'eix de rotació de la terra i el vector perpendicular al pla de l'orbita, per tant, en aquest sistema l'eix $z$ apunta en direcció pendicular al pla de l'òrbita.
+    \item Sistema $\beta$: sistema rotat un angle $\beta$ en el pla $zy$ respecte el sistema $\Omega$. $\beta$ és l'angle entre l'eix de rotació de la terra i el vector perpendicular al pla de l'òrbita, per tant, en aquest sistema l'eix $z$ apunta en direcció pendicular al pla de l'òrbita.
     \item Sistema $\gamma$: sistema rotat un angle $\gamma$ en el pla $xy$ respecte el sistema $\beta$. $\gamma$ és l'angle entre $\vec{R}_{periheli}$ i $\vec{R}_{solstici(hivern)}$, per tant, en aquest sistema la direcció de l'eix $y$ coincideix amb la direcció del periheli.
 \end{itemize}
-de tal manera que al sistema $\gamma$ tenim l'òrbita de la Terra amb el periheli i l'afeli sobre l'eix y i l'eix de rotació de la Terra orientat per tal que al solstici d'hivern (21 de Desembre) l'angle entre l'eix de rotació de la Terra i la direcció perpendicular al pla de l'òrbita sigui màxim.
+D'aquesta manera, al sistema $\gamma$ tenim l'òrbita de la Terra amb el periheli i l'afeli sobre l'eix y i l'eix de rotació de la Terra orientat per tal que al solstici d'hivern (21 de Desembre) l'angle entre l'eix de rotació de la Terra i la direcció perpendicular al pla de l'òrbita sigui màxim.
 
-Al sistema $\Omega$ el vector $\vec{r}$ és molt fàcil de definir 
+Al sistema $\Omega$ el vector $\vec{r}$ és molt fàcil de definir si tenim la coordenada de latitud del punt de la Terra on volem fer els càlculs, $\alpha$, i el radi de la Terra, $r_T$, on $w$ és la velocitat angular de rotació de la Terra i $t$ el temps transcorregut al llarg del dia. 
 \begin{equation}
-    \vec{r}_{(t)}=r_T[\cos(\alpha)\cos(wt+\varphi)\hat{e_x}+\cos(\alpha)\sin(wt)+\varphi\hat{e_y}+\sin(\alpha)\hat{e_z}]
+    \vec{r}(t)=r_T[\cos(\alpha)\cos(wt+\varphi)\hat{e_x}+\cos(\alpha)\sin(wt)+\varphi\hat{e_y}+\sin(\alpha)\hat{e_z}]
     \label{vector_r}
 \end{equation}
-si tenim la coordenada de latitud del punt de la Terra on volem fer els càlculs, $\alpha$, i el radi de la Terra, $r_T$, i on $w$ és la velocitat angular de rotació de la Terra i $t$ el temps transcorregut al llarg del dia.
 Per tal de que aquest vector a $t=0$ comenci a la posició més allunyada del Sol (és a dir que t=0 es correspongui amb la meitat de la nit) hem d'afegir l'angle $\varphi$ a l'angle de rotació. $\varphi$ anirà variant cada dia i és l'angle entre el vector definit a l'equació (\ref{vector_r}) i el vector $\vec{R}$ a $t=0$.
 
 El vector $\vec{R}$ ja el tenim calculat de la secció \ref{sec: seccio_1} i el vector $\vec{\rho}$ és simplement
 \begin{equation}
     \vec{\rho}= \vec{R}+\vec{r}
 \end{equation}
-Un cop tenim aquests tres vectors els angles queden definits
+Un cop tenim aquests tres vectors els angles queden definits com
 \begin{equation}
     \nu=\angle (\vec{r}_{\gamma}, \vec{\rho}_{\gamma}) -\frac{\pi}{2},  \quad
 \eta=\pi - \angle (\vec{R}_{\Omega}, \vec{r}_{\Omega})
 \end{equation}
-on usem la funció arccosinus per trobar els angles.\footnote{$\angle (\vec{u}, \vec{v})= \arccos\left(\frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\right)$}
+on els angles els trobem utilitzant $\angle (\vec{u}, \vec{v})= \arccos\left(\frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\right)$.
 
 
 Si calculem aquests angles per una posició concreta a la Terra\footref{nota: habitatge}i pels dies que corresponen als equinocis i als solsticis obtenim el gràfic \ref{fig: solsticis}.
@@ -152,7 +151,7 @@ A continuació normalitzem aquesta expressió. En quant a la variable $\theta$, 
     \hat{P}=\frac{P}{P_0} \label{P normalizada} \\
     \hat{\rho}= \rho \left( r \alpha R_S^2\sigma_{SB}T_S^4A/P_0 \right)^{-1/2} \label{rho normalizada}
 \end{align}
-on hem escollit $P_0=400$ W per a normalitzar la potència. Segons l'enunciat, és la màxima electricitat que pot generar la placa i es produeix quan $I_0=10^3$ W/$\text{m}^2$ de radiació incideix sobre la mateixa. També utilitzem aquests valors per calcular el valor del rendiment $r$ de la placa de la següent manera:
+on hem escollit $P_0=400$ W per a normalitzar la potència. Segons l'enunciat, $P_0$ és la màxima potència que pot generar la placa i es produeix quan una intensitat $I_0=10^3$ W/$\text{m}^2$ de radiació incideix sobre la mateixa. També utilitzem aquests valors per calcular el valor del rendiment $r$ de la placa de la següent manera:
 \begin{equation}
      r = \frac{P_0}{I_0A} \ .
 \end{equation}
@@ -165,10 +164,10 @@ Així doncs, segons aquesta normalització l'Eq. \eqref{potencia placa} esdevé:
 \end{equation}
 Per a determinar $\cos{\theta}$, utilitzem la següent expressió:
 \begin{equation}
-    \cos \theta = \cos \theta_z \cos \beta + \sin \theta_z \sin \beta \cos (\eta - \gamma) \ .
+    \cos \theta = \cos \theta_z \cos \beta + \sin \theta_z \sin \beta \cos (\eta - \gamma)
     \label{cos theta}
 \end{equation}
-amb $\theta_z = 90^{\circ}-\nu$, on els angles $\eta$ i $\nu$ ja han estat definits i calculats a la secció anterior, i són les variables que determinen $\theta$. Els angles $\beta$ i $\gamma$ són paràmetres que fan referència a la inclinació i orientació de la placa; es defineixen formalment a la secció \ref{sec: demo cos theta} de l'Annex, on es demostra l'equació.
+amb $\theta_z = 90^{\circ}-\nu$, on els angles $\eta$ i $\nu$ ja han estat definits i calculats a la secció anterior, i són les variables que determinen $\theta$. Els angles $\beta$ i $\gamma$ són paràmetres que fan referència a la inclinació i orientació de la placa; es defineixen formalment a la secció \ref{sec: demo cos theta} de l'Annex, on es demostra també l'Eq. \eqref{cos theta}.
 
 En la Fig. \ref{fig: potencia}, es representa la potència produïda pel panell al llarg d'un cert dia.
 
@@ -196,7 +195,7 @@ Quan $\beta=0^{\circ}$, es representa la gràfica per un sol valor de $\gamma$ (
 Si $\theta_z$ o $\theta$ surten del rang $[-\pi/2,\pi/2]$ hem imposat que la potència sigui nul·la. Quan $\theta_z \notin [-\pi/2,\pi/2]$, el Sol es troba per sota de l'horitzó, impedint que arribi llum a la placa. És per això que mentre que per $\beta = 0^{\circ}$ la potència s'anul·la gradualment, per $\beta \neq 0^{\circ}$ s'anul·la bruscament, ja que quan el Sol és a prop de l’horitzó $\theta$ encara és inferior a $90^{\circ}$. Similarment, quan $\theta \notin [-\pi/2,\pi/2]$ el Sol està situat darrere la placa, sent ella mateixa la que bloqueja la llum. És per això que quan $\gamma$ és prou gran, com ara en la Fig. \ref{fig: potencia} per $\gamma=\pm60^{\circ}$, la potència s'anul·la abans que el Sol estigui a l'horitzó. A la secció \ref{sec: dia estiu potencia} de l'Annex, es comparen aquests resultats amb els obtinguts en un dia d'estiu.
 
 \subsection{Energia elèctrica produïda per un panell solar}
-Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació i orientació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energia}.
+Amb la potència elèctrica generada per la placa cada minut de l'any ens disposem a calcular l'energia elèctrica produïda per aquesta. La potència és la derivada temporal de l'energia, per tant, podem trobar l'energia elèctrica produïda per la placa durant una certa quantitat de temps integrant numèricament la potència respecte el temps. Per fer-ho, hem optat pel mètode d'integració numèrica de Simpson $\frac{1}{3}$. Presentem l'energia produïda cada dia de l'any per diferents combinacions dels angles $\beta$ (inclinació de la placa) i $\gamma$ (orientació de la placa) a la Fig. \ref{fig: energia}.
 
 
 %\begin{figure}[H]
@@ -213,7 +212,7 @@ Pel que fa a la normalització del problema numèric, ens ha quedat la següent 
     \hat{E} = \int \hat{P} \, d\hat{t}
     \label{energia}
 \end{equation}
-on $\hat{t}=\frac{t}{t_0}$, $\hat{P}=\frac{P}{P_0}$ i $\hat{E}=\frac{E}{P_0 t_0}$, amb $t_0=86400$ s (els segons que hi ha en un dia) i $P_0=400$ W (la potència màxima de la placa en les condicions donades a l'enunciat de la pràctica). 
+on $\hat{t}=\frac{t}{t_0}$, $\hat{P}=\frac{P}{P_0}$ i $\hat{E}=\frac{E}{P_0 t_0}$, amb $t_0=86400$ s (els segons que hi ha en un dia) i $P_0=400$ W (la potència màxima que pot generar la placa). 
 \subsection{Extra: Optimització dels angles de la placa}
 
 Hem plantejat el problema des del punt de vista de maximitzar la producció d'energia total al llarg d'un any mantenint els angles $\beta$ i $\gamma$ de la placa constants durant tot l'any. Per fer-ho, hem utilitzat que si tenim en compte l'Eq. \ref{potencia placa} i \ref{cos theta}, l'energia total normalitzada produïda en un any la podem escriure com
@@ -244,7 +243,7 @@ on hem descartat la solució corresponent a $\beta=n\pi$ per no ser un màxim.
 
 Calculant numèricament les integrals $\hat{a}$, $\hat{b}$ i $\hat{c}$ per Simpson 1/3 sota la condició de que $-\frac{\pi}{2} \leq \theta_z \leq \frac{\pi}{2}$ (en cas contrari l'integrand l'hem anul·lat), hem obtingut uns angles òptims arrodonint a la primera xifra decimal de $\gamma=0^\circ$ i $\beta=44,5^\circ$. L'energia produïda dia a dia durant tot l'any corresponent a aquests angles pot trobar-se a la Fig. \ref{fig: energia}. 
 
-A la Fig. \ref{fig: energies} podem observar que a l'estiu un angle d'inclinació de $35^\circ$, per exemple, produeix més energia que un de $44,5^\circ$, ara bé, com hem dit, nosaltres hem maximitzat la producció total durant l'any. Això, però, suggereix que durant diferents èpoques de l'any podriem modificar la inclinació de la placa per així maximitzar la seva producció en cada període i conseqüentment durant tot l'any.
+A la Fig. \ref{fig: energia} podem observar que a l'estiu un angle d'inclinació de $35^\circ$, per exemple, produeix més energia que l'angle òptim, ara bé, com hem dit, nosaltres hem maximitzat la producció total durant l'any. Això, però, suggereix que durant diferents èpoques de l'any podriem modificar la inclinació de la placa per així maximitzar la seva producció en cada període i conseqüentment durant tot l'any.
 
 \section{Resolució de l'EDO per diversos mètodes numèrics}\label{sec: edos}
 Per a resoldre l'EDO de l'òrbita terrestre hem utilitzat el mètode d'Euler, però sabem que hi ha mètodes numèrics més potents que aquest. Per axò hem volgut comparar els resultats.
@@ -258,7 +257,7 @@ Els mètodes emprats per a resoldre l'equació \eqref{equ_en_r} han estat el Run
     \label{fig: orbita3met}
 \end{figure}
 
-Observant els gràfics \ref{fig: orbita3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
+Observant la Fig. \ref{fig: orbita3met} podem veure que les diferències entre les òrbites càlculades pels diferents mètodes numèrics són realment mínimes.
 
 \section{Consideració de la Terra com no esfèrica}\label{sec: terranoesfera}
 Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. Però sabem que realment, la força centrífuga generada per la seva pròpia rotació provoca una deformació en els pols, 'aixafant-la' i fent que la Terra no sigui una esfera.
@@ -278,7 +277,7 @@ Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només cons
 Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a les corresponents seccions \ref{sec: seccio_2}.
 
 \section{Conclusions}
-En aquesta pràctica hem estudiat l'energia elèctrica produïda per una instal·lació de panells solars fotovoltaics a Catalunya. Amb les dues primeres seccions hem simulat la posició del Sol respecte la posició de la placa. Considerant el Sol com un cos fix generador de camp gravitatori i la Terra com l'únic objecte astronòmic existent hem obtingut un error acumulat en el radi de l'òrbita al cap d'un any de menys del $0,00001\%$. Concretament, al primer apartat hem resolt numèricament l'equació del moviment de la Terra amb el mètode d'Euler i al segon apartat hem calculat geomètricament la posició del Sol al cel des d'un habitatge de Catalunya. Amb les dades aconseguides a aquests apartats, a la tercera secció ens hem volcat a l'estudi de l'energia produïda pels panells solars tot aproximant el Sol com un cos negra esfèric. En aquest apartat hem obingut una energia mitjana produïda al dia de [???], dada molt semblant a la proporcionada per la [xxxxxx] i que valida el nostre model.
+En aquesta pràctica hem estudiat l'energia elèctrica produïda per un panell fotovoltaic a Catalunya. A les dues primeres seccions hem simulat la posició del Sol respecte la posició de la placa. Considerant el Sol com un cos fix generador de camp gravitatori i la Terra com l'únic objecte astronòmic existent hem obtingut un error acumulat en el radi de l'òrbita al cap d'un any de menys del $0,00001\%$. Concretament, al primer apartat hem resolt numèricament l'equació del moviment de la Terra amb el mètode d'Euler i al segon apartat hem calculat geomètricament la posició del Sol al cel des d'un habitatge de Catalunya. Amb les dades aconseguides a aquests apartats, a la tercera secció ens hem volcat a l'estudi de l'energia produïda pels panells solars tot aproximant el Sol com un cos negre esfèric.
 
 A més, s'ha trobat en quina posició (descrita pels angles òptims) ha d'estar la placa per a produir el màxim d'energia elèctrica, la qual s'ha considerat pel període de temps d'un any. Per últim, al repetir les simulacions amb altres models que consideressin aproximacions que ens apropéssin cada cop més a la realitat per posteriorment comparar els resultats. Concretament hem escollit calcular l'òrbita Terrestre al voltant del sol amb altres mètodes numèrics: Runge-Kutta d'ordre 2 i Runge-Kutta d'ordre 4, emprant la mateixa discretització del temps que per Euler. Per altra banda també hem canviat el model aproximat al considerar la Terra (fins ara pensada com una esfera) com a un esferoide. Cap d'aquests canvis ha sigut molt significatiu en els resultats obtinguts d'aquestes noves simulacions. 
 
@@ -466,7 +465,7 @@ Calculem l'error acumulat en el radi orbital per poder veure millor les diferèn
 
 \section{Aproximació de la Terra a un esferoide}
 \label{sec: terraesferoidedibuix}
-En aquesta secció es mostren els passos per arribar a l'equació \eqref{rtel}.
+En aquesta secció es mostren els passos per arribar a l'equació \eqref{eq: rtel}.
 
 Per una banda, el punt de la superfície de l'el·lipsoide es pot definir com:
 

@@ -28,6 +28,8 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{marginnote}
+\usepackage{siunitx}
+
 
 \title{\Huge\bfseries Pràctica de simulació: \\ Instal·lació de panells solars fotovoltaics en un habitatge unifamiliar a Catalunya \\ [2ex] \Large}
 
@@ -44,13 +46,17 @@ Núria Castillo Ariño (1669145)
 \begin{document}
 
 \maketitle
+\begin{center}
+    \textbf{Resum:} Aquest informe és un anàlisi sobre la instal·lació de panells solars fotovoltaics en un habitatge a Catalunya. Es modelitza el moviment orbital de la Terra per determinar la trajectòria solar respecte a l’habitatge, resolent l’equació del moviment amb diferents mètodes numèrics per comparar-ne l’eficiència. Amb aquestes dades, es calcula la potència i l’energia generades pel panell solar i es determina la configuració òptima per maximitzar la producció energètica. Finalment, al model s'hi incorpora la forma no esfèrica de la Terra, per tal d'ajustar-lo més a la realitat.
+\end{center}
+
+
 \newpage
 
 \tableofcontents
 \newpage
 
-\section{Introducció}
-Aquest informe és un anàlisi sobre la instal·lació de panells solars fotovoltaics en un habitatge a Catalunya. Es modelitza el moviment orbital de la Terra per determinar la trajectòria solar respecte a l’habitatge, resolent l’equació del moviment amb diferents mètodes numèrics per comparar-ne l’eficiència. Amb aquestes dades, es calcula la potència i l’energia generades pel panell solar i es determina la configuració òptima per maximitzar la producció energètica. Finalment, al model s'hi incorpora la forma no esfèrica de la Terra, per tal d'ajustar-lo més a la realitat.
+
 
 \section{Moviment de la Terra al voltant del Sol} \label{sec: seccio_1}
 En aquesta secció ens hem proposat simular el moviment de translació de la Terra al voltant del Sol. Per fer-ho hem partit de la Llei de la Gravitació Univeral i hem simplificant el nostre problema de dos cossos a un d'un sol cos sota una força central, $F(r)$.
@@ -66,26 +72,24 @@ Per aquest tipus de sistemes i considerant únicament aquesta força central, ob
     \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
     \label{eq:all}
 \end{equation}
-On r i $\theta$ són les variables polars i $v$ la velocitat radial. Les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$. 
+On r i $\theta$ són les variables polars, $v$ la velocitat radial i $\tilde{r}\,, \tilde{\theta}\, i\, \tilde{v}$ les mateixes variables normalitzades. Les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$. 
 
 Aquest sistema d'equacions diferencials de primer ordre l'hem resolt numèricament amb el mètode d'Euler i agafant com a condicions de contorn el radi de l'òrbita, la velocitat radial i l'angle al periheli.\footnotemark[\value{footnote}]
-Si grafiquem els resultats obtenim el gràfic \ref{fig: orb_terra}.
-
-El mètode d'Euler és poc exacte però amb una discretització prou fina dona bons resultats. Si calculem l'error acomulat en el radi al completar una Òrbita sencera amb una discretització temporal de $3000$ punts obtenim
+Si grafiquem els resultats obtenim el gràfic \ref{fig: orb_terra}.\\
+El mètode d'Euler és poc exacte però amb una discretització prou fina dona bons resultats. Si calculem l'error acomulat en el radi al completar una Òrbita sencera amb una discretització temporal de $\num{5.256e5}$ punts, que equival a calcular la posició de la Terra cada minut de l'any, obtenim
 \begin{equation}
-    Error = \frac{1.47098075136e11-1.47082017410e11}{1.47098075136e11}100\approx0,01\%
+    Error = \frac{\num{1.47098075136e11}-\num{1.47097294753e11}}{\num{1.47098075136e11}}100<0,00001\%
 \end{equation}
+Aquesta és la discretització que usem per fer els càlculs dels següents apartats.
 Tot i així a la secció \ref{sec: edos} resoldrem aquest sistema d'EDOs amb altres mètodes per comparar-ne els resultats.
 
-
 \section{Posició del Sol al cel vist des de l'habitatge} \label{sec: seccio_2}
-En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès: 41°28'03.4"N 2°04'28.4"E}. Per fer-ho hem parametritzat la posició del Sol amb dos angles, l'angle vertical $\nu$ i l'angle horitzontal $\eta$ (Figura \ref{fig: sist_sol}), i hem definit els vectors $\vec{\rho}$, del centre del Sol al punt de la superfície de la Terra, $\vec{r}$, del centre de la Terra al punt de la superfície de la Terra, i $\vec{R}$, del centre del Sol al centre de la Terra (Figura \ref{fig: sist_vectors}).
-
+En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès: 41°28'03.4"N 2°04'28.4"E}. Per fer-ho hem parametritzat la posició del Sol amb dos angles, l'angle vertical, $\nu$, i l'angle horitzontal, $\eta$ (Figura \ref{fig: sist_sol}), i hem definit els vectors $\vec{\rho}$, del centre del Sol al punt de la superfície de la Terra; $\vec{r}$, del centre de la Terra al punt de la superfície de la Terra; i $\vec{R}$, del centre del Sol al centre de la Terra (Figura \ref{fig: sist_vectors}).\\
 També hem definit tres sistemes de referència (Figura \ref{fig: sist_ref}) per facilitar els càlculs i trobar els àngles esmentats. Començant al sistema $\Omega$ podem obtenir un vector al sistema $\gamma$ a través de les matrius de rotació de l'annex \ref{annex: matr_rot}. Les relacions entre aquests sistemes són
 \begin{itemize}
     \item Sistema $\Omega$: l'eix $z$ està orientat amb l'eix de rotació de la Terra.
-    \item Sistema $\beta$: sistema rotat un angle $\beta$ en el pla $zy$ respecte el sistema $\Omega$. $\beta$ és l'angle entre l'eix de rotació de la terra i el vector perpendicular al pla de l'orbita, per tant, ara l'eix $z$ apunta en direcció pendicular al pla de l'òrbita.
-    \item Sistema $\gamma$: sistema rotat un angle $\gamma$ en el pla $xy$ respecte el sistema $\beta$. $\gamma$ és l'angle entre $\vec{R}_{periheli}$ i $\vec{R}_{solstici(hivern)}$, per tant, ara la direcció de l'eix $y$ coincideix amb la direcció del periheli.
+    \item Sistema $\beta$: sistema rotat un angle $\beta$ en el pla $zy$ respecte el sistema $\Omega$. $\beta$ és l'angle entre l'eix de rotació de la terra i el vector perpendicular al pla de l'orbita, per tant, en aquest sistema l'eix $z$ apunta en direcció pendicular al pla de l'òrbita.
+    \item Sistema $\gamma$: sistema rotat un angle $\gamma$ en el pla $xy$ respecte el sistema $\beta$. $\gamma$ és l'angle entre $\vec{R}_{periheli}$ i $\vec{R}_{solstici(hivern)}$, per tant, en aquest sistema la direcció de l'eix $y$ coincideix amb la direcció del periheli.
 \end{itemize}
 de tal manera que al sistema $\gamma$ tenim l'òrbita de la Terra amb el periheli i l'afeli sobre l'eix y i l'eix de rotació de la Terra orientat per tal que al solstici d'hivern (21 de Desembre) l'angle entre l'eix de rotació de la Terra i la direcció perpendicular al pla de l'òrbita sigui màxim.
 
@@ -95,7 +99,7 @@ Al sistema $\Omega$ el vector $\vec{r}$ és molt fàcil de definir
     \label{vector_r}
 \end{equation}
 si tenim la coordenada de latitud del punt de la Terra on volem fer els càlculs, $\alpha$, i el radi de la Terra, $r_T$, i on $w$ és la velocitat angular de rotació de la Terra i $t$ el temps transcorregut al llarg del dia.
-Per tal de que aquest vector a $t=0$ comenci a la posició més allunyada del Sol (és a dir que t=0 es correspongui amb la meitat de la nit) hem d'afegir l'angle $\varphi$ a l'angle de rotació. $\varphi$ anirà variant cada dia i és l'angle entre el vector definit a (\ref{vector_r}) i el vector $\vec{R}$ a $t=0$.
+Per tal de que aquest vector a $t=0$ comenci a la posició més allunyada del Sol (és a dir que t=0 es correspongui amb la meitat de la nit) hem d'afegir l'angle $\varphi$ a l'angle de rotació. $\varphi$ anirà variant cada dia i és l'angle entre el vector definit a l'equació (\ref{vector_r}) i el vector $\vec{R}$ a $t=0$.
 
 El vector $\vec{R}$ ja el tenim calculat de la secció \ref{sec: seccio_1} i el vector $\vec{\rho}$ és simplement
 \begin{equation}
@@ -271,8 +275,8 @@ Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només cons
 Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a les corresponents seccions \ref{sec: seccio_2}.
 
 \section{Conclusions}
-En aquesta pràctica hem estudiat l'energia elèctrica produïda per una instal·lació de panells solars fotovoltaics a Catalunya. Amb les dues primeres seccions hem simulat la posició del Sol respecte la posició de la placa considerant el Sol com un cos fix generador de camp gravitatori i la Terra com l'únic objecte astronòmic existent. Concretament, al primer apartat hem resolt numèricament l'equació del moviment de la Terra amb el mètode d'Euler i al segon apartat hem calculat geomètricament la posició del Sol al cel des d'un habitatge de Catalunya. Amb les dades aconseguides a aquests apartats a la tercera secció ens hem volcat a l'estudi de l'energia produïda pels panells solars, tot aproximant el Sol com un cos negra esfèric. En aquest apartat hem obingut una energia mitjana produïda al dia de [???], dada molt semblant a la proporcionada per la [xxxxxx] i que valida el nostre model.
-Com a seccions extres hem realitzat una optimització de la posició de les plaques...
+En aquesta pràctica hem estudiat l'energia elèctrica produïda per una instal·lació de panells solars fotovoltaics a Catalunya. Amb les dues primeres seccions hem simulat la posició del Sol respecte la posició de la placa. Considerant el Sol com un cos fix generador de camp gravitatori i la Terra com l'únic objecte astronòmic existent hem obtingut un error acumulat en el radi de l'òrbita al cap d'un any de menys del $0,00001\%$. Concretament, al primer apartat hem resolt numèricament l'equació del moviment de la Terra amb el mètode d'Euler i al segon apartat hem calculat geomètricament la posició del Sol al cel des d'un habitatge de Catalunya. Amb les dades aconseguides a aquests apartats, a la tercera secció ens hem volcat a l'estudi de l'energia produïda pels panells solars tot aproximant el Sol com un cos negra esfèric. En aquest apartat hem obingut una energia mitjana produïda al dia de [???], dada molt semblant a la proporcionada per la [xxxxxx] i que valida el nostre model.
+Com a seccions extres hem realitzat una optimització de la posició de les plaques...(eira)
 
 \section*{Annex}
 \appendix

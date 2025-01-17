@@ -73,16 +73,19 @@ Per aquest tipus de sistemes i considerant únicament aquesta força central, ob
     \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
     \label{eq:all}
 \end{equation}
-On r i $\theta$ són les variables polars, $v$ la velocitat radial i $\tilde{r}\,, \tilde{\theta}\, i\, \tilde{v}$ les mateixes variables normalitzades. Les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$, $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}, \kappa=GM$. 
+on r i $\theta$ són les variables polars, $v$ la velocitat radial i $\tilde{r}\,, \tilde{\theta}\, i\, \tilde{v}$ les mateixes variables normalitzades (definides també a l'annex \ref{annex: equ_mov}).
 
-Aquest sistema d'equacions diferencials de primer ordre l'hem resolt numèricament amb el mètode d'Euler i agafant com a condicions de contorn el radi de l'òrbita, la velocitat radial i l'angle al periheli.\footnotemark[\value{footnote}]
-Si grafiquem els resultats obtenim el gràfic \ref{fig: orb_terra}.\\
-El mètode d'Euler és poc exacte però amb una discretització prou fina dona bons resultats. Si calculem l'error acomulat en el radi al completar una Òrbita sencera amb una discretització temporal de $\num{5.256e5}$ punts, que equival a calcular la posició de la Terra cada minut de l'any, obtenim
+Aquest sistema d'equacions diferencials de primer ordre l'hem resolt numèricament pel mètode d'Euler, prenent com a condicions de contorn del radi de l'òrbita, la velocitat radial i l'angle al periheli.\footnotemark[\value{footnote}]
+En la Fig. \ref{fig: orb_terra} hem graficat els resultats obtinguts.
+
+
+El mètode d'Euler és poc exacte però amb una discretització prou fina dona bons resultats. Si calculem l'error acomulat en el radi al completar una òrbita sencera amb una discretització temporal de $\num{5.256e5}$ punts, que equival a calcular la posició de la Terra cada minut de l'any, obtenim
 \begin{equation}
     Error = \frac{\num{1.47098075136e11}-\num{1.47097294753e11}}{\num{1.47098075136e11}}100<0,00001\%
 \end{equation}
 Aquesta és la discretització que usem per fer els càlculs dels següents apartats.
-Tot i així a la secció \ref{sec: edos} resoldrem aquest sistema d'EDOs amb altres mètodes per comparar-ne els resultats.
+
+A la secció \ref{sec: edos}, resoldrem aquest sistema d'EDOs amb altres mètodes per comparar-ne els resultats.
 
 \section{Posició del Sol al cel vist des de l'habitatge} \label{sec: seccio_2}
 En aquesta secció ens proposem trobar la posició del Sol des d'un punt determinat de la Terra durant tot l'any\footnote{\label{nota: habitatge}Per fer els càlculs hem agafat les coordenades d'un habitatge de Sant Cugat del Vallès: 41°28'03.4"N 2°04'28.4"E}. Per fer-ho, hem parametritzat la posició del Sol amb dos angles, l'angle vertical, $\nu$, i l'angle horitzontal, $\eta$ (Fig. \ref{fig: sist_sol} de l'annex) i hem definit els vectors $\vec{\rho}$, del centre del Sol al punt de la superfície de la Terra; $\vec{r}$, del centre de la Terra al punt de la superfície de la Terra; i $\vec{R}$, del centre del Sol al centre de la Terra (Fig. \ref{fig: sist_vectors} de l'annex).\\
@@ -262,19 +265,16 @@ Observant els gràfics \ref{fig: orbita3met} podem veure que les diferències en
 \section{Consideració de la Terra com no esfèrica}\label{sec: terranoesfera}
 Fins ara hem estat considerant que la Terra tenia forma d'una esfera perfecta. Però sabem que realment, la força centrífuga generada per la seva pròpia rotació provoca una deformació en els pols, 'aixafant-la' i fent que la Terra no sigui una esfera.
 
-Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només considera la distància del sol al centre de la Terra però sí afecta en la resta de càlculs ja que el Radi de la Terra deixa de ser constant. En aquest apartat, aproximarem la Terra a un esferoide, com a un el·lipsoide de revolució. Podem arribar a les següents expressions\footnote{El procés per arribar a aquestes equacions està descrit en l'annex \ref{sec: terraesferoidedibuix}}:
-
+Això no ens afecta al càlcul de l'òrbita terrestre ja que aquesta només considera la distància del Sol al centre de la Terra però sí afecta en la resta de càlculs ja que el radi de la Terra deixa de ser constant. En aquest apartat, aproximarem la Terra a un esferoide, com a un el·lipsoide de revolució. Podem arribar a les següents expressions\footnote{El procés per arribar a aquestes equacions està descrit en l'annex \ref{sec: terraesferoidedibuix}}:
 \begin{equation}
-    tan(\alpha_{T_{el}}) = \frac{b}{a}tan(\alpha) 
+    \tan(\alpha_{T_{el}}) = \frac{b}{a}\tan(\alpha) 
     \label{eq: alphatel}
 \end{equation}
-
 \begin{equation}
-    r_{T_{el}} = \sqrt{\frac{(a^2cos(\alpha_{T_{el}}))^2+(b^2sin(\alpha_{T_{el}}))^2}{(acos(\alpha_{T_{el}}))^2+(bsin(\alpha_{T_{el}}))^2}}
+    r_{T_{el}} = \sqrt{\frac{(a^2\cos(\alpha_{T_{el}}))^2+(b^2\sin(\alpha_{T_{el}}))^2}{(a\cos(\alpha_{T_{el}}))^2+(b\sin(\alpha_{T_{el}}))^2}}
     \label{eq: rtel}
 \end{equation}
-
-Aquestes ens permeten calcular el Radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_{el}}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r_{(t)}}$ amb l'equació \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a la corresponent secció \ref{sec: seccio_2}.
+Aquestes ens permeten calcular el radi de la nostra esferoide (distància superfície-centre terreste) en funció de l'angle de latitud $\alpha$, calculat ja a partir de la dades geogràfiques en la secció \ref{sec: seccio_2}. Redefinim $r_T$ com $r_{T_el}$ i $\alpha$ com $\alpha_{T_{el}}$ per poder calcular el nou vector $\vec{r}{(t)}$ amb l'Eq. \eqref{vector_r}. Els passos per a la simulació són exactament els mateixos que els ja definits a la corresponent secció \ref{sec: seccio_2}.
 
 \section{Conclusions}
 En aquesta pràctica hem estudiat l'energia elèctrica produïda per un panell fotovoltaic a Catalunya. A les dues primeres seccions hem simulat la posició del Sol respecte la posició de la placa. Considerant el Sol com un cos fix generador de camp gravitatori i la Terra com l'únic objecte astronòmic existent hem obtingut un error acumulat en el radi de l'òrbita al cap d'un any de menys del $0,00001\%$. Concretament, al primer apartat hem resolt numèricament l'equació del moviment de la Terra amb el mètode d'Euler i al segon apartat hem calculat geomètricament la posició del Sol al cel des d'un habitatge de Catalunya. Amb les dades aconseguides a aquests apartats, a la tercera secció ens hem volcat a l'estudi de l'energia produïda pels panells solars tot aproximant el Sol com un cos negre esfèric.
@@ -291,8 +291,6 @@ A continuació donem el link per a accedir al repositori de github on es troba e
 
 \section{Deducció de les equacions de moviment de l'òrbita terrestre}
 \label{annex: equ_mov}
-
-
 Per aquest tipus de sistemes i considerant únicament la força central definida a l'Eq. \eqref{si}, podem definir dues equacions de moviment en el pla polar 
 \begin{equation}
     F(r)=m\ddot{r}-mr{\dot{\theta}}^2
@@ -323,7 +321,20 @@ Normalitzant aquestes dues equacions i reduint l'ordre de l'Eq. \eqref{edor}, ob
     \frac{\partial\tilde{\theta}}{\partial\tilde{t}}=\frac{1}{\tilde{r}^2}
     \label{eq:all}
 \end{equation}
-on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{\alpha}{\bar{v}}$ i $v=\tilde{v}\bar{v}$ i les constants de normalització $\alpha = \frac{\beta}{\kappa}$, $\bar{v}=\frac{\kappa}{(\beta)^{1/2}}$, $\beta=\frac{L^2}{m^2}$ i $\kappa=GM$.
+on la normalització de les variables ve donada per
+\begin{align}
+    r=\tilde{r}\alpha \, , \\
+    t=\tilde{t}\frac{\alpha}{\bar{v}} \, , \\
+    v=\tilde{v}\bar{v}
+\end{align}
+amb
+\begin{align}
+    \beta=\frac{L^2}{m^2} \, , \\
+    \kappa=GM \, , \\
+    \alpha = \frac{\beta}{\kappa} \, , \\
+    \bar{v}=\frac{\kappa}{(\beta)^{1/2}}
+\end{align}
+com a constants de normalització.
 
 
 \section{Matrius de canvi de sistema de referència}\label{annex: matr_rot}
@@ -331,16 +342,16 @@ on les variables normalitzades segueixen $r=\tilde{r}\alpha$, $t=\tilde{t}\frac{
     \mathbf{R}_{\beta}=
     \begin{pmatrix}
       1 & 0 & 0   \\
-      0 & \cos\beta& -sin\beta \\
-      0 & sin\beta & cos\beta \\
+      0 & \cos\beta& -\sin\beta \\
+      0 & \sin\beta & \cos\beta \\
     \end{pmatrix}
 \end{equation}  
 
 \begin{equation}
     \mathbf{R}_{\gamma}=
     \begin{pmatrix}
-       \cos\beta& -sin\beta& 0 \\
-       \sin\beta & cos\beta &0\\
+       \cos\beta& -\sin\beta& 0 \\
+       \sin\beta & \cos\beta &0\\
       0 & 0 & 1  \\
     \end{pmatrix}
 \end{equation}  
@@ -415,14 +426,12 @@ Això completa la demostració.
 
 \section{Estudi de la potència en un dia d'estiu}
 \label{sec: dia estiu potencia}
-
-En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas de la potència en un dia d'estiu, representat a la Fig. \ref{potencia dia estiu}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del 3 de gener. D'altra banda, en la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració del període de temps de generació de potència és superior a la del 3 de gener. Tot això es deu a que el dia és d'estiu. Per tant, la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per $\beta=0^{\circ}$, i disminueix amb la inclinació de la placa.
+En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\circ}$, major és el valor màxim de la potència. D'altra banda, per un determinat $\gamma$, la menor potència màxima assolida és per $\beta=0^{\circ}$. En el cas de la potència en un dia d'estiu, representat a la Fig. \ref{potencia dia estiu}, la potència màxima quan $\beta=0^{\circ}$ és notablement superior a la del 3 de gener. D'altra banda, en la gràfica per $\beta=35^{\circ}$ al migdia s'observa una disminució en la potència. A més, en tots els casos la duració del període de temps de generació de potència és superior a la del 3 de gener. Tot això es deu a que el dia és d'estiu. Per tant, per un determinat $\gamma$ la posició del Sol és més alta de manera que quan està al voltant de la seva alçada màxima l’angle $\theta$ és major per valors de $\beta$ petits que per grans.
 
 
 \begin{figure}[H]
     \centering
-        \includegraphics[width=\textwidth]{dia_estiu_pot_plot.png}
-        \caption{Dia 170.}
+        \includegraphics[width=0.75]{dia_estiu_pot_plot.png}
         \label{fig: potencia dia 170}
     \caption{Potència elèctrica produïda per la placa durant un dia d'estiu per diversos valors de $\beta$ i de $\gamma$.}
     \label{potencia dia estiu}
@@ -470,13 +479,13 @@ En aquesta secció es mostren els passos per arribar a l'equació \eqref{eq: rte
 Per una banda, el punt de la superfície de l'el·lipsoide es pot definir com:
 
 \begin{equation}
-    (x,y) = (acos(\xi),bsin(\xi))
+    (x,y) = (a\cos(\xi),b\sin(\xi))
 \end{equation}
 
 Partim de calcular el Radi de l'el·lipsoide amb el teorema de Pitàgores:
 
 \begin{equation}
-    R(t)^2 = a^2cos^2(\xi) + b^2sin^2(\xi)
+    R(t)^2 = a^2\cos^2(\xi) + b^2\sin^2(\xi)
     \label{eq: Pitagoreselipsoide}
 \end{equation}
 
@@ -485,10 +494,10 @@ On $\xi$ és l'angle geocèntric. Però com les dades de posició de l'habitatge
 Obtenim l'equació que ens permet passar d'un angle a l'altre, \eqref{eq: alphatel}, a partir de trobar el pendent del vector normal $(x,y) = (bcos(t), asin(t))$ que a la vegada és la tangent de $\xi$.
 
 \begin{equation}
-    tan(\epsilon) = \frac{asin(\xi)}{bcos(\xi)} = \frac{a}{b}tan(\xi)
+    \tan(\epsilon) = \frac{a\sin(\xi)}{b\cos(\xi)} = \frac{a}{b}\tan(\xi)
 \end{equation}
 
-El vector normal el podem obtenir girant 90º el vector tangent $(x,y) = (-asin(t),bcos(t))$ a la corba. Aquest últim l'hem calculat difernciant l'equació de la corba de l'el·lipsoide.
+El vector normal el podem obtenir girant 90º el vector tangent $(x,y) = (-a\sin(t),b\cos(t))$ a la corba. Aquest últim l'hem calculat difernciant l'equació de la corba de l'el·lipsoide.
 
 Això ho introduim a l'equació \eqref{eq: Pitagoreselipsoide} per obtenir l'expressió que utilitzarem per a recalcular el nostre radi, presentada en la secció \ref{sec: terranoesfera}.
 

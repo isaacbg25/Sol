@@ -451,12 +451,18 @@ En la Fig. \ref{fig: potencia} com més proper és el valor de $\gamma$ a 0$^{\c
     \label{fig: graficsRK}
 \end{figure}
 
+Calculem l'error acumulat en el radi orbital per poder veure millor les diferències entre resultats dels mètodes numèrics utilitzats.
+
 \begin{equation}
-    Error_{RK2} = \frac{1.47098075136e11-1.47081266318e11}{1.47098075136e11}100\approx0,011426946\%
+    Error_{Eul} = \frac{\num{1.47098075136e11}-\num{1.47097294753e11}}{\num{1.47098075136e11}}100\approx0,00053052\%
 \end{equation}
 
 \begin{equation}
-    Error_{RK4} = \frac{1.47098075136e11-1.47081266286e11}{1.47098075136e11}100\approx0,011426946\%
+    Error_{RK2} = \frac{\num{1.47098075136e11}-\num{1.470972947846478e11}}{\num{1.47098075136e11}}100\approx0,00053049732\%
+\end{equation}
+
+\begin{equation}
+    Error_{RK4} = \frac{\num{1.47098075136e11}-\num{1.470972947846474e11}}{\num{1.47098075136e11}}100\approx0,00053049732\%
 \end{equation}
 
 \section{Aproximació de la Terra a un esferoide}

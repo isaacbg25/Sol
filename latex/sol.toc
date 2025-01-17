@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {B}Deducció de les equacions de moviment de l'òrbita terrestre}{9}{appendix.B}%
 \contentsline {section}{\numberline {C}Matrius de canvi de sistema de referència}{10}{appendix.C}%
 \contentsline {section}{\numberline {D}Angles i vectors apartat 2}{10}{appendix.D}%
-\contentsline {section}{\numberline {E}Demostració de l'Eq. \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {cos theta}\unskip \@@italiccorr )}}}{10}{appendix.E}%
+\contentsline {section}{\numberline {E}Demostració de l'Eq. \eqref {cos theta}}{11}{appendix.E}%
 \contentsline {section}{\numberline {F}Estudi de la potència en un dia d'estiu}{12}{appendix.F}%
 \contentsline {section}{\numberline {G}Representació gràfica de les òrbites terrestres resultants}{13}{appendix.G}%
 \contentsline {section}{\numberline {H}Aproximació de la Terra a un esferoide}{13}{appendix.H}%
